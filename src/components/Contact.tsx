@@ -15,7 +15,7 @@ const CONTACT_INFO = [
     icon: MapPin,
     title: 'Location',
     lines: ['Rruga Jonianet', 'Saranda 9701, Albania'],
-    action: { label: 'Get Directions', href: 'https://maps.app.goo.gl/jH8hNeN2fcEjqe5v7' },
+    action: { label: 'Get Directions', href: 'https://maps.app.goo.gl/6a7XSdJsT6XFVtL88' },
     color: 'bg-[#c9972c]/10 text-[#c9972c]',
   },
   {

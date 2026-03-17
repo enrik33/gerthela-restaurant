@@ -24,7 +24,7 @@ const REVIEWS = [
         content:
             "I would give 6 stars if I could! The food is amazing. It's a family business, the fish is always fresh. You won't find the same dishes everyday because they prepare based on daily catch.",
         date: '10 months ago',
-        link: 'https://www.google.com/maps/place/Gerthela/@39.8731,20.00504',
+        link: 'https://maps.app.goo.gl/6a7XSdJsT6XFVtL88',
         color: 'bg-blue-600',
     },
     {
@@ -64,7 +64,7 @@ const PLATFORM_LINKS = [
     },
     {
         name: 'Google Maps',
-        href: 'https://www.google.com/maps/place/Gerthela/@39.8731,20.00504',
+        href: 'https://maps.app.goo.gl/6a7XSdJsT6XFVtL88',
         bg: 'bg-blue-50 hover:bg-blue-100 border-blue-200',
         text: 'text-blue-700',
         icon: '📍',

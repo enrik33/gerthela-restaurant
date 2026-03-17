@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { X } from 'lucide-react';
 import type { MenuItem } from '@/types';
 
 const DUMMY_MENU: MenuItem[] = [
@@ -11,6 +12,7 @@ const DUMMY_MENU: MenuItem[] = [
     price: 1800,
     category: 'seafood',
     available: true,
+    image_url: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&h=500&fit=crop',
   },
   {
     id: '2',
@@ -19,6 +21,7 @@ const DUMMY_MENU: MenuItem[] = [
     price: 1600,
     category: 'mains',
     available: true,
+    image_url: 'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=800&h=500&fit=crop',
   },
   {
     id: '3',
@@ -27,6 +30,7 @@ const DUMMY_MENU: MenuItem[] = [
     price: 1400,
     category: 'seafood',
     available: true,
+    image_url: 'https://images.unsplash.com/photo-1559847844-5315695dadae?w=800&h=500&fit=crop',
   },
   {
     id: '4',
@@ -35,6 +39,7 @@ const DUMMY_MENU: MenuItem[] = [
     price: 700,
     category: 'starters',
     available: true,
+    image_url: 'https://images.unsplash.com/photo-1540189549336-e6e99c72e9da?w=800&h=500&fit=crop',
   },
   {
     id: '5',
@@ -43,6 +48,7 @@ const DUMMY_MENU: MenuItem[] = [
     price: 500,
     category: 'starters',
     available: true,
+    image_url: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=800&h=500&fit=crop',
   },
   {
     id: '6',
@@ -51,6 +57,7 @@ const DUMMY_MENU: MenuItem[] = [
     price: 600,
     category: 'drinks',
     available: true,
+    image_url: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&h=500&fit=crop',
   },
 ];
 
@@ -66,6 +73,7 @@ const CATEGORY_CONFIG: Record<string, { label: string; emoji: string }> = {
 export default function Menu() {
   const menuItems: MenuItem[] = DUMMY_MENU;
   const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
 
   const categories = ['starters', 'mains', 'seafood', 'drinks', 'desserts'] as const;
 
@@ -77,10 +85,10 @@ export default function Menu() {
   const groupedItems =
     activeCategory === 'all'
       ? categories.reduce((acc, category) => {
-          const items = filteredItems.filter((item) => item.category === category);
-          if (items.length > 0) acc[category] = items;
-          return acc;
-        }, {} as Record<string, MenuItem[]>)
+        const items = filteredItems.filter((item) => item.category === category);
+        if (items.length > 0) acc[category] = items;
+        return acc;
+      }, {} as Record<string, MenuItem[]>)
       : { [activeCategory]: filteredItems };
 
   return (
@@ -103,11 +111,10 @@ export default function Menu() {
         <div className="flex flex-wrap gap-2 justify-center mb-12">
           <button
             onClick={() => setActiveCategory('all')}
-            className={`px-5 py-2.5 rounded-full font-semibold text-sm transition-all ${
-              activeCategory === 'all'
+            className={`px-5 py-2.5 rounded-full font-semibold text-sm transition-all ${activeCategory === 'all'
                 ? 'bg-[#0d1b2a] text-white shadow-lg'
                 : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
-            }`}
+              }`}
           >
             🍽️ All Items
           </button>
@@ -115,11 +122,10 @@ export default function Menu() {
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-5 py-2.5 rounded-full font-semibold text-sm transition-all ${
-                activeCategory === category
+              className={`px-5 py-2.5 rounded-full font-semibold text-sm transition-all ${activeCategory === category
                   ? 'bg-[#c9972c] text-white shadow-lg'
                   : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
-              }`}
+                }`}
             >
               {CATEGORY_CONFIG[category].emoji} {CATEGORY_CONFIG[category].label}
             </button>
@@ -143,7 +149,8 @@ export default function Menu() {
                 {items.map((item) => (
                   <div
                     key={item.id}
-                    className="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all border border-transparent hover:border-[#c9972c]/20"
+                    onClick={() => setSelectedItem(item)}
+                    className="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all border border-transparent hover:border-[#c9972c]/20 cursor-pointer"
                   >
                     <div className="flex justify-between items-start gap-4">
                       <div className="flex-1">
@@ -173,6 +180,76 @@ export default function Menu() {
           </div>
         )}
       </div>
+
+      {/* Dish Detail Modal */}
+      {selectedItem && (
+        <div
+          className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
+          onClick={() => setSelectedItem(null)}
+        >
+          <div
+            className="bg-white rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Dish image */}
+            {selectedItem.image_url && (
+              <div className="relative h-56 sm:h-64 w-full">
+                <img
+                  src={selectedItem.image_url}
+                  alt={selectedItem.name}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                <span className="absolute bottom-4 left-4 bg-[#0d1b2a] text-white px-3 py-1 rounded-full text-sm font-bold">
+                  {selectedItem.price.toLocaleString()} ALL
+                </span>
+              </div>
+            )}
+
+            {/* Content */}
+            <div className="p-6">
+              <div className="flex justify-between items-start mb-3">
+                <h3 className="font-display text-2xl font-bold text-[#0d1b2a]">
+                  {selectedItem.name}
+                </h3>
+                <button
+                  onClick={() => setSelectedItem(null)}
+                  className="p-1.5 rounded-full hover:bg-gray-100 transition-colors text-gray-400 hover:text-gray-600"
+                  aria-label="Close"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              <p className="text-gray-600 text-sm mb-4">{selectedItem.description}</p>
+
+              <div className="space-y-2 text-sm text-gray-500 border-t border-gray-100 pt-4">
+                <div className="flex items-center gap-2">
+                  <span className="font-semibold text-[#0d1b2a]">Allergens:</span>
+                  <span>May contain gluten, dairy or shellfish. Ask your server.</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="font-semibold text-[#0d1b2a]">Preparation:</span>
+                  <span>Made fresh to order — approx. 15–20 min.</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="font-semibold text-[#0d1b2a]">Origin:</span>
+                  <span>Locally sourced from the Ionian coast, Saranda.</span>
+                </div>
+              </div>
+
+              <a
+                href="https://wa.me/+355696215643"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-5 w-full flex items-center justify-center gap-2 bg-[#25d366] hover:bg-[#1ebe5d] text-white py-3 rounded-full font-semibold text-sm transition-all"
+              >
+                Reserve &amp; mention this dish
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
