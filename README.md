@@ -1,36 +1,176 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Gerthela Restaurant Website - MVP
+
+A modern, responsive restaurant website for Gerthela Taverna in Saranda, Albania. Built with Next.js 14, TypeScript, and Tailwind CSS.
+
+## Features
+
+### Public Website
+- ✅ Hero section with call-to-action
+- ✅ About section with restaurant story
+- ✅ Dynamic menu management with categories
+- ✅ Photo gallery with lightbox viewer
+- ✅ Guest reviews from multiple platforms
+- ✅ Contact form and Google Maps integration
+- ✅ Mobile-responsive design
+- ✅ Links to external review platforms (TripAdvisor, Google, Restaurant Guru)
+- ✅ Instagram integration
+
+### Admin Panel
+- ✅ Secure login with password
+- ✅ Menu item management (Add/Edit/Delete)
+- ✅ Restaurant information updates
+- ✅ Announcement/news management
+- ✅ Responsive dashboard UI
+
+## Tech Stack
+
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Icons**: Lucide React
+- **Database**: Supabase (optional - can add later)
+- **State**: Zustand (optional - for future features)
+- **HTTP**: Axios
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+- Node.js 16+ 
+- npm or yarn
 
+### Installation
+
+1. Clone or extract the project
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd gerthela-restaurant
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Configure environment variables
+```bash
+# Copy example env file
+cp .env.local.example .env.local
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+For MVP, you only need:
+```
+ADMIN_PASSWORD=demo123
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Start the development server
+```bash
+npm run dev
+```
 
-## Learn More
+Open [http://localhost:3000](http://localhost:3000) to view the website.
 
-To learn more about Next.js, take a look at the following resources:
+### Admin Panel Access
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Navigate to [http://localhost:3000/admin](http://localhost:3000/admin)
+2. Enter password: `demo123` (configured in .env.local)
+3. Manage menu, restaurant info, and announcements
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+```
+src/
+├── app/
+│   ├── api/
+│   │   └── admin/login/         # Admin authentication
+│   ├── admin/
+│   │   ├── page.tsx              # Login page
+│   │   └── dashboard/page.tsx     # Admin dashboard
+│   ├── layout.tsx                 # Root layout
+│   ├── page.tsx                   # Homepage
+│   └── globals.css                # Global styles
+├── components/
+│   ├── Header.tsx                 # Navigation
+│   ├── Hero.tsx                   # Hero section
+│   ├── About.tsx                  # About section
+│   ├── Menu.tsx                   # Menu display
+│   ├── Gallery.tsx                # Photo gallery
+│   ├── Reviews.tsx                # Reviews section
+│   ├── Contact.tsx                # Contact form & map
+│   ├── Footer.tsx                 # Footer
+│   └── admin/
+│       ├── MenuManagement.tsx      # Menu CRUD
+│       ├── RestaurantInfoManagement.tsx
+│       └── AnnouncementManagement.tsx
+├── types/
+│   └── index.ts                   # TypeScript types
+└── lib/
+    └── supabase.ts                # Supabase client (optional)
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Available Scripts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+# Development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
+
+# Lint code
+npm run lint
+```
+
+## Next Steps (Phase 2)
+
+To enhance the MVP further:
+
+1. **Database Integration**
+   - Set up Supabase project
+   - Create tables for menu items, restaurant info, announcements
+   - Connect admin panel to real data
+
+2. **Image Management**
+   - Integrate Cloudinary for image uploads
+   - Update gallery with dynamic images from database
+
+3. **Email Integration**
+   - Connect contact form to email service (SendGrid, Resend)
+   - Send admin notifications for new inquiries
+
+4. **Additional Features**
+   - SEO optimization and sitemap
+   - Analytics integration
+   - Multi-language support (Albanian, Italian, English)
+   - Online booking system (future phase)
+
+5. **Deployment**
+   - Deploy to Vercel (recommended for Next.js)
+   - Set up custom domain (gerthela.al)
+   - Configure DNS and SSL
+
+## Current Limitations (MVP)
+
+- ⚠️ Admin data stored in browser (localStorage) - resets on refresh
+- ⚠️ No image upload - using placeholder images
+- ⚠️ No email notifications
+- ⚠️ No database persistence
+- ⚠️ No multi-language support
+- ⚠️ No booking system
+
+## Demo Credentials
+
+- **Admin Password**: `demo123`
+- **Location**: Saranda, Albania (39.8731°N, 20.0050°E)
+
+## Contact & Support
+
+- 📞 **Phone**: +355 68 666 0000
+- 💬 **WhatsApp**: +355 69 621 5643
+- 🌍 **Website**: gerthela.al
+- 📸 **Instagram**: @gerthela_
+
+## License
+
+MIT License - Free to use and modify
+
+---
+
+Created with ❤️ for Gerthela Taverna
