@@ -5,13 +5,13 @@ import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 
 const GALLERY_IMAGES = [
   { id: 1, url: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&h=600&fit=crop', alt: 'Fresh seafood dish', span: 'col-span-1 row-span-2' },
-  { id: 2, url: 'https://images.unsplash.com/photo-1504674900968-a85b86418e5f?w=800&h=600&fit=crop', alt: 'Grilled fish', span: 'col-span-1 row-span-1' },
-  { id: 3, url: 'https://images.unsplash.com/photo-1455619452474-d2be8b1e4313?w=800&h=600&fit=crop', alt: 'Pasta dish', span: 'col-span-1 row-span-1' },
-  { id: 4, url: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop', alt: 'Calamari', span: 'col-span-2 row-span-1' },
+  { id: 2, url: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&h=600&fit=crop', alt: 'Grilled fish', span: 'col-span-1 row-span-1' },
+  { id: 3, url: 'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=800&h=600&fit=crop', alt: 'Pasta dish', span: 'col-span-1 row-span-1' },
+  { id: 4, url: 'https://images.unsplash.com/photo-1559847844-5315695dadae?w=800&h=600&fit=crop', alt: 'Calamari', span: 'col-span-2 row-span-1' },
   { id: 5, url: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop', alt: 'Restaurant ambiance', span: 'col-span-1 row-span-1' },
-  { id: 6, url: 'https://images.unsplash.com/photo-1553787537-cd265bc6f25b?w=800&h=600&fit=crop', alt: 'Waterfront dining', span: 'col-span-1 row-span-2' },
-  { id: 7, url: 'https://images.unsplash.com/photo-1546084646-e9e99c1b86d2?w=800&h=600&fit=crop', alt: 'Seafood platter', span: 'col-span-1 row-span-1' },
-  { id: 8, url: 'https://images.unsplash.com/photo-1517521231527-c8ff086f1f1f?w=800&h=600&fit=crop', alt: 'Restaurant view', span: 'col-span-1 row-span-1' },
+  { id: 6, url: 'https://images.unsplash.com/photo-1502673530728-f79b4cab31b1?w=800&h=600&fit=crop', alt: 'Waterfront dining', span: 'col-span-1 row-span-2' },
+  { id: 7, url: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=800&h=600&fit=crop', alt: 'Seafood platter', span: 'col-span-1 row-span-1' },
+  { id: 8, url: 'https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=800&h=600&fit=crop', alt: 'Restaurant view', span: 'col-span-1 row-span-1' },
 ];
 
 export default function Gallery() {

@@ -26,7 +26,7 @@ export default function About() {
             {/* Floating accent image */}
             <div className="absolute -bottom-6 -right-6 w-40 h-40 sm:w-48 sm:h-48 rounded-2xl overflow-hidden shadow-xl border-4 border-white">
               <img
-                src="https://images.unsplash.com/photo-1504674900968-a85b86418e5f?w=400&h=400&fit=crop"
+                src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=800&h=600&fit=crop"
                 alt="Grilled fish dish"
                 className="w-full h-full object-cover"
               />

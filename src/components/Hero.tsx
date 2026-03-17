@@ -83,8 +83,8 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
+      {/* Scroll indicator — hidden on mobile to avoid overlapping trust indicators */}
+      <div className="hidden sm:block absolute bottom-24 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
         <ChevronDown size={28} className="text-white/60" />
       </div>
     </section>
