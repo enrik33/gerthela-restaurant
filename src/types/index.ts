@@ -6,6 +6,9 @@ export interface MenuItem {
   category: 'starters' | 'mains' | 'seafood' | 'fish' | 'drinks' | 'desserts';
   image_url?: string;
   available: boolean;
+  allergens?: string;
+  preparation?: string;
+  origin?: string;
   created_at?: string;
   updated_at?: string;
 }
