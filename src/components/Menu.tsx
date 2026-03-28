@@ -499,7 +499,7 @@ export default function Menu() {
                 </div>
               </div>
               <a
-                href="https://wa.me/+355686660000"
+                href={`https://wa.me/+355686660000?text=${encodeURIComponent(`Hi! I'd like to make a reservation and mention the dish: ${selectedItem.name}`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-5 w-full flex items-center justify-center gap-2 bg-[#25d366] hover:bg-[#1ebe5d] text-white py-3 rounded-full font-semibold text-sm transition-all"
