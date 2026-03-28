@@ -45,6 +45,16 @@ export default function Contact() {
     message: '',
   });
   const [timeError, setTimeError] = useState('');
+  const [dateError, setDateError] = useState('');
+
+  const validateDate = (value: string) => {
+    if (!value) return '';
+    const selected = new Date(value + 'T00:00:00');
+    const todayDate = new Date();
+    todayDate.setHours(0, 0, 0, 0);
+    if (selected < todayDate) return 'Please select today or a future date.';
+    return '';
+  };
 
   const validateTime = (value: string) => {
     if (!value) return '';
@@ -56,8 +66,10 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const error = validateTime(formData.time);
-    if (error) { setTimeError(error); return; }
+    const timeErr = validateTime(formData.time);
+    const dateErr = validateDate(formData.date);
+    if (timeErr) { setTimeError(timeErr); return; }
+    if (dateErr) { setDateError(dateErr); return; }
 
     const formatTime = (t: string) => {
       if (!t) return '';
@@ -84,6 +96,7 @@ export default function Contact() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     if (name === 'time') setTimeError(validateTime(value));
+    if (name === 'date') setDateError(validateDate(value));
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
@@ -208,6 +221,9 @@ export default function Contact() {
                     required
                     className={`${inputClass} [color-scheme:dark]`}
                   />
+                  {dateError && (
+                    <p className="text-red-400 text-xs mt-1">{dateError}</p>
+                  )}
                 </div>
                 <div>
                   <label htmlFor="time" className="block text-xs font-medium text-gray-400 mb-1.5 uppercase tracking-wide">
