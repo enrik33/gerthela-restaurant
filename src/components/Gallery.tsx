@@ -4,14 +4,19 @@ import { useState } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 
 const GALLERY_IMAGES = [
-  { id: 1, url: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&h=600&fit=crop', alt: 'Fresh seafood dish', span: 'col-span-1 row-span-2' },
-  { id: 2, url: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&h=600&fit=crop', alt: 'Grilled fish', span: 'col-span-1 row-span-1' },
-  { id: 3, url: 'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=800&h=600&fit=crop', alt: 'Pasta dish', span: 'col-span-1 row-span-1' },
-  { id: 4, url: 'https://images.unsplash.com/photo-1559847844-5315695dadae?w=800&h=600&fit=crop', alt: 'Calamari', span: 'col-span-2 row-span-1' },
-  { id: 5, url: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop', alt: 'Restaurant ambiance', span: 'col-span-1 row-span-1' },
-  { id: 6, url: 'https://images.unsplash.com/photo-1502673530728-f79b4cab31b1?w=800&h=600&fit=crop', alt: 'Waterfront dining', span: 'col-span-1 row-span-2' },
-  { id: 7, url: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=800&h=600&fit=crop', alt: 'Seafood platter', span: 'col-span-1 row-span-1' },
-  { id: 8, url: 'https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=800&h=600&fit=crop', alt: 'Restaurant view', span: 'col-span-1 row-span-1' },
+  { id: 1, url: '/images/IMG_7659.jpeg', alt: 'Fresh seafood dish', span: 'col-span-1 row-span-2' },
+  { id: 2, url: '/images/IMG_7610.jpeg', alt: 'Grilled fish', span: 'col-span-1 row-span-1' },
+  { id: 3, url: '/images/IMG_7564.jpeg', alt: 'Restaurant ambiance', span: 'col-span-1 row-span-1' },
+  { id: 4, url: '/images/IMG_7480.jpeg', alt: 'Seafood platter', span: 'col-span-2 row-span-1' },
+  { id: 5, url: '/images/IMG_7351.jpeg', alt: 'Waterfront dining', span: 'col-span-1 row-span-1' },
+  { id: 6, url: '/images/IMG_7257.jpeg', alt: 'Restaurant view', span: 'col-span-1 row-span-2' },
+  { id: 7, url: '/images/IMG_6621.jpeg', alt: 'Catch of the day', span: 'col-span-1 row-span-1' },
+  { id: 8, url: '/images/IMG_4284.jpeg', alt: 'Dining experience', span: 'col-span-1 row-span-1' },
+  { id: 9, url: '/images/IMG_7683.jpeg', alt: 'Fresh catch', span: 'col-span-2 row-span-1' },
+  { id: 10, url: '/images/IMG_7444.jpeg', alt: 'Seafood selection', span: 'col-span-1 row-span-1' },
+  { id: 11, url: '/images/IMG_7322.jpeg', alt: 'Restaurant terrace', span: 'col-span-1 row-span-2' },
+  { id: 12, url: '/images/IMG_4265.jpeg', alt: 'Grilled dish', span: 'col-span-1 row-span-1' },
+  { id: 13, url: '/images/IMG_7078.jpeg', alt: 'Evening at Gerthela', span: 'col-span-1 row-span-1' },
 ];
 
 export default function Gallery() {
@@ -50,7 +55,7 @@ export default function Gallery() {
         </div>
 
         {/* Masonry-style grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 auto-rows-[200px]">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 auto-rows-[160px]">
           {GALLERY_IMAGES.map((image, index) => (
             <div
               key={image.id}

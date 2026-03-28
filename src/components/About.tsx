@@ -16,7 +16,7 @@ export default function About() {
             {/* Main image */}
             <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]">
               <img
-                src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=800&h=600&fit=crop"
+                src="/images/IMG_7073.jpeg"
                 alt="Fresh seafood at Gerthela Taverna"
                 className="w-full h-full object-cover"
               />
@@ -26,7 +26,7 @@ export default function About() {
             {/* Floating accent image */}
             <div className="absolute -bottom-6 -right-6 w-40 h-40 sm:w-48 sm:h-48 rounded-2xl overflow-hidden shadow-xl border-4 border-white">
               <img
-                src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=800&h=600&fit=crop"
+                src="/images/IMG_4951.jpeg"
                 alt="Grilled fish dish"
                 className="w-full h-full object-cover"
               />
