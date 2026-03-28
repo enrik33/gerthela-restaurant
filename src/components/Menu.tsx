@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { X } from 'lucide-react';
+import { useState, useRef } from 'react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import type { MenuItem } from '@/types';
 
 const DUMMY_MENU: MenuItem[] = [
@@ -21,14 +21,12 @@ const DUMMY_MENU: MenuItem[] = [
   { id: 's13', name: 'White Feta Cheese', description: 'Roasted white feta cheese', price: 400, category: 'starters', available: true, allergens: 'Dairy (feta)', preparation: '10 min', origin: 'Local dairy, Albania' },
   { id: 's14', name: 'Roasted Hard Cheese', description: 'Grilled kaçkavall hard cheese', price: 400, category: 'starters', available: true, allergens: 'Dairy (kaçkavall)', preparation: '10 min', origin: 'Local dairy, Albania' },
   { id: 's15', name: 'Deep Fried Potatoes', description: 'Crispy golden french fries', price: 400, category: 'starters', available: true, allergens: 'None', preparation: '10 min', origin: 'Local produce, Saranda' },
-
   // ── MAINS ─────────────────────────────────────────────────────────────────
   { id: 'm1', name: 'Fish Soup', description: 'Dusky grouper, John Dory, sea capon, sorkopjo, potatoes, carrots', price: 500, category: 'mains', available: true, allergens: 'Fish', preparation: '20–25 min', origin: 'Wild-caught, Ionian Sea' },
   { id: 'm2', name: 'Shrimp Linguine', description: 'Linguine with deep sea shrimp, fresh tomato sauce, parsley', price: 1100, category: 'mains', available: true, allergens: 'Gluten (pasta), crustaceans', preparation: '15–20 min', origin: 'Wild-caught shrimp, Ionian Sea' },
   { id: 'm3', name: 'Shrimp & Squid Linguine', description: 'Linguine with deep sea shrimp, squid, fresh tomato sauce, parsley', price: 1200, category: 'mains', available: true, allergens: 'Gluten (pasta), crustaceans, molluscs', preparation: '15–20 min', origin: 'Wild-caught, Ionian Sea' },
   { id: 'm4', name: 'Crab Linguine', description: 'Linguine with crab, fresh tomato sauce, parsley', price: 1300, category: 'mains', available: true, allergens: 'Gluten (pasta), crustaceans', preparation: '15–20 min', origin: 'Wild-caught crab, Ionian Sea' },
   { id: 'm5', name: 'Prawn Linguine', description: 'Linguine with prawns, fresh tomato sauce, parsley', price: 1500, category: 'mains', available: true, allergens: 'Gluten (pasta), crustaceans', preparation: '15–20 min', origin: 'Wild-caught prawns, Ionian Sea' },
-
   // ── SEAFOOD ───────────────────────────────────────────────────────────────
   { id: 'sf1', name: 'Squid — Grilled', description: '300g squid, grilled', price: 1300, category: 'seafood', available: true, allergens: 'Molluscs', preparation: '15 min', origin: 'Wild-caught, Ionian Sea' },
   { id: 'sf2', name: 'Squid — Fried', description: '300g squid, fried', price: 1500, category: 'seafood', available: true, allergens: 'Molluscs, gluten (batter)', preparation: '15 min', origin: 'Wild-caught, Ionian Sea' },
@@ -43,7 +41,6 @@ const DUMMY_MENU: MenuItem[] = [
   { id: 'sf11', name: 'Oysters', description: 'Per 100g, freshly served', price: 300, category: 'seafood', available: true, allergens: 'Molluscs', preparation: 'Ready to serve', origin: 'Seasonal, Ionian coast' },
   { id: 'sf12', name: 'Lobster', description: 'Per 100g — available with linguine', price: 1200, category: 'seafood', available: true, allergens: 'Crustaceans, gluten (linguine option)', preparation: '20–30 min', origin: 'Wild-caught, Ionian Sea' },
   { id: 'sf13', name: 'Cicala Greca', description: 'Per 100g — available with linguine', price: 1200, category: 'seafood', available: true, allergens: 'Crustaceans, gluten (linguine option)', preparation: '20–30 min', origin: 'Wild-caught, Ionian Sea' },
-
   // ── FISH ──────────────────────────────────────────────────────────────────
   { id: 'f1', name: 'Codfish', description: '300g wild-caught codfish, fried', price: 1200, category: 'fish', available: true, allergens: 'Fish, gluten (batter)', preparation: '15–20 min', origin: 'Wild-caught, Ionian Sea' },
   { id: 'f2', name: 'Red Mullet', description: '300g wild-caught red mullet, fried', price: 1200, category: 'fish', available: true, allergens: 'Fish, gluten (batter)', preparation: '15–20 min', origin: 'Wild-caught, Ionian Sea' },
@@ -56,14 +53,12 @@ const DUMMY_MENU: MenuItem[] = [
   { id: 'f9', name: 'Common Dentex', description: 'Per 100g — grilled or vegetable casserole', price: 800, category: 'fish', available: true, allergens: 'Fish', preparation: '20 min', origin: 'Wild-caught, Ionian Sea' },
   { id: 'f10', name: 'Dusky Grouper', description: 'Wild-caught — grilled or vegetable casserole', price: 600, category: 'fish', available: true, allergens: 'Fish', preparation: '20–25 min', origin: 'Wild-caught, Ionian Sea' },
   { id: 'f11', name: 'John Dory', description: 'Wild-caught — grilled or vegetable casserole', price: 450, category: 'fish', available: true, allergens: 'Fish', preparation: '20 min', origin: 'Wild-caught, Ionian Sea' },
-
   // ── DESSERTS ─────────────────────────────────────────────────────────────
   { id: 'd1', name: 'Orange Cake', description: 'Traditional portokalopita — moist Greek orange cake', price: 300, category: 'desserts', available: true, allergens: 'Gluten, eggs', preparation: 'Ready to serve', origin: 'House-made daily' },
   { id: 'd2', name: 'Cheesecake', description: 'Creamy house-made cheesecake', price: 300, category: 'desserts', available: true, allergens: 'Gluten, dairy, eggs', preparation: 'Ready to serve', origin: 'House-made daily' },
   { id: 'd3', name: 'Caramel Cream', description: 'Classic crème caramel, silky smooth', price: 300, category: 'desserts', available: true, allergens: 'Dairy, eggs', preparation: 'Ready to serve', origin: 'House-made daily' },
   { id: 'd4', name: 'Revani', description: 'Traditional semolina syrup cake', price: 300, category: 'desserts', available: true, allergens: 'Gluten, eggs', preparation: 'Ready to serve', origin: 'House-made daily' },
-
-  // ── DRINKS — SOFT DRINKS ─────────────────────────────────────────────────
+  // ── DRINKS ───────────────────────────────────────────────────────────────
   { id: 'dr1', name: 'Natural Water 0.75L', description: 'Still mineral water', price: 200, category: 'drinks', available: true, allergens: 'None', preparation: 'Ready to serve', origin: 'Albania' },
   { id: 'dr2', name: 'Sparkling Water 0.75L', description: 'Sparkling mineral water', price: 200, category: 'drinks', available: true, allergens: 'None', preparation: 'Ready to serve', origin: 'Albania' },
   { id: 'dr3', name: 'Sprite', description: 'Lemon-lime sparkling soft drink', price: 200, category: 'drinks', available: true, allergens: 'None', preparation: 'Ready to serve', origin: 'Bottled' },
@@ -72,11 +67,9 @@ const DUMMY_MENU: MenuItem[] = [
   { id: 'dr6', name: 'Soda', description: 'Lemon soda', price: 200, category: 'drinks', available: true, allergens: 'None', preparation: 'Ready to serve', origin: 'Bottled' },
   { id: 'dr7', name: 'Bravo Juice', description: 'Red grape, strawberry & banana blend', price: 200, category: 'drinks', available: true, allergens: 'None', preparation: 'Ready to serve', origin: 'Bottled' },
   { id: 'dr8', name: 'Tonic (Britvic)', description: 'Premium tonic water', price: 200, category: 'drinks', available: true, allergens: 'None', preparation: 'Ready to serve', origin: 'Britvic, UK' },
-  // ── DRINKS — COCKTAILS (NON-ALCOHOLIC) ──────────────────────────────────
   { id: 'dr9', name: 'Lemon Soda', description: 'Non-alcoholic — fresh lemon juice, soda, sugar, ice', price: 400, category: 'drinks', available: true, allergens: 'None', preparation: '3–5 min', origin: 'House-made' },
   { id: 'dr10', name: 'Orange Fizz', description: 'Non-alcoholic — fresh orange juice, soda, ice', price: 400, category: 'drinks', available: true, allergens: 'None', preparation: '3–5 min', origin: 'House-made' },
   { id: 'dr11', name: 'Berry Spark', description: 'Non-alcoholic — lemon juice, grenadine, soda, ice', price: 400, category: 'drinks', available: true, allergens: 'None', preparation: '3–5 min', origin: 'House-made' },
-  // ── DRINKS — COCKTAILS (ALCOHOLIC) ──────────────────────────────────────
   { id: 'dr12', name: 'Sunset Glow', description: 'Aperol, Prosecco, soda water, ice, orange slice', price: 700, category: 'drinks', available: true, allergens: 'Sulphites (Prosecco)', preparation: '3–5 min', origin: 'House-made' },
   { id: 'dr13', name: 'Seaside Tonic', description: 'Gin, tonic water, ice, lime wedge', price: 700, category: 'drinks', available: true, allergens: 'None', preparation: '3–5 min', origin: 'House-made' },
   { id: 'dr14', name: 'Lemon Grove', description: 'Gin, fresh lemon juice, ice', price: 700, category: 'drinks', available: true, allergens: 'None', preparation: '3–5 min', origin: 'House-made' },
@@ -85,144 +78,374 @@ const DUMMY_MENU: MenuItem[] = [
   { id: 'dr17', name: 'Vodka Redbull', description: 'Vodka, Redbull, orange slice, ice', price: 700, category: 'drinks', available: true, allergens: 'None', preparation: '3–5 min', origin: 'House-made' },
   { id: 'dr18', name: "Planter's Punch", description: 'Rum, orange juice, grenadine, pineapple juice, lime wedge, ice', price: 700, category: 'drinks', available: true, allergens: 'None', preparation: '3–5 min', origin: 'House-made' },
   { id: 'dr19', name: 'Cuba Libre', description: 'Rum, Coca-Cola, lime wedge, ice', price: 700, category: 'drinks', available: true, allergens: 'None', preparation: '3–5 min', origin: 'House-made' },
-  // ── DRINKS — BEERS ───────────────────────────────────────────────────────
   { id: 'dr20', name: 'Korça 0.33L', description: 'Albanian lager beer', price: 200, category: 'drinks', available: true, allergens: 'Gluten (barley)', preparation: 'Ready to serve', origin: 'Korça Brewery, Albania' },
   { id: 'dr21', name: 'Korça 0.5L', description: 'Albanian lager beer', price: 300, category: 'drinks', available: true, allergens: 'Gluten (barley)', preparation: 'Ready to serve', origin: 'Korça Brewery, Albania' },
   { id: 'dr22', name: 'Hofbräu 0.5L', description: 'German premium lager', price: 600, category: 'drinks', available: true, allergens: 'Gluten (barley)', preparation: 'Ready to serve', origin: 'Hofbräuhaus, Munich, Germany' },
   { id: 'dr23', name: 'Paulaner 0.5L', description: 'German wheat beer', price: 400, category: 'drinks', available: true, allergens: 'Gluten (wheat, barley)', preparation: 'Ready to serve', origin: 'Paulaner Brewery, Munich, Germany' },
   { id: 'dr24', name: 'Paulaner 0% 0.5L', description: 'Non-alcoholic German wheat beer', price: 400, category: 'drinks', available: true, allergens: 'Gluten (wheat, barley)', preparation: 'Ready to serve', origin: 'Paulaner Brewery, Munich, Germany' },
   { id: 'dr25', name: 'Budweiser 0.33L', description: 'American lager', price: 400, category: 'drinks', available: true, allergens: 'Gluten (barley)', preparation: 'Ready to serve', origin: 'Anheuser-Busch, USA' },
-  // ── DRINKS — WINE ────────────────────────────────────────────────────────
   { id: 'dr26', name: 'House Red Wine 1L', description: 'House red wine — 1 litre carafe', price: 1200, category: 'drinks', available: true, allergens: 'Sulphites', preparation: 'Ready to serve', origin: 'Albanian house wine' },
   { id: 'dr27', name: 'House White Wine 1L', description: 'House white wine — 1 litre carafe', price: 1200, category: 'drinks', available: true, allergens: 'Sulphites', preparation: 'Ready to serve', origin: 'Albanian house wine' },
-  // ── DRINKS — DIGESTIFS ───────────────────────────────────────────────────
   { id: 'dr28', name: 'Grape Raki', description: 'Albanian grape raki digestif', price: 100, category: 'drinks', available: true, allergens: 'None', preparation: 'Ready to serve', origin: 'Traditional Albanian spirit' },
   { id: 'dr29', name: 'Ouzo', description: 'Greek anise-flavoured spirit', price: 200, category: 'drinks', available: true, allergens: 'None', preparation: 'Ready to serve', origin: 'Greece' },
   { id: 'dr30', name: 'Vodka', description: 'Premium vodka, served straight', price: 400, category: 'drinks', available: true, allergens: 'None', preparation: 'Ready to serve', origin: 'Imported' },
 ];
 
-const CATEGORY_CONFIG: Record<string, { label: string; emoji: string }> = {
-  starters: { label: 'Starters', emoji: '🥗' },
-  mains: { label: 'Mains', emoji: '🍝' },
-  seafood: { label: 'Seafood', emoji: '🦐' },
-  fish: { label: 'Fish', emoji: '🐟' },
-  drinks: { label: 'Drinks', emoji: '🍷' },
-  desserts: { label: 'Desserts', emoji: '🍮' },
+const CATEGORY_META: Record<string, { label: string; emoji: string; accent: string; subtitle: string; description: string }> = {
+  starters: {
+    label: 'Starters',
+    emoji: '🥗',
+    accent: '#4a7c59',
+    subtitle: 'Salads & Sides',
+    description: 'Fresh, seasonal ingredients sourced from local farms and markets around Saranda.',
+  },
+  mains: {
+    label: 'Mains',
+    emoji: '🍝',
+    accent: '#8b4513',
+    subtitle: 'Soups & Pasta',
+    description: 'Hearty dishes made with tradition — rich broths and handcrafted pasta.',
+  },
+  seafood: {
+    label: 'Seafood',
+    emoji: '🦐',
+    accent: '#1a5276',
+    subtitle: 'Fresh from the Sea',
+    description: 'Caught daily from the clear, pristine waters of the Ionian coast.',
+  },
+  fish: {
+    label: 'Fish',
+    emoji: '🐟',
+    accent: '#117a65',
+    subtitle: 'Wild Caught Daily',
+    description: 'Premium wild fish from the Ionian Sea, prepared to order your way.',
+  },
+  desserts: {
+    label: 'Desserts',
+    emoji: '🍮',
+    accent: '#7d3c98',
+    subtitle: 'Sweet Endings',
+    description: 'House-made desserts to complete your Mediterranean journey in style.',
+  },
+  drinks: {
+    label: 'Drinks',
+    emoji: '🍷',
+    accent: '#922b21',
+    subtitle: 'Beverages & Cocktails',
+    description: 'From local wines and craft cocktails to cold beers and digestifs.',
+  },
 };
 
+const ITEMS_PER_PAGE = 10;
+
+type BookPage = {
+  id: string;
+  category: string;
+  items: MenuItem[];
+  pageNum: number;
+  totalForCategory: number;
+};
+
+function buildPages(items: MenuItem[]): BookPage[] {
+  const order = ['starters', 'mains', 'seafood', 'fish', 'desserts', 'drinks'];
+  const pages: BookPage[] = [];
+  for (const category of order) {
+    const catItems = items.filter((i) => i.available && i.category === category);
+    if (!catItems.length) continue;
+    const numPages = Math.ceil(catItems.length / ITEMS_PER_PAGE);
+    for (let p = 0; p < numPages; p++) {
+      pages.push({
+        id: `${category}-${p}`,
+        category,
+        items: catItems.slice(p * ITEMS_PER_PAGE, (p + 1) * ITEMS_PER_PAGE),
+        pageNum: p + 1,
+        totalForCategory: numPages,
+      });
+    }
+  }
+  return pages;
+}
+
+const PAGES = buildPages(DUMMY_MENU);
 
 export default function Menu() {
-  const menuItems: MenuItem[] = DUMMY_MENU;
-  const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [pageIndex, setPageIndex] = useState(0);
+  const [flipDir, setFlipDir] = useState<'forward' | 'backward'>('forward');
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
+  const touchStartX = useRef<number | null>(null);
 
-  const categories = ['starters', 'mains', 'seafood', 'fish', 'drinks', 'desserts'] as const;
+  const navigateTo = (target: number, dir: 'forward' | 'backward') => {
+    if (target < 0 || target >= PAGES.length || target === pageIndex) return;
+    setFlipDir(dir);
+    setPageIndex(target);
+  };
 
-  const filteredItems =
-    activeCategory === 'all'
-      ? menuItems.filter((item) => item.available)
-      : menuItems.filter((item) => item.available && item.category === activeCategory);
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
 
-  const groupedItems =
-    activeCategory === 'all'
-      ? categories.reduce((acc, category) => {
-        const items = filteredItems.filter((item) => item.category === category);
-        if (items.length > 0) acc[category] = items;
-        return acc;
-      }, {} as Record<string, MenuItem[]>)
-      : { [activeCategory]: filteredItems };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const delta = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(delta) > 40) {
+      delta > 0
+        ? navigateTo(pageIndex + 1, 'forward')
+        : navigateTo(pageIndex - 1, 'backward');
+    }
+    touchStartX.current = null;
+  };
+
+  const page = PAGES[pageIndex];
+  const meta = CATEGORY_META[page.category];
 
   return (
     <section id="menu" className="py-20 md:py-28 bg-[#f8f4ed]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <style>{`
+        @keyframes flipInForward {
+          from {
+            transform: perspective(1400px) rotateY(12deg) translateX(24px);
+            opacity: 0;
+            box-shadow: -16px 0 32px rgba(0,0,0,0.18);
+          }
+          to {
+            transform: perspective(1400px) rotateY(0deg) translateX(0);
+            opacity: 1;
+            box-shadow: none;
+          }
+        }
+        @keyframes flipInBackward {
+          from {
+            transform: perspective(1400px) rotateY(-12deg) translateX(-24px);
+            opacity: 0;
+            box-shadow: 16px 0 32px rgba(0,0,0,0.18);
+          }
+          to {
+            transform: perspective(1400px) rotateY(0deg) translateX(0);
+            opacity: 1;
+            box-shadow: none;
+          }
+        }
+        .flip-in-forward  { animation: flipInForward  0.45s cubic-bezier(0.22,0.61,0.36,1) both; }
+        .flip-in-backward { animation: flipInBackward 0.45s cubic-bezier(0.22,0.61,0.36,1) both; }
+        .menu-dotline {
+          flex: 1;
+          border-bottom: 1px dotted #c9a96e;
+          margin: 0 6px 3px;
+          min-width: 16px;
+        }
+      `}</style>
+
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
         {/* Section header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-10">
           <p className="text-[#c9972c] font-semibold tracking-widest uppercase text-sm mb-3">
             What We Serve
           </p>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-[#0d1b2a] mb-4">
             Our Menu
           </h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Authentic Mediterranean cuisine featuring fresh daily catch. Prices in ALL (Albanian Lek).
+          <p className="text-gray-600 text-base max-w-xl mx-auto">
+            Authentic Mediterranean cuisine featuring fresh daily catch. Prices in ALL.
           </p>
         </div>
 
-        {/* Filter Tabs */}
-        <div className="flex flex-wrap gap-2 justify-center mb-12">
-          <button
-            onClick={() => setActiveCategory('all')}
-            className={`px-5 py-2.5 rounded-full font-semibold text-sm transition-all ${activeCategory === 'all'
-              ? 'bg-[#0d1b2a] text-white shadow-lg'
-              : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
-              }`}
-          >
-            🍽️ All Items
-          </button>
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setActiveCategory(category)}
-              className={`px-5 py-2.5 rounded-full font-semibold text-sm transition-all ${activeCategory === category
-                ? 'bg-[#c9972c] text-white shadow-lg'
-                : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
-                }`}
-            >
-              {CATEGORY_CONFIG[category].emoji} {CATEGORY_CONFIG[category].label}
-            </button>
-          ))}
+        {/* Category jump tabs */}
+        <div className="flex flex-wrap gap-2 justify-center mb-8">
+          {Object.entries(CATEGORY_META).map(([cat, catMeta]) => {
+            const firstIdx = PAGES.findIndex((p) => p.category === cat);
+            const isActive = page.category === cat;
+            return (
+              <button
+                key={cat}
+                onClick={() => navigateTo(firstIdx, firstIdx > pageIndex ? 'forward' : 'backward')}
+                className="px-4 py-2 rounded-full text-sm font-semibold transition-all border"
+                style={
+                  isActive
+                    ? { backgroundColor: catMeta.accent, borderColor: catMeta.accent, color: '#fff' }
+                    : { backgroundColor: '#fff', borderColor: '#e5e7eb', color: '#4b5563' }
+                }
+              >
+                {catMeta.emoji} {catMeta.label}
+              </button>
+            );
+          })}
         </div>
 
-        {/* Menu Items */}
-        <div className="space-y-10">
-          {Object.entries(groupedItems).map(([category, items]) => (
-            <div key={category}>
-              {/* Category heading */}
-              <div className="flex items-center gap-4 mb-6">
-                <span className="text-2xl">{CATEGORY_CONFIG[category]?.emoji}</span>
-                <h3 className="font-display text-2xl font-bold text-[#0d1b2a] capitalize">
-                  {CATEGORY_CONFIG[category]?.label || category}
-                </h3>
-                <div className="flex-1 h-px bg-gradient-to-r from-[#c9972c]/30 to-transparent" />
-              </div>
+        {/* ── Book ─────────────────────────────────────────────────────────── */}
+        {/* Side-arrow + book row */}
+        <div className="flex items-center gap-2 md:gap-4">
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {items.map((item) => (
+          {/* LEFT arrow */}
+          <button
+            onClick={() => navigateTo(pageIndex - 1, 'backward')}
+            disabled={pageIndex === 0}
+            aria-label="Previous page"
+            className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all disabled:opacity-20 disabled:cursor-not-allowed bg-white border border-gray-200 text-gray-500 hover:enabled:border-[#c9972c] hover:enabled:text-[#c9972c] shadow-sm"
+          >
+            <ChevronLeft size={20} />
+          </button>
+
+          {/* Book */}
+          <div className="relative flex-1" style={{ perspective: '2000px' }}>
+            {/* Subtle drop-shadow behind the book */}
+            <div
+              className="absolute inset-x-4 bottom-0 h-8 rounded-b-2xl blur-md"
+              style={{ background: 'rgba(0,0,0,0.15)', transform: 'translateY(6px)' }}
+            />
+
+            {/* Animated page */}
+            <div
+              key={page.id}
+              className={flipDir === 'forward' ? 'flip-in-forward' : 'flip-in-backward'}
+              style={{ transformOrigin: flipDir === 'forward' ? 'left center' : 'right center' }}
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+            >
+              <div
+                className="rounded-2xl overflow-hidden shadow-xl border"
+                style={{
+                  background: '#fdf8f0',
+                  borderColor: '#d4b896',
+                  minHeight: '520px',
+                }}
+              >
+                <div className="grid grid-cols-1 md:grid-cols-2 min-h-[520px]">
+
+                  {/* LEFT PAGE — category identity */}
                   <div
-                    key={item.id}
-                    onClick={() => setSelectedItem(item)}
-                    className="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all border border-transparent hover:border-[#c9972c]/20 cursor-pointer"
+                    className="relative flex flex-col justify-between p-8 md:p-10 border-b md:border-b-0 md:border-r"
+                    style={{
+                      borderColor: '#d4b896',
+                      background: `linear-gradient(150deg, ${meta.accent}18 0%, ${meta.accent}08 100%)`,
+                    }}
                   >
-                    <div className="flex justify-between items-start gap-4">
-                      <div className="flex-1">
-                        <h4 className="text-lg font-semibold text-[#0d1b2a] mb-1.5 group-hover:text-[#c9972c] transition-colors">
-                          {item.name}
-                        </h4>
-                        <p className="text-gray-500 text-sm leading-relaxed">
-                          {item.description}
-                        </p>
-                      </div>
-                      <div className="flex-shrink-0 text-right">
-                        <span className="inline-block bg-[#0d1b2a] text-white rounded-full px-3 py-1 text-sm font-bold whitespace-nowrap">
-                          {item.price.toLocaleString()} ALL
-                        </span>
-                      </div>
+                    {/* Top rule */}
+                    <div className="flex items-center gap-2 mb-6">
+                      <div className="flex-1 h-px" style={{ background: meta.accent, opacity: 0.35 }} />
+                      <span className="text-base" style={{ color: meta.accent }}>✦</span>
+                      <div className="flex-1 h-px" style={{ background: meta.accent, opacity: 0.35 }} />
                     </div>
+
+                    <div className="flex-1">
+                      <div className="text-5xl mb-5">{meta.emoji}</div>
+                      <h3
+                        className="font-display text-3xl md:text-4xl font-bold mb-1 leading-tight"
+                        style={{ color: meta.accent }}
+                      >
+                        {meta.label}
+                      </h3>
+                      <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-5">
+                        {meta.subtitle}
+                      </p>
+                      <p className="text-gray-500 text-sm leading-relaxed italic">
+                        {meta.description}
+                      </p>
+
+                      {page.totalForCategory > 1 && (
+                        <span
+                          className="inline-block mt-5 text-xs font-semibold px-3 py-1 rounded-full"
+                          style={{ background: `${meta.accent}20`, color: meta.accent }}
+                        >
+                          Part {page.pageNum} of {page.totalForCategory}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Bottom rule */}
+                    <div className="flex items-center gap-2 mt-6">
+                      <div className="flex-1 h-px" style={{ background: meta.accent, opacity: 0.35 }} />
+                      <span className="text-xs" style={{ color: meta.accent }}>◆</span>
+                      <div className="flex-1 h-px" style={{ background: meta.accent, opacity: 0.35 }} />
+                    </div>
+
+                    {/* Spine shadow (desktop only) */}
+                    <div
+                      className="absolute top-0 right-0 bottom-0 w-3 hidden md:block pointer-events-none"
+                      style={{
+                        background: 'linear-gradient(to right, transparent, rgba(0,0,0,0.06))',
+                      }}
+                    />
                   </div>
-                ))}
+
+                  {/* RIGHT PAGE — item list */}
+                  <div className="flex flex-col p-8 md:p-10">
+
+                    {/* Subtle page lines */}
+                    <div
+                      className="absolute inset-0 pointer-events-none hidden md:block"
+                      style={{
+                        backgroundImage: 'repeating-linear-gradient(transparent, transparent 31px, #e8dcc820 31px, #e8dcc820 32px)',
+                        backgroundPositionY: '16px',
+                        borderRadius: '0 1rem 1rem 0',
+                      }}
+                    />
+
+                    <div className="relative flex-1 space-y-4">
+                      {page.items.map((item) => (
+                        <div
+                          key={item.id}
+                          onClick={() => setSelectedItem(item)}
+                          className="group cursor-pointer"
+                        >
+                          <div className="flex items-baseline">
+                            <span className="text-sm font-semibold text-[#0d1b2a] group-hover:text-[#c9972c] transition-colors leading-snug">
+                              {item.name}
+                            </span>
+                            <span className="menu-dotline" />
+                            <span className="text-sm font-bold text-[#0d1b2a] whitespace-nowrap tabular-nums">
+                              {item.price.toLocaleString()}
+                            </span>
+                          </div>
+                          <p className="text-[11px] text-gray-400 mt-0.5 leading-tight line-clamp-1 pl-0.5">
+                            {item.description}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+
+                    <p className="relative text-[10px] text-gray-400 text-right mt-6 italic">
+                      Prices in ALL · Tap any item for details
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
-          ))}
-        </div>
 
-        {filteredItems.length === 0 && (
-          <div className="text-center py-12 text-gray-500">
-            <p className="text-lg">No menu items available for selected category.</p>
+            {/* ── Dot indicators ───────────────────────────────────────────── */}
+            <div className="flex gap-1.5 items-center justify-center flex-wrap mt-5 pb-1">
+              {PAGES.map((p, i) => (
+                <button
+                  key={p.id}
+                  onClick={() => navigateTo(i, i > pageIndex ? 'forward' : 'backward')}
+                  aria-label={`Page ${i + 1}`}
+                  className="rounded-full transition-all duration-300 flex-shrink-0"
+                  style={{
+                    width: i === pageIndex ? 18 : 6,
+                    height: 6,
+                    background: i === pageIndex ? meta.accent : '#d1d5db',
+                  }}
+                />
+              ))}
+            </div>
           </div>
-        )}
+          {/* End Book */}
+
+          {/* RIGHT arrow */}
+          <button
+            onClick={() => navigateTo(pageIndex + 1, 'forward')}
+            disabled={pageIndex === PAGES.length - 1}
+            aria-label="Next page"
+            className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all disabled:opacity-20 disabled:cursor-not-allowed bg-white border border-gray-200 text-gray-500 hover:enabled:border-[#c9972c] hover:enabled:text-[#c9972c] shadow-sm"
+          >
+            <ChevronRight size={20} />
+          </button>
+
+        </div>
+        {/* End side-arrow + book row */}
       </div>
 
-      {/* Dish Detail Modal */}
+      {/* ── Dish Detail Modal ─────────────────────────────────────────────── */}
       {selectedItem && (
         <div
           className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
@@ -232,7 +455,6 @@ export default function Menu() {
             className="bg-white rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Dish image */}
             {selectedItem.image_url && (
               <div className="relative h-56 sm:h-64 w-full">
                 <img
@@ -246,8 +468,6 @@ export default function Menu() {
                 </span>
               </div>
             )}
-
-            {/* Content */}
             <div className="p-6">
               <div className="flex justify-between items-start mb-3">
                 <h3 className="font-display text-2xl font-bold text-[#0d1b2a]">
@@ -261,26 +481,23 @@ export default function Menu() {
                   <X size={20} />
                 </button>
               </div>
-
               <p className="text-gray-600 text-sm mb-4">{selectedItem.description}</p>
-
               <div className="space-y-2 text-sm text-gray-500 border-t border-gray-100 pt-4">
-                <div className="flex items-center gap-2">
-                  <span className="font-semibold text-[#0d1b2a]">Allergens:</span>
+                <div className="flex items-start gap-2">
+                  <span className="font-semibold text-[#0d1b2a] shrink-0">Allergens:</span>
                   <span>{selectedItem.allergens ?? 'Ask your server.'}</span>
                 </div>
                 {selectedItem.category !== 'drinks' && (
-                  <div className="flex items-center gap-2">
-                    <span className="font-semibold text-[#0d1b2a]">Preparation:</span>
+                  <div className="flex items-start gap-2">
+                    <span className="font-semibold text-[#0d1b2a] shrink-0">Preparation:</span>
                     <span>{selectedItem.preparation ?? 'Made fresh to order.'}</span>
                   </div>
                 )}
-                <div className="flex items-center gap-2">
-                  <span className="font-semibold text-[#0d1b2a]">Origin:</span>
+                <div className="flex items-start gap-2">
+                  <span className="font-semibold text-[#0d1b2a] shrink-0">Origin:</span>
                   <span>{selectedItem.origin ?? 'Locally sourced from the Ionian coast, Saranda.'}</span>
                 </div>
               </div>
-
               <a
                 href="https://wa.me/+355696215643"
                 target="_blank"
