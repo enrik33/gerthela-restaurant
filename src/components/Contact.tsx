@@ -33,29 +33,62 @@ const CONTACT_INFO = [
   },
 ];
 
+const today = new Date().toISOString().split('T')[0];
+
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
+    date: '',
+    time: '',
     message: '',
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [timeError, setTimeError] = useState('');
+
+  const validateTime = (value: string) => {
+    if (!value) return '';
+    const [h] = value.split(':').map(Number);
+    // Valid: 13:00–23:59 and 00:00 (midnight)
+    if (h === 0) return '';
+    if (h < 13) return 'Opening time is 1:00 PM. Please select a later time.';
+    return '';
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: '', email: '', phone: '', message: '' });
-    }, 4000);
+    const error = validateTime(formData.time);
+    if (error) { setTimeError(error); return; }
+
+    const formatTime = (t: string) => {
+      if (!t) return '';
+      const [h, m] = t.split(':').map(Number);
+      const suffix = h >= 12 ? 'PM' : 'AM';
+      const hour = h % 12 || 12;
+      return `${hour}:${String(m).padStart(2, '0')} ${suffix}`;
+    };
+
+    const text = [
+      `📋 *New Reservation Request*`,
+      ``,
+      `👤 *Name:* ${formData.name}`,
+      formData.phone ? `📞 *Phone:* ${formData.phone}` : null,
+      formData.email ? `📧 *Email:* ${formData.email}` : null,
+      formData.date ? `📅 *Date:* ${formData.date}` : null,
+      formData.time ? `🕐 *Time:* ${formatTime(formData.time)}` : null,
+      formData.message ? `💬 *Message:* ${formData.message}` : null,
+    ].filter(Boolean).join('\n');
+
+    window.open(`https://wa.me/+355686660000?text=${encodeURIComponent(text)}`, '_blank');
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
+    if (name === 'time') setTimeError(validateTime(value));
     setFormData(prev => ({ ...prev, [name]: value }));
   };
+
+  const inputClass = "w-full px-4 py-2.5 bg-white/10 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#c9972c] focus:border-transparent text-sm transition";
 
   return (
     <section id="contact" className="py-20 md:py-28 bg-white">
@@ -112,88 +145,114 @@ export default function Contact() {
             <h3 className="font-display text-2xl font-bold text-white mb-2">Make a Reservation</h3>
             <p className="text-gray-400 text-sm mb-6">We&apos;ll get back to you as soon as possible.</p>
 
-            {submitted ? (
-              <div className="flex flex-col items-center justify-center py-12 text-center">
-                <div className="w-16 h-16 bg-[#c9972c]/20 rounded-full flex items-center justify-center mb-4">
-                  <span className="text-3xl">✓</span>
-                </div>
-                <h4 className="text-white font-semibold text-lg mb-1">Message Sent!</h4>
-                <p className="text-gray-400 text-sm">Thank you! We&apos;ll be in touch soon.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="name" className="block text-xs font-medium text-gray-400 mb-1.5 uppercase tracking-wide">
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-2.5 bg-white/10 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#c9972c] focus:border-transparent text-sm transition"
-                      placeholder="Your name"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="phone" className="block text-xs font-medium text-gray-400 mb-1.5 uppercase tracking-wide">
-                      Phone
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full px-4 py-2.5 bg-white/10 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#c9972c] focus:border-transparent text-sm transition"
-                      placeholder="+355 xxx xxx"
-                    />
-                  </div>
-                </div>
-
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="email" className="block text-xs font-medium text-gray-400 mb-1.5 uppercase tracking-wide">
-                    Email
+                  <label htmlFor="name" className="block text-xs font-medium text-gray-400 mb-1.5 uppercase tracking-wide">
+                    Name
                   </label>
                   <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2.5 bg-white/10 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#c9972c] focus:border-transparent text-sm transition"
-                    placeholder="your@email.com"
+                    className={inputClass}
+                    placeholder="Your name"
                   />
                 </div>
-
                 <div>
-                  <label htmlFor="message" className="block text-xs font-medium text-gray-400 mb-1.5 uppercase tracking-wide">
-                    Message
+                  <label htmlFor="phone" className="block text-xs font-medium text-gray-400 mb-1.5 uppercase tracking-wide">
+                    Phone
                   </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
                     onChange={handleChange}
-                    required
-                    rows={4}
-                    className="w-full px-4 py-2.5 bg-white/10 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#c9972c] focus:border-transparent resize-none text-sm transition"
-                    placeholder="Tell us about your visit or reservation..."
+                    className={inputClass}
+                    placeholder="+355 xxx xxx"
                   />
                 </div>
+              </div>
 
-                <button
-                  type="submit"
-                  className="w-full bg-[#c9972c] hover:bg-[#a87a20] text-white font-semibold py-3 rounded-xl transition-all shadow-lg hover:shadow-xl active:scale-[0.98]"
-                >
-                  Send Message
-                </button>
-              </form>
-            )}
+              <div>
+                <label htmlFor="email" className="block text-xs font-medium text-gray-400 mb-1.5 uppercase tracking-wide">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className={inputClass}
+                  placeholder="your@email.com"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="date" className="block text-xs font-medium text-gray-400 mb-1.5 uppercase tracking-wide">
+                    Date
+                  </label>
+                  <input
+                    type="date"
+                    id="date"
+                    name="date"
+                    value={formData.date}
+                    onChange={handleChange}
+                    min={today}
+                    required
+                    className={`${inputClass} [color-scheme:dark]`}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="time" className="block text-xs font-medium text-gray-400 mb-1.5 uppercase tracking-wide">
+                    Time
+                  </label>
+                  <input
+                    type="time"
+                    id="time"
+                    name="time"
+                    value={formData.time}
+                    onChange={handleChange}
+                    min="13:00"
+                    max="00:00"
+                    required
+                    className={`${inputClass} [color-scheme:dark]`}
+                  />
+                  {timeError && (
+                    <p className="text-red-400 text-xs mt-1">{timeError}</p>
+                  )}
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-xs font-medium text-gray-400 mb-1.5 uppercase tracking-wide">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  rows={3}
+                  className={`${inputClass} resize-none`}
+                  placeholder="Tell us about your visit or reservation..."
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-[#c9972c] hover:bg-[#a87a20] text-white font-semibold py-3 rounded-xl transition-all shadow-lg hover:shadow-xl active:scale-[0.98]"
+              >
+                Send Message
+              </button>
+            </form>
           </div>
         </div>
 
