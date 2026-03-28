@@ -61,7 +61,7 @@ export default function Hero() {
             Call Us
           </a>
           <a
-            href="https://wa.me/+355696215643"
+            href="https://wa.me/+355686660000"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 bg-[#25d366] hover:bg-[#1ebe5d] text-white px-8 py-3.5 rounded-full font-semibold text-base transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"

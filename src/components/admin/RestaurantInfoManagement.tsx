@@ -9,7 +9,7 @@ const INITIAL_INFO: RestaurantInfo = {
     description: 'Fresh seafood restaurant on Saranda waterfront',
     address: 'Rruga Jonianet, Saranda 9701',
     phone: '+355 68 666 0000',
-    whatsapp: '+355 69 621 5643',
+    whatsapp: '+355 68 666 0000',
     email: 'info@gerthela.al',
     website: 'https://gerthela.al',
     instagram: 'https://www.instagram.com/gerthela_/',

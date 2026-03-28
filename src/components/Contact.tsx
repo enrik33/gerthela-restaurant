@@ -28,7 +28,7 @@ const CONTACT_INFO = [
     icon: MessageCircle,
     title: 'WhatsApp',
     lines: ['Chat with us for quick response', 'Reservations & inquiries'],
-    action: { label: 'Message Us', href: 'https://wa.me/+355696215643' },
+    action: { label: 'Message Us', href: 'https://wa.me/+355686660000' },
     color: 'bg-green-50 text-green-600',
   },
 ];
