@@ -7,7 +7,7 @@ const CONTACT_INFO = [
   {
     icon: Phone,
     title: 'Phone',
-    lines: ['+355 68 666 0000', '+355 69 621 5643 (WhatsApp)'],
+    lines: ['+355 68 666 0000', '+355 68 666 0000 (WhatsApp)'],
     action: { label: 'Call Now', href: 'tel:+355686660000' },
     color: 'bg-blue-50 text-blue-600',
   },

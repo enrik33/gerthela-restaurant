@@ -3,7 +3,7 @@ export interface MenuItem {
   name: string;
   description: string;
   price: number;
-  category: 'starters' | 'mains' | 'seafood' | 'drinks' | 'desserts';
+  category: 'starters' | 'mains' | 'seafood' | 'fish' | 'drinks' | 'desserts';
   image_url?: string;
   available: boolean;
   created_at?: string;

@@ -5,66 +5,107 @@ import { X } from 'lucide-react';
 import type { MenuItem } from '@/types';
 
 const DUMMY_MENU: MenuItem[] = [
-  {
-    id: '1',
-    name: 'Grilled Sea Bass',
-    description: 'Fresh sea bass grilled to perfection with lemon and herbs',
-    price: 1800,
-    category: 'seafood',
-    available: true,
-    image_url: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&h=500&fit=crop',
-  },
-  {
-    id: '2',
-    name: 'Linguine al Granchio',
-    description: 'Fresh pasta with crab, white wine and house herbs',
-    price: 1600,
-    category: 'mains',
-    available: true,
-    image_url: 'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=800&h=500&fit=crop',
-  },
-  {
-    id: '3',
-    name: 'Grilled Calamari',
-    description: 'Tender squid grilled with garlic and olive oil',
-    price: 1400,
-    category: 'seafood',
-    available: true,
-    image_url: 'https://images.unsplash.com/photo-1559847844-5315695dadae?w=800&h=500&fit=crop',
-  },
-  {
-    id: '4',
-    name: 'Greek Salad',
-    description: 'Fresh tomatoes, feta, olives and olive oil',
-    price: 700,
-    category: 'starters',
-    available: true,
-    image_url: 'https://images.unsplash.com/photo-1540189549336-e6e99c72e9da?w=800&h=500&fit=crop',
-  },
-  {
-    id: '5',
-    name: 'Tzatziki',
-    description: 'Creamy yogurt dip with cucumber and garlic',
-    price: 500,
-    category: 'starters',
-    available: true,
-    image_url: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=800&h=500&fit=crop',
-  },
-  {
-    id: '6',
-    name: 'House Wine',
-    description: 'Local white wine, perfectly chilled',
-    price: 600,
-    category: 'drinks',
-    available: true,
-    image_url: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&h=500&fit=crop',
-  },
+  // ── STARTERS ─────────────────────────────────────────────────────────────
+  { id: 's1',  name: 'Green Salad',          description: 'Green lettuce, onions, olives',                                                                  price: 300,  category: 'starters', available: true },
+  { id: 's2',  name: 'Country Salad',        description: 'Tomatoes, cucumber, pepper, onions, olives, white feta cheese',                                  price: 400,  category: 'starters', available: true },
+  { id: 's3',  name: 'Arugula Salad',        description: 'Arugula, cherry tomato, parmigiano, aceto balsamico',                                            price: 600,  category: 'starters', available: true },
+  { id: 's4',  name: 'Wild Vegetables',      description: 'Seasonal wild greens, lightly prepared',                                                         price: 300,  category: 'starters', available: true },
+  { id: 's5',  name: 'Boiled Vegetables',    description: 'Broccoli, cauliflower, carrot, red-beet, potatoes',                                              price: 500,  category: 'starters', available: true },
+  { id: 's6',  name: 'Grilled Vegetables',   description: 'Zucchini, peppers, eggplants, grated hard cheese, garlic, aceto balsamico',                     price: 500,  category: 'starters', available: true },
+  { id: 's7',  name: 'Curd',                 description: 'Fresh curd, house-style',                                                                        price: 400,  category: 'starters', available: true },
+  { id: 's8',  name: 'Tyrokafteri',          description: 'Spicy feta cheese dip',                                                                          price: 400,  category: 'starters', available: true },
+  { id: 's9',  name: 'Tzatziki',             description: 'Creamy yogurt dip with cucumber and garlic',                                                     price: 400,  category: 'starters', available: true },
+  { id: 's10', name: 'Skordalia',            description: 'Traditional garlic and potato dip',                                                              price: 400,  category: 'starters', available: true },
+  { id: 's11', name: 'Marinated Red-Beet',   description: 'Tender red beet marinated in-house',                                                             price: 400,  category: 'starters', available: true },
+  { id: 's12', name: 'Marinated Carrot',     description: 'Fresh carrots marinated in-house',                                                               price: 400,  category: 'starters', available: true },
+  { id: 's13', name: 'White Feta Cheese',    description: 'Roasted white feta cheese',                                                                      price: 400,  category: 'starters', available: true },
+  { id: 's14', name: 'Roasted Hard Cheese',  description: 'Grilled kaçkavall hard cheese',                                                                  price: 400,  category: 'starters', available: true },
+  { id: 's15', name: 'Deep Fried Potatoes',  description: 'Crispy golden french fries',                                                                     price: 400,  category: 'starters', available: true },
+
+  // ── MAINS ─────────────────────────────────────────────────────────────────
+  { id: 'm1',  name: 'Fish Soup',               description: 'Dusky grouper, John Dory, sea capon, sorkopjo, potatoes, carrots',                            price: 500,  category: 'mains', available: true },
+  { id: 'm2',  name: 'Shrimp Linguine',          description: 'Linguine with deep sea shrimp, fresh tomato sauce, parsley',                                 price: 1100, category: 'mains', available: true },
+  { id: 'm3',  name: 'Shrimp & Squid Linguine',  description: 'Linguine with deep sea shrimp, squid, fresh tomato sauce, parsley',                         price: 1200, category: 'mains', available: true },
+  { id: 'm4',  name: 'Crab Linguine',            description: 'Linguine with crab, fresh tomato sauce, parsley',                                            price: 1300, category: 'mains', available: true },
+  { id: 'm5',  name: 'Prawn Linguine',           description: 'Linguine with prawns, fresh tomato sauce, parsley',                                          price: 1500, category: 'mains', available: true },
+
+  // ── SEAFOOD ───────────────────────────────────────────────────────────────
+  { id: 'sf1',  name: 'Squid — Grilled',      description: '300g squid, grilled',                                                                           price: 1300, category: 'seafood', available: true },
+  { id: 'sf2',  name: 'Squid — Fried',        description: '300g squid, fried',                                                                             price: 1500, category: 'seafood', available: true },
+  { id: 'sf3',  name: 'Unpeeled Shrimps',     description: '300g shrimps, grilled with shell on',                                                           price: 900,  category: 'seafood', available: true },
+  { id: 'sf4',  name: 'Peeled Shrimps',       description: '300g shrimps — fried, crudo, or tomato sauce & cheese saganaki',                               price: 1100, category: 'seafood', available: true },
+  { id: 'sf5',  name: 'Cuttlefish',           description: '300g cuttlefish — grilled, fried, or ouzo flambéed',                                            price: 1200, category: 'seafood', available: true },
+  { id: 'sf6',  name: 'Prawns',               description: 'Per 100g — grilled, crudo, or tomato sauce & cheese saganaki',                                 price: 700,  category: 'seafood', available: true },
+  { id: 'sf7',  name: 'Octopus',              description: '300g octopus — grilled or marinated',                                                           price: 1600, category: 'seafood', available: true },
+  { id: 'sf8',  name: 'Anchovies',            description: 'Marinated anchovies with vinegar, parsley & garlic',                                            price: 600,  category: 'seafood', available: true },
+  { id: 'sf9',  name: 'Mix Seafood',          description: '600g mix — prawns, squid, cuttlefish, octopus. Grilled, fried, or served cold',                price: 2700, category: 'seafood', available: true },
+  { id: 'sf10', name: 'Mussels',              description: '1kg mussels — steamed or fried',                                                                price: 700,  category: 'seafood', available: true },
+  { id: 'sf11', name: 'Oysters',              description: 'Per 100g, freshly served',                                                                      price: 300,  category: 'seafood', available: true },
+  { id: 'sf12', name: 'Lobster',              description: 'Per 100g — available with linguine',                                                            price: 1200, category: 'seafood', available: true },
+  { id: 'sf13', name: 'Cicala Greca',         description: 'Per 100g — available with linguine',                                                            price: 1200, category: 'seafood', available: true },
+
+  // ── FISH ──────────────────────────────────────────────────────────────────
+  { id: 'f1',  name: 'Codfish',               description: '300g wild-caught codfish, fried',                                                               price: 1200, category: 'fish', available: true },
+  { id: 'f2',  name: 'Red Mullet',            description: '300g wild-caught red mullet, fried',                                                            price: 1200, category: 'fish', available: true },
+  { id: 'f3',  name: 'Striped Red Mullet',    description: 'Per 100g — grilled or fried',                                                                   price: 450,  category: 'fish', available: true },
+  { id: 'f4',  name: 'Tonguefish',            description: 'Per 100g — grilled, fried, or with wine & lemon reduction',                                    price: 450,  category: 'fish', available: true },
+  { id: 'f5',  name: 'White Sea Bream',       description: 'Per 100g — grilled or fried',                                                                   price: 700,  category: 'fish', available: true },
+  { id: 'f6',  name: 'Gilthead',              description: 'Per 100g — grilled, carpaccio, or vegetable casserole',                                         price: 700,  category: 'fish', available: true },
+  { id: 'f7',  name: 'Seabass',               description: 'Per 100g — grilled, carpaccio, or vegetable casserole',                                         price: 500,  category: 'fish', available: true },
+  { id: 'f8',  name: 'Sea Bream',             description: 'Per 100g — grilled or vegetable casserole',                                                     price: 800,  category: 'fish', available: true },
+  { id: 'f9',  name: 'Common Dentex',         description: 'Per 100g — grilled or vegetable casserole',                                                     price: 800,  category: 'fish', available: true },
+  { id: 'f10', name: 'Dusky Grouper',         description: 'Wild-caught — grilled or vegetable casserole',                                                  price: 600,  category: 'fish', available: true },
+  { id: 'f11', name: 'John Dory',             description: 'Wild-caught — grilled or vegetable casserole',                                                  price: 450,  category: 'fish', available: true },
+
+  // ── DESSERTS ─────────────────────────────────────────────────────────────
+  { id: 'd1',  name: 'Orange Cake',           description: 'Traditional portokalopita — moist Greek orange cake',                                           price: 300, category: 'desserts', available: true },
+  { id: 'd2',  name: 'Cheesecake',            description: 'Creamy house-made cheesecake',                                                                  price: 300, category: 'desserts', available: true },
+  { id: 'd3',  name: 'Caramel Cream',         description: 'Classic crème caramel, silky smooth',                                                           price: 300, category: 'desserts', available: true },
+  { id: 'd4',  name: 'Revani',                description: 'Traditional semolina syrup cake',                                                               price: 300, category: 'desserts', available: true },
+
+  // ── DRINKS — SOFT DRINKS ─────────────────────────────────────────────────
+  { id: 'dr1',  name: 'Natural Water 0.75L',  description: 'Still mineral water',                                                                           price: 200, category: 'drinks', available: true },
+  { id: 'dr2',  name: 'Sparkling Water 0.75L',description: 'Sparkling mineral water',                                                                       price: 200, category: 'drinks', available: true },
+  { id: 'dr3',  name: 'Sprite',               description: 'Lemon-lime sparkling soft drink',                                                               price: 200, category: 'drinks', available: true },
+  { id: 'dr4',  name: 'Coca-Cola',            description: 'Classic Coca-Cola or Coca-Cola Zero',                                                           price: 200, category: 'drinks', available: true },
+  { id: 'dr5',  name: 'Fanta',                description: 'Orange or Exotic flavour',                                                                      price: 200, category: 'drinks', available: true },
+  { id: 'dr6',  name: 'Soda',                 description: 'Lemon soda',                                                                                    price: 200, category: 'drinks', available: true },
+  { id: 'dr7',  name: 'Bravo Juice',          description: 'Red grape, strawberry & banana blend',                                                          price: 200, category: 'drinks', available: true },
+  { id: 'dr8',  name: 'Tonic (Britvic)',       description: 'Premium tonic water',                                                                          price: 200, category: 'drinks', available: true },
+  // ── DRINKS — COCKTAILS (NON-ALCOHOLIC) ──────────────────────────────────
+  { id: 'dr9',  name: 'Lemon Soda',           description: 'Non-alcoholic — fresh lemon juice, soda, sugar, ice',                                           price: 400, category: 'drinks', available: true },
+  { id: 'dr10', name: 'Orange Fizz',          description: 'Non-alcoholic — fresh orange juice, soda, ice',                                                 price: 400, category: 'drinks', available: true },
+  { id: 'dr11', name: 'Berry Spark',          description: 'Non-alcoholic — lemon juice, grenadine, soda, ice',                                             price: 400, category: 'drinks', available: true },
+  // ── DRINKS — COCKTAILS (ALCOHOLIC) ──────────────────────────────────────
+  { id: 'dr12', name: 'Sunset Glow',          description: 'Aperol, Prosecco, soda water, ice, orange slice',                                               price: 700, category: 'drinks', available: true },
+  { id: 'dr13', name: 'Seaside Tonic',        description: 'Gin, tonic water, ice, lime wedge',                                                             price: 700, category: 'drinks', available: true },
+  { id: 'dr14', name: 'Lemon Grove',          description: 'Gin, fresh lemon juice, ice',                                                                   price: 700, category: 'drinks', available: true },
+  { id: 'dr15', name: 'Mimosa',               description: 'Prosecco, fresh orange juice, ice',                                                             price: 700, category: 'drinks', available: true },
+  { id: 'dr16', name: 'Sunny Lemon',          description: 'Vodka, fresh lemon juice, ice',                                                                 price: 700, category: 'drinks', available: true },
+  { id: 'dr17', name: 'Vodka Redbull',        description: 'Vodka, Redbull, orange slice, ice',                                                             price: 700, category: 'drinks', available: true },
+  { id: 'dr18', name: "Planter's Punch",      description: 'Rum, orange juice, grenadine, pineapple juice, lime wedge, ice',                               price: 700, category: 'drinks', available: true },
+  { id: 'dr19', name: 'Cuba Libre',           description: 'Rum, Coca-Cola, lime wedge, ice',                                                               price: 700, category: 'drinks', available: true },
+  // ── DRINKS — BEERS ───────────────────────────────────────────────────────
+  { id: 'dr20', name: 'Korça 0.33L',          description: 'Albanian lager beer',                                                                           price: 200, category: 'drinks', available: true },
+  { id: 'dr21', name: 'Korça 0.5L',           description: 'Albanian lager beer',                                                                           price: 300, category: 'drinks', available: true },
+  { id: 'dr22', name: 'Hofbräu 0.5L',         description: 'German premium lager',                                                                          price: 600, category: 'drinks', available: true },
+  { id: 'dr23', name: 'Paulaner 0.5L',        description: 'German wheat beer',                                                                             price: 400, category: 'drinks', available: true },
+  { id: 'dr24', name: 'Paulaner 0% 0.5L',     description: 'Non-alcoholic German wheat beer',                                                               price: 400, category: 'drinks', available: true },
+  { id: 'dr25', name: 'Budweiser 0.33L',      description: 'American lager',                                                                                price: 400, category: 'drinks', available: true },
+  // ── DRINKS — WINE ────────────────────────────────────────────────────────
+  { id: 'dr26', name: 'House Red Wine 1L',    description: 'House red wine — 1 litre carafe',                                                               price: 1200, category: 'drinks', available: true },
+  { id: 'dr27', name: 'House White Wine 1L',  description: 'House white wine — 1 litre carafe',                                                             price: 1200, category: 'drinks', available: true },
+  // ── DRINKS — DIGESTIFS ───────────────────────────────────────────────────
+  { id: 'dr28', name: 'Grape Raki',           description: 'Albanian grape raki digestif',                                                                  price: 100, category: 'drinks', available: true },
+  { id: 'dr29', name: 'Ouzo',                 description: 'Greek anise-flavoured spirit',                                                                  price: 200, category: 'drinks', available: true },
+  { id: 'dr30', name: 'Vodka',                description: 'Premium vodka, served straight',                                                                price: 400, category: 'drinks', available: true },
 ];
 
 const CATEGORY_CONFIG: Record<string, { label: string; emoji: string }> = {
   starters: { label: 'Starters', emoji: '🥗' },
   mains: { label: 'Mains', emoji: '🍝' },
-  seafood: { label: 'Seafood', emoji: '🐟' },
+  seafood: { label: 'Seafood', emoji: '🦐' },
+  fish: { label: 'Fish', emoji: '🐟' },
   drinks: { label: 'Drinks', emoji: '🍷' },
   desserts: { label: 'Desserts', emoji: '🍮' },
 };
@@ -75,7 +116,7 @@ export default function Menu() {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
 
-  const categories = ['starters', 'mains', 'seafood', 'drinks', 'desserts'] as const;
+  const categories = ['starters', 'mains', 'seafood', 'fish', 'drinks', 'desserts'] as const;
 
   const filteredItems =
     activeCategory === 'all'

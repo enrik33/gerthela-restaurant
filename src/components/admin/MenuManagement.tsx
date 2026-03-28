@@ -127,6 +127,7 @@ export default function MenuManagement() {
                 <option value="starters">Starters</option>
                 <option value="mains">Mains</option>
                 <option value="seafood">Seafood</option>
+                <option value="fish">Fish</option>
                 <option value="drinks">Drinks</option>
                 <option value="desserts">Desserts</option>
               </select>
