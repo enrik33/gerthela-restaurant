@@ -21,7 +21,7 @@ const CONTACT_INFO = [
   {
     icon: Clock,
     title: 'Hours',
-    lines: ['Mon, Wed–Sun: 1:00 PM – 11:00 PM', 'Tuesday: Closed'],
+    lines: ['Every day: 1:00 PM – 12:00 AM'],
     color: 'bg-teal-50 text-teal-600',
   },
   {

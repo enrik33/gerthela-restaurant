@@ -15,13 +15,13 @@ const INITIAL_INFO: RestaurantInfo = {
     instagram: 'https://www.instagram.com/gerthela_/',
     latitude: 39.8731,
     longitude: 20.00504,
-    monday: '1:00 PM - 11:00 PM',
-    tuesday: 'CLOSED',
-    wednesday: '1:00 PM - 11:00 PM',
-    thursday: '1:00 PM - 11:00 PM',
-    friday: '1:00 PM - 11:00 PM',
-    saturday: '1:00 PM - 11:00 PM',
-    sunday: '1:00 PM - 11:00 PM',
+    monday: '1:00 PM - 12:00 AM',
+    tuesday: '1:00 PM - 12:00 AM',
+    wednesday: '1:00 PM - 12:00 AM',
+    thursday: '1:00 PM - 12:00 AM',
+    friday: '1:00 PM - 12:00 AM',
+    saturday: '1:00 PM - 12:00 AM',
+    sunday: '1:00 PM - 12:00 AM',
 };
 
 export default function RestaurantInfoManagement() {

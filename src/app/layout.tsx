@@ -6,7 +6,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Gerthela Taverna - Fresh Seafood in Saranda, Albania",
   description:
-    "Authentic Mediterranean seafood restaurant on Saranda waterfront. Fresh daily catch, family-owned. Pick your own fish. Open daily 1PM-11PM.",
+    "Authentic Mediterranean seafood restaurant on Saranda waterfront. Fresh daily catch, family-owned. Pick your own fish. Open daily 1PM-12AM.",
   keywords: ["restaurant", "seafood", "Saranda", "Albania", "Mediterranean", "fish"],
   openGraph: {
     title: "Gerthela Taverna - Fresh Seafood in Saranda",
