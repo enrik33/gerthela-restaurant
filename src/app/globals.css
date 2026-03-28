@@ -30,6 +30,7 @@ body {
 /* Smooth scrolling for anchor links */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 /* Section fade-in animation */
