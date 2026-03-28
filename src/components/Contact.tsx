@@ -49,9 +49,8 @@ export default function Contact() {
   const validateTime = (value: string) => {
     if (!value) return '';
     const [h] = value.split(':').map(Number);
-    // Valid: 13:00–23:59 and 00:00 (midnight)
-    if (h === 0) return '';
     if (h < 13) return 'Opening time is 1:00 PM. Please select a later time.';
+    if (h >= 23) return 'Last reservation is at 11:00 PM. Please select an earlier time.';
     return '';
   };
 
@@ -221,7 +220,7 @@ export default function Contact() {
                     value={formData.time}
                     onChange={handleChange}
                     min="13:00"
-                    max="00:00"
+                    max="23:00"
                     required
                     className={`${inputClass} [color-scheme:dark]`}
                   />
