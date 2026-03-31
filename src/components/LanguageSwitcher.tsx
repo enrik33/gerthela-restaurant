@@ -27,10 +27,10 @@ export default function LanguageSwitcher({ scrolled }: Props) {
             onClick={() => setLanguage(code)}
             title={code === 'en' ? 'English' : code === 'it' ? 'Italiano' : 'Shqip'}
             className={`px-2.5 py-1.5 text-xs font-semibold transition-all flex items-center gap-1 ${isActive
-                ? 'bg-[#c9972c] text-white'
-                : scrolled
-                  ? 'text-gray-600 hover:text-[#c9972c] hover:bg-[#c9972c]/10'
-                  : 'text-white/80 hover:text-white hover:bg-white/10'
+              ? 'bg-[#c9972c] text-white'
+              : scrolled
+                ? 'text-gray-600 hover:text-[#c9972c] hover:bg-[#c9972c]/10'
+                : 'text-white/80 hover:text-white hover:bg-white/10'
               }`}
           >
             <span>{flag}</span>

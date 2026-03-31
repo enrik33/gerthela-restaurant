@@ -30,8 +30,8 @@ export default function Header() {
     return (
         <header
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-                    ? 'bg-white/95 backdrop-blur-md shadow-lg'
-                    : 'bg-transparent'
+                ? 'bg-white/95 backdrop-blur-md shadow-lg'
+                : 'bg-transparent'
                 }`}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
@@ -65,8 +65,8 @@ export default function Header() {
                             key={link.href}
                             href={link.href}
                             className={`px-4 py-2 rounded-lg text-sm font-medium tracking-wide transition-all ${scrolled
-                                    ? 'text-gray-700 hover:text-[#c9972c] hover:bg-[#c9972c]/5'
-                                    : 'text-white/90 hover:text-white hover:bg-white/10'
+                                ? 'text-gray-700 hover:text-[#c9972c] hover:bg-[#c9972c]/5'
+                                : 'text-white/90 hover:text-white hover:bg-white/10'
                                 }`}
                         >
                             {link.label}
