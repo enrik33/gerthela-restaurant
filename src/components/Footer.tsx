@@ -2,8 +2,10 @@
 
 import { MapPin, Phone, Clock, Utensils } from 'lucide-react';
 import Link from 'next/link';
+import { useT } from '@/hooks/useTranslations';
 
 export default function Footer() {
+    const t = useT();
     return (
         <footer className="bg-[#0d1b2a] text-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
@@ -20,7 +22,7 @@ export default function Footer() {
                             </div>
                         </div>
                         <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
-                            Fresh seafood restaurant on Saranda&apos;s waterfront. Family-owned, serving the finest local catch daily since generations.
+                            {t.footer.tagline}
                         </p>
                         <div className="flex flex-wrap gap-3 mt-5">
                             <a
@@ -64,7 +66,7 @@ export default function Footer() {
 
                     {/* Contact */}
                     <div>
-                        <h4 className="font-semibold text-white mb-4 uppercase tracking-wider text-xs text-[#c9972c]">Contact</h4>
+                        <h4 className="font-semibold text-white mb-4 uppercase tracking-wider text-xs text-[#c9972c]">{t.footer.contact}</h4>
                         <div className="space-y-3">
                             <div className="flex gap-2 items-start">
                                 <Phone size={15} className="text-gray-500 flex-shrink-0 mt-0.5" />
@@ -81,12 +83,12 @@ export default function Footer() {
 
                     {/* Hours */}
                     <div>
-                        <h4 className="font-semibold text-white mb-4 uppercase tracking-wider text-xs text-[#c9972c]">Hours</h4>
+                        <h4 className="font-semibold text-white mb-4 uppercase tracking-wider text-xs text-[#c9972c]">{t.footer.hours}</h4>
                         <div className="space-y-2">
                             <div className="flex gap-2 items-start">
                                 <Clock size={15} className="text-gray-500 flex-shrink-0 mt-0.5" />
                                 <div className="text-sm text-gray-300 space-y-1">
-                                    <p>Every day</p>
+                                    <p>{t.footer.everyDay}</p>
                                     <p className="text-white">1:00 PM – 12:00 AM</p>
                                 </div>
                             </div>
@@ -96,10 +98,10 @@ export default function Footer() {
 
                 <div className="border-t border-white/10 mt-10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
                     <p className="text-gray-500 text-sm">
-                        &copy; {new Date().getFullYear()} Gerthela Taverna. All rights reserved.
+                        &copy; {new Date().getFullYear()} Gerthela Taverna. {t.footer.copyright}
                     </p>
                     <div className="flex items-center gap-4 text-sm text-gray-500">
-                        <Link href="/admin" className="hover:text-gray-300 transition-colors">Admin</Link>
+                        <Link href="/admin" className="hover:text-gray-300 transition-colors">{t.footer.admin}</Link>
                         <span>·</span>
                         <span>Saranda, Albania</span>
                     </div>

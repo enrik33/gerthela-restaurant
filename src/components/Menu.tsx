@@ -1,8 +1,10 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useMemo } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import type { MenuItem } from '@/types';
+import { useT } from '@/hooks/useTranslations';
+import type { Translations } from '@/i18n/translations';
 
 const DUMMY_MENU: MenuItem[] = [
   // ── STARTERS ─────────────────────────────────────────────────────────────
@@ -91,50 +93,25 @@ const DUMMY_MENU: MenuItem[] = [
   { id: 'dr30', name: 'Vodka', description: 'Premium vodka, served straight', price: 400, category: 'drinks', available: true, allergens: 'None', preparation: 'Ready to serve', origin: 'Imported' },
 ];
 
-const CATEGORY_META: Record<string, { label: string; emoji: string; accent: string; subtitle: string; description: string }> = {
-  starters: {
-    label: 'Starters',
-    emoji: '🥗',
-    accent: '#4a7c59',
-    subtitle: 'Salads & Sides',
-    description: 'Fresh, seasonal ingredients sourced from local farms and markets around Saranda.',
-  },
-  mains: {
-    label: 'Mains',
-    emoji: '🍝',
-    accent: '#8b4513',
-    subtitle: 'Soups & Pasta',
-    description: 'Hearty dishes made with tradition — rich broths and handcrafted pasta.',
-  },
-  seafood: {
-    label: 'Seafood',
-    emoji: '🦐',
-    accent: '#1a5276',
-    subtitle: 'Fresh from the Sea',
-    description: 'Caught daily from the clear, pristine waters of the Ionian coast.',
-  },
-  fish: {
-    label: 'Fish',
-    emoji: '🐟',
-    accent: '#117a65',
-    subtitle: 'Wild Caught Daily',
-    description: 'Premium wild fish from the Ionian Sea, prepared to order your way.',
-  },
-  desserts: {
-    label: 'Desserts',
-    emoji: '🍮',
-    accent: '#7d3c98',
-    subtitle: 'Sweet Endings',
-    description: 'House-made desserts to complete your Mediterranean journey in style.',
-  },
-  drinks: {
-    label: 'Drinks',
-    emoji: '🍷',
-    accent: '#922b21',
-    subtitle: 'Beverages & Cocktails',
-    description: 'From local wines and craft cocktails to cold beers and digestifs.',
-  },
+const CATEGORY_META_STATIC: Record<string, { emoji: string; accent: string }> = {
+  starters: { emoji: '🥗', accent: '#4a7c59' },
+  mains: { emoji: '🍝', accent: '#8b4513' },
+  seafood: { emoji: '🦐', accent: '#1a5276' },
+  fish: { emoji: '🐟', accent: '#117a65' },
+  desserts: { emoji: '🍮', accent: '#7d3c98' },
+  drinks: { emoji: '🍷', accent: '#922b21' },
 };
+
+function getCategoryMeta(t: Translations): Record<string, { label: string; emoji: string; accent: string; subtitle: string; description: string }> {
+  return {
+    starters: { ...CATEGORY_META_STATIC.starters, ...t.menu.categories.starters },
+    mains: { ...CATEGORY_META_STATIC.mains, ...t.menu.categories.mains },
+    seafood: { ...CATEGORY_META_STATIC.seafood, ...t.menu.categories.seafood },
+    fish: { ...CATEGORY_META_STATIC.fish, ...t.menu.categories.fish },
+    desserts: { ...CATEGORY_META_STATIC.desserts, ...t.menu.categories.desserts },
+    drinks: { ...CATEGORY_META_STATIC.drinks, ...t.menu.categories.drinks },
+  };
+}
 
 const ITEMS_PER_PAGE = 10;
 
@@ -169,6 +146,8 @@ function buildPages(items: MenuItem[]): BookPage[] {
 const PAGES = buildPages(DUMMY_MENU);
 
 export default function Menu() {
+  const t = useT();
+  const CATEGORY_META = useMemo(() => getCategoryMeta(t), [t]);
   const [pageIndex, setPageIndex] = useState(0);
   const [flipDir, setFlipDir] = useState<'forward' | 'backward'>('forward');
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
@@ -240,13 +219,13 @@ export default function Menu() {
         {/* Section header */}
         <div className="text-center mb-10">
           <p className="text-[#c9972c] font-semibold tracking-widest uppercase text-sm mb-3">
-            What We Serve
+            {t.menu.sectionLabel}
           </p>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-[#0d1b2a] mb-4">
-            Our Menu
+            {t.menu.title}
           </h2>
           <p className="text-gray-600 text-base max-w-xl mx-auto">
-            Authentic Mediterranean cuisine featuring fresh daily catch. Prices in ALL.
+            {t.menu.subtitle}
           </p>
         </div>
 
@@ -347,7 +326,7 @@ export default function Menu() {
                           className="inline-block mt-5 text-xs font-semibold px-3 py-1 rounded-full"
                           style={{ background: `${meta.accent}20`, color: meta.accent }}
                         >
-                          Part {page.pageNum} of {page.totalForCategory}
+                          {t.menu.partOf.replace('{page}', String(page.pageNum)).replace('{total}', String(page.totalForCategory))}
                         </span>
                       )}
                     </div>
@@ -405,7 +384,7 @@ export default function Menu() {
                     </div>
 
                     <p className="relative text-[10px] text-gray-400 text-right mt-6 italic">
-                      Prices in ALL · Tap any item for details
+                      {t.menu.pricesNote}
                     </p>
                   </div>
                 </div>
@@ -484,18 +463,18 @@ export default function Menu() {
               <p className="text-gray-600 text-sm mb-4">{selectedItem.description}</p>
               <div className="space-y-2 text-sm text-gray-500 border-t border-gray-100 pt-4">
                 <div className="flex items-start gap-2">
-                  <span className="font-semibold text-[#0d1b2a] shrink-0">Allergens:</span>
-                  <span>{selectedItem.allergens ?? 'Ask your server.'}</span>
+                  <span className="font-semibold text-[#0d1b2a] shrink-0">{t.menu.allergens}</span>
+                  <span>{selectedItem.allergens ?? t.menu.askServer}</span>
                 </div>
                 {selectedItem.category !== 'drinks' && (
                   <div className="flex items-start gap-2">
-                    <span className="font-semibold text-[#0d1b2a] shrink-0">Preparation:</span>
-                    <span>{selectedItem.preparation ?? 'Made fresh to order.'}</span>
+                    <span className="font-semibold text-[#0d1b2a] shrink-0">{t.menu.preparation}</span>
+                    <span>{selectedItem.preparation ?? t.menu.madeToOrder}</span>
                   </div>
                 )}
                 <div className="flex items-start gap-2">
-                  <span className="font-semibold text-[#0d1b2a] shrink-0">Origin:</span>
-                  <span>{selectedItem.origin ?? 'Locally sourced from the Ionian coast, Saranda.'}</span>
+                  <span className="font-semibold text-[#0d1b2a] shrink-0">{t.menu.origin}</span>
+                  <span>{selectedItem.origin ?? t.menu.locallySourced}</span>
                 </div>
               </div>
               <a
@@ -504,7 +483,7 @@ export default function Menu() {
                 rel="noopener noreferrer"
                 className="mt-5 w-full flex items-center justify-center gap-2 bg-[#25d366] hover:bg-[#1ebe5d] text-white py-3 rounded-full font-semibold text-sm transition-all"
               >
-                Reserve &amp; mention this dish
+                {t.menu.reserve}
               </a>
             </div>
           </div>

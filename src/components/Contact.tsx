@@ -2,40 +2,42 @@
 
 import { MapPin, Phone, Clock, MessageCircle } from 'lucide-react';
 import { useState } from 'react';
-
-const CONTACT_INFO = [
-  {
-    icon: Phone,
-    title: 'Phone',
-    lines: ['+355 68 666 0000', '+355 68 666 0000 (WhatsApp)'],
-    action: { label: 'Call Now', href: 'tel:+355686660000' },
-    color: 'bg-blue-50 text-blue-600',
-  },
-  {
-    icon: MapPin,
-    title: 'Location',
-    lines: ['Rruga Jonianet', 'Saranda 9701, Albania'],
-    action: { label: 'Get Directions', href: 'https://maps.app.goo.gl/6a7XSdJsT6XFVtL88' },
-    color: 'bg-[#c9972c]/10 text-[#c9972c]',
-  },
-  {
-    icon: Clock,
-    title: 'Hours',
-    lines: ['Every day: 1:00 PM – 12:00 AM'],
-    color: 'bg-teal-50 text-teal-600',
-  },
-  {
-    icon: MessageCircle,
-    title: 'WhatsApp',
-    lines: ['Chat with us for quick response', 'Reservations & inquiries'],
-    action: { label: 'Message Us', href: 'https://wa.me/+355686660000' },
-    color: 'bg-green-50 text-green-600',
-  },
-];
+import { useT } from '@/hooks/useTranslations';
 
 const today = new Date().toISOString().split('T')[0];
 
 export default function Contact() {
+  const t = useT();
+
+  const CONTACT_INFO = [
+    {
+      icon: Phone,
+      title: t.contact.phone,
+      lines: ['+355 68 666 0000', '+355 68 666 0000 (WhatsApp)'],
+      action: { label: t.contact.callNow, href: 'tel:+355686660000' },
+      color: 'bg-blue-50 text-blue-600',
+    },
+    {
+      icon: MapPin,
+      title: t.contact.location,
+      lines: ['Rruga Jonianet', 'Saranda 9701, Albania'],
+      action: { label: t.contact.getDirections, href: 'https://maps.app.goo.gl/6a7XSdJsT6XFVtL88' },
+      color: 'bg-[#c9972c]/10 text-[#c9972c]',
+    },
+    {
+      icon: Clock,
+      title: t.contact.hours,
+      lines: [t.contact.hoursLine],
+      color: 'bg-teal-50 text-teal-600',
+    },
+    {
+      icon: MessageCircle,
+      title: t.contact.whatsapp,
+      lines: [t.contact.whatsappLine1, t.contact.whatsappLine2],
+      action: { label: t.contact.messageUs, href: 'https://wa.me/+355686660000' },
+      color: 'bg-green-50 text-green-600',
+    },
+  ];
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -52,15 +54,15 @@ export default function Contact() {
     const selected = new Date(value + 'T00:00:00');
     const todayDate = new Date();
     todayDate.setHours(0, 0, 0, 0);
-    if (selected < todayDate) return 'Please select today or a future date.';
+    if (selected < todayDate) return t.contact.errorPastDate;
     return '';
   };
 
   const validateTime = (value: string) => {
     if (!value) return '';
     const [h] = value.split(':').map(Number);
-    if (h < 13) return 'Opening time is 1:00 PM. Please select a later time.';
-    if (h >= 23) return 'Last reservation is at 11:00 PM. Please select an earlier time.';
+    if (h < 13) return t.contact.errorTooEarly;
+    if (h >= 23) return t.contact.errorTooLate;
     return '';
   };
 
@@ -108,13 +110,13 @@ export default function Contact() {
         {/* Section header */}
         <div className="text-center mb-14">
           <p className="text-[#c9972c] font-semibold tracking-widest uppercase text-sm mb-3">
-            Find Us
+            {t.contact.sectionLabel}
           </p>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-[#0d1b2a] mb-4">
-            Get In Touch
+            {t.contact.title}
           </h2>
           <p className="text-gray-600 text-lg max-w-xl mx-auto">
-            Visit us on Saranda&apos;s waterfront or contact us for reservations
+            {t.contact.subtitle}
           </p>
         </div>
 
@@ -154,14 +156,14 @@ export default function Contact() {
 
           {/* Contact Form */}
           <div className="bg-[#0d1b2a] rounded-2xl p-8">
-            <h3 className="font-display text-2xl font-bold text-white mb-2">Make a Reservation</h3>
-            <p className="text-gray-400 text-sm mb-6">We&apos;ll get back to you as soon as possible.</p>
+            <h3 className="font-display text-2xl font-bold text-white mb-2">{t.contact.formTitle}</h3>
+            <p className="text-gray-400 text-sm mb-6">{t.contact.formSubtitle}</p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="name" className="block text-xs font-medium text-gray-400 mb-1.5 uppercase tracking-wide">
-                    Name
+                    {t.contact.nameLabel}
                   </label>
                   <input
                     type="text"
@@ -171,12 +173,12 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     className={inputClass}
-                    placeholder="Your name"
+                    placeholder={t.contact.namePlaceholder}
                   />
                 </div>
                 <div>
                   <label htmlFor="phone" className="block text-xs font-medium text-gray-400 mb-1.5 uppercase tracking-wide">
-                    Phone
+                    {t.contact.phoneLabel}
                   </label>
                   <input
                     type="tel"
@@ -185,14 +187,14 @@ export default function Contact() {
                     value={formData.phone}
                     onChange={handleChange}
                     className={inputClass}
-                    placeholder="+355 xxx xxx"
+                    placeholder={t.contact.phonePlaceholder}
                   />
                 </div>
               </div>
 
               <div>
                 <label htmlFor="email" className="block text-xs font-medium text-gray-400 mb-1.5 uppercase tracking-wide">
-                  Email
+                  {t.contact.emailLabel}
                 </label>
                 <input
                   type="email"
@@ -202,14 +204,14 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   className={inputClass}
-                  placeholder="your@email.com"
+                  placeholder={t.contact.emailPlaceholder}
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="date" className="block text-xs font-medium text-gray-400 mb-1.5 uppercase tracking-wide">
-                    Date
+                    {t.contact.dateLabel}
                   </label>
                   <input
                     type="date"
@@ -227,7 +229,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <label htmlFor="time" className="block text-xs font-medium text-gray-400 mb-1.5 uppercase tracking-wide">
-                    Time
+                    {t.contact.timeLabel}
                   </label>
                   <input
                     type="time"
@@ -248,7 +250,7 @@ export default function Contact() {
 
               <div>
                 <label htmlFor="message" className="block text-xs font-medium text-gray-400 mb-1.5 uppercase tracking-wide">
-                  Message
+                  {t.contact.messageLabel}
                 </label>
                 <textarea
                   id="message"
@@ -257,7 +259,7 @@ export default function Contact() {
                   onChange={handleChange}
                   rows={3}
                   className={`${inputClass} resize-none`}
-                  placeholder="Tell us about your visit or reservation..."
+                  placeholder={t.contact.messagePlaceholder}
                 />
               </div>
 
@@ -265,7 +267,7 @@ export default function Contact() {
                 type="submit"
                 className="w-full bg-[#c9972c] hover:bg-[#a87a20] text-white font-semibold py-3 rounded-xl transition-all shadow-lg hover:shadow-xl active:scale-[0.98]"
               >
-                Send Message
+                {t.contact.send}
               </button>
             </form>
           </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import HtmlLangUpdater from "@/components/HtmlLangUpdater";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -34,6 +35,7 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased overflow-x-hidden">
+        <HtmlLangUpdater />
         <Header />
         <main>{children}</main>
         <Footer />

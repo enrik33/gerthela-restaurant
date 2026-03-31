@@ -1,10 +1,13 @@
 'use client';
 
+import { useT } from '@/hooks/useTranslations';
+
 export default function About() {
+  const t = useT();
   const stats = [
-    { value: '4.0★', label: 'TripAdvisor Rating', sub: 'Out of 5 stars' },
-    { value: '222+', label: 'Guest Reviews', sub: 'Across all platforms' },
-    { value: 'Daily', label: 'Fresh Catch', sub: 'Sourced locally' },
+    { value: t.about.stat1Value, label: t.about.stat1Label, sub: t.about.stat1Sub },
+    { value: t.about.stat2Value, label: t.about.stat2Label, sub: t.about.stat2Sub },
+    { value: t.about.stat3Value, label: t.about.stat3Label, sub: t.about.stat3Sub },
   ];
 
   return (
@@ -39,29 +42,24 @@ export default function About() {
           {/* Content column */}
           <div className="lg:pl-6">
             <p className="text-[#c9972c] font-semibold tracking-widest uppercase text-sm mb-3">
-              Our Story
+              {t.about.sectionLabel}
             </p>
             <h2 className="font-display text-4xl md:text-5xl font-bold text-[#0d1b2a] mb-6 leading-tight">
-              Welcome to<br />
-              <span className="italic text-[#c9972c]">Gerthela</span>
+              {t.about.title}<br />
+              <span className="italic text-[#c9972c]">{t.about.titleHighlight}</span>
             </h2>
 
             <p className="text-gray-600 text-lg mb-4 leading-relaxed">
-              Since its founding, Gerthela has been Saranda&apos;s premier destination for authentic
-              Mediterranean seafood. Our family-owned restaurant sits directly on the waterfront
-              promenade, offering stunning sea views and unforgettable dining experiences.
+              {t.about.p1}
             </p>
 
             <p className="text-gray-600 text-lg mb-4 leading-relaxed">
-              <span className="font-semibold text-[#0d1b2a]">Our unique experience:</span> We invite
-              our guests to visit our kitchen and select their own fish from our daily fresh catch.
-              Every dish is prepared with care using only the finest local ingredients sourced from
-              nearby fishermen.
+              <span className="font-semibold text-[#0d1b2a]">{t.about.p2Label}</span>{' '}
+              {t.about.p2Body}
             </p>
 
             <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-              Whether you&apos;re a tourist exploring the Ionian coast or a local looking for authentic
-              cuisine, Gerthela welcomes you to experience the true taste of Albanian seafood dining.
+              {t.about.p3}
             </p>
 
             {/* Stats */}

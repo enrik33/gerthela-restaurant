@@ -1,6 +1,7 @@
 'use client';
 
 import { Star, ExternalLink } from 'lucide-react';
+import { useT } from '@/hooks/useTranslations';
 
 const REVIEWS = [
     {
@@ -79,6 +80,7 @@ const PLATFORM_LINKS = [
 ];
 
 export default function Reviews() {
+    const t = useT();
     return (
         <section id="reviews" className="py-20 md:py-28 bg-[#0d1b2a] relative overflow-hidden">
             {/* Background decoration */}
@@ -98,10 +100,10 @@ export default function Reviews() {
                 {/* Section header */}
                 <div className="text-center mb-12">
                     <p className="text-[#c9972c] font-semibold tracking-widest uppercase text-sm mb-3">
-                        What Our Guests Say
+                        {t.reviews.sectionLabel}
                     </p>
                     <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
-                        Guest Reviews
+                        {t.reviews.title}
                     </h2>
                     <div className="flex items-center justify-center gap-2 mt-4">
                         <div className="flex">
@@ -109,7 +111,7 @@ export default function Reviews() {
                                 <Star key={i} size={20} className="fill-yellow-400 text-yellow-400" />
                             ))}
                         </div>
-                        <p className="text-gray-300 ml-1">4.0+ Rating across all platforms</p>
+                        <p className="text-gray-300 ml-1">{t.reviews.rating}</p>
                     </div>
                 </div>
 
@@ -164,7 +166,7 @@ export default function Reviews() {
 
                 {/* Platform links */}
                 <div className="text-center">
-                    <p className="text-gray-400 mb-5 text-sm tracking-wide">Read more reviews on:</p>
+                    <p className="text-gray-400 mb-5 text-sm tracking-wide">{t.reviews.readMore}</p>
                     <div className="flex flex-wrap gap-3 justify-center">
                         {PLATFORM_LINKS.map((platform) => (
                             <a

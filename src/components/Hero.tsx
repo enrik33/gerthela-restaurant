@@ -2,8 +2,10 @@
 
 import { ChevronDown, Phone } from 'lucide-react';
 import Link from 'next/link';
+import { useT } from '@/hooks/useTranslations';
 
 export default function Hero() {
+  const t = useT();
   return (
     <section className="relative w-full min-h-screen flex flex-col items-center justify-center text-white overflow-hidden">
       {/* Background image */}
@@ -29,7 +31,7 @@ export default function Hero() {
         {/* Tagline badge */}
         <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 mb-6 text-sm font-medium tracking-widest uppercase text-[#f0c060]">
           <span className="w-1.5 h-1.5 rounded-full bg-[#c9972c] inline-block" />
-          Saranda, Albania
+          {t.hero.badge}
         </div>
 
         <h1 className="font-display text-5xl sm:text-6xl md:text-8xl font-bold mb-4 leading-tight">
@@ -40,10 +42,10 @@ export default function Hero() {
         </h1>
 
         <p className="text-lg md:text-xl mb-2 text-white/90 font-light tracking-wide">
-          Fresh Seafood on Saranda&apos;s Waterfront
+          {t.hero.tagline}
         </p>
         <p className="text-base md:text-lg mb-10 text-white/75 max-w-2xl mx-auto">
-          Pick your own fish from our daily catch. Authentic Mediterranean cuisine since generations.
+          {t.hero.subtitle}
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -51,14 +53,14 @@ export default function Hero() {
             href="/#contact"
             className="inline-flex items-center justify-center gap-2 bg-[#c9972c] hover:bg-[#a87a20] text-white px-8 py-3.5 rounded-full font-semibold text-base transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
           >
-            Reserve a Table
+            {t.hero.reserve}
           </Link>
           <a
             href="tel:+355686660000"
             className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm hover:bg-white/20 border border-white/30 text-white px-8 py-3.5 rounded-full font-semibold text-base transition-all"
           >
             <Phone size={18} />
-            Call Us
+            {t.hero.callUs}
           </a>
           <a
             href="https://wa.me/+355686660000"
@@ -74,12 +76,12 @@ export default function Hero() {
         <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-white/70 text-sm">
           <div className="flex items-center gap-1.5">
             <span className="text-yellow-400 text-base">★★★★★</span>
-            <span>4.0+ Rating</span>
+            <span>{t.hero.rating}</span>
           </div>
           <span className="hidden sm:inline text-white/30">|</span>
-          <div>222+ Reviews on TripAdvisor</div>
+          <div>{t.hero.reviews}</div>
           <span className="hidden sm:inline text-white/30">|</span>
-          <div>Daily Fresh Catch</div>
+          <div>{t.hero.dailyCatch}</div>
         </div>
       </div>
 
