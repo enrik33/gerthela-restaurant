@@ -54,12 +54,19 @@ export default function About() {
             </p>
 
             <p className="text-gray-600 text-lg mb-4 leading-relaxed">
-              <span className="font-semibold text-[#0d1b2a]">{t.about.p2Label}</span>{' '}
-              {t.about.p2Body}
+              {t.about.p2}
             </p>
 
-            <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+            <p className="text-gray-600 text-lg mb-4 leading-relaxed">
               {t.about.p3}
+            </p>
+
+            <p className="text-gray-600 text-lg mb-4 leading-relaxed">
+              {t.about.p4}
+            </p>
+
+            <p className="text-[#c9972c] font-semibold text-base italic mb-8">
+              {t.about.tagline}
             </p>
 
             {/* Stats */}
