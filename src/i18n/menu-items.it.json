@@ -1,0 +1,314 @@
+{
+  "s1": {
+    "name": "Insalata Verde",
+    "description": "Lattuga verde, cipolle, olive"
+  },
+  "s2": {
+    "name": "Insalata Contadina",
+    "description": "Pomodori, cetriolo, peperone, cipolle, olive, feta bianca"
+  },
+  "s3": {
+    "name": "Insalata di Rucola",
+    "description": "Rucola, pomodorini, parmigiano, aceto balsamico"
+  },
+  "s4": {
+    "name": "Verdure Selvatiche",
+    "description": "Erbe spontanee di stagione, leggermente preparate"
+  },
+  "s5": {
+    "name": "Verdure Bollite",
+    "description": "Broccoli, cavolfiore, carota, barbabietola, patate"
+  },
+  "s6": {
+    "name": "Verdure alla Griglia",
+    "description": "Zucchine, peperoni, melanzane, formaggio grattugiato, aglio, aceto balsamico"
+  },
+  "s7": {
+    "name": "Cagliata",
+    "description": "Cagliata fresca, ricetta di casa"
+  },
+  "s8": {
+    "name": "Tyrokafteri",
+    "description": "Crema piccante di feta"
+  },
+  "s9": {
+    "name": "Tzatziki",
+    "description": "Salsa cremosa di yogurt con cetriolo e aglio"
+  },
+  "s10": {
+    "name": "Skordalia",
+    "description": "Crema tradizionale di aglio e patate"
+  },
+  "s11": {
+    "name": "Barbabietola Marinata",
+    "description": "Barbabietola tenera marinata in casa"
+  },
+  "s12": {
+    "name": "Carota Marinata",
+    "description": "Carote fresche marinate in casa"
+  },
+  "s13": {
+    "name": "Feta Bianca",
+    "description": "Feta bianca arrosta"
+  },
+  "s14": {
+    "name": "Formaggio Duro Arrostito",
+    "description": "Kaçkavall grigliato"
+  },
+  "s15": {
+    "name": "Patate Fritte",
+    "description": "Patatine fritte croccanti e dorate"
+  },
+  "m1": {
+    "name": "Zuppa di Pesce",
+    "description": "Cernia, San Pietro, scorfano, sorkopjo, patate, carote"
+  },
+  "m2": {
+    "name": "Linguine ai Gamberi",
+    "description": "Linguine con gamberi di mare, salsa di pomodoro fresco, prezzemolo"
+  },
+  "m3": {
+    "name": "Linguine ai Gamberi e Calamari",
+    "description": "Linguine con gamberi di mare, calamari, salsa di pomodoro fresco, prezzemolo"
+  },
+  "m4": {
+    "name": "Linguine al Granchio",
+    "description": "Linguine con granchio, salsa di pomodoro fresco, prezzemolo"
+  },
+  "m5": {
+    "name": "Linguine agli Scampi",
+    "description": "Linguine con scampi, salsa di pomodoro fresco, prezzemolo"
+  },
+  "sf1": {
+    "name": "Calamaro alla Griglia",
+    "description": "300g di calamaro, grigliato"
+  },
+  "sf2": {
+    "name": "Calamaro Fritto",
+    "description": "300g di calamaro, fritto"
+  },
+  "sf3": {
+    "name": "Gamberi con Guscio",
+    "description": "300g gamberi, grigliati con il guscio"
+  },
+  "sf4": {
+    "name": "Gamberi Sgusciati",
+    "description": "300g gamberi — fritti, crudi, o saganaki alla salsa di pomodoro e formaggio"
+  },
+  "sf5": {
+    "name": "Seppie",
+    "description": "300g seppie — alla griglia, fritte, o flambate all'ouzo"
+  },
+  "sf6": {
+    "name": "Scampi",
+    "description": "Per 100g — alla griglia, crudi, o saganaki alla salsa di pomodoro e formaggio"
+  },
+  "sf7": {
+    "name": "Polpo",
+    "description": "300g polpo — grigliato o marinato"
+  },
+  "sf8": {
+    "name": "Acciughe",
+    "description": "Acciughe marinate con aceto, prezzemolo e aglio"
+  },
+  "sf9": {
+    "name": "Misto Mare",
+    "description": "600g mix — scampi, calamari, seppie, polpo. Alla griglia, fritti, o serviti freddi"
+  },
+  "sf10": {
+    "name": "Cozze",
+    "description": "1kg cozze — al vapore o fritte"
+  },
+  "sf11": {
+    "name": "Ostriche",
+    "description": "Per 100g, servite fresche"
+  },
+  "sf12": {
+    "name": "Aragosta",
+    "description": "Per 100g — disponibile con linguine"
+  },
+  "sf13": {
+    "name": "Cicala di Mare",
+    "description": "Per 100g — disponibile con linguine"
+  },
+  "f1": {
+    "name": "Merluzzo",
+    "description": "300g merluzzo selvatico, fritto"
+  },
+  "f2": {
+    "name": "Triglia",
+    "description": "300g triglia selvatica, fritta"
+  },
+  "f3": {
+    "name": "Triglia Striata",
+    "description": "Per 100g — grigliata o fritta"
+  },
+  "f4": {
+    "name": "Sogliola",
+    "description": "Per 100g — grigliata, fritta, o con riduzione di vino e limone"
+  },
+  "f5": {
+    "name": "Sarago Maggiore",
+    "description": "Per 100g — grigliato o fritto"
+  },
+  "f6": {
+    "name": "Orata",
+    "description": "Per 100g — alla griglia, carpaccio, o casseruola di verdure"
+  },
+  "f7": {
+    "name": "Branzino",
+    "description": "Per 100g — alla griglia, carpaccio, o casseruola di verdure"
+  },
+  "f8": {
+    "name": "Dentice",
+    "description": "Per 100g — grigliato o casseruola di verdure"
+  },
+  "f9": {
+    "name": "Dentice Comune",
+    "description": "Per 100g — grigliato o casseruola di verdure"
+  },
+  "f10": {
+    "name": "Cernia",
+    "description": "Selvatica — grigliata o casseruola di verdure"
+  },
+  "f11": {
+    "name": "Pesce San Pietro",
+    "description": "Selvaggio — grigliato o casseruola di verdure"
+  },
+  "d1": {
+    "name": "Torta all'Arancia",
+    "description": "Portokalopita tradizionale — torta greca all'arancia"
+  },
+  "d2": {
+    "name": "Cheesecake",
+    "description": "Cheesecake cremosa fatta in casa"
+  },
+  "d3": {
+    "name": "Crema Caramel",
+    "description": "Crème caramel classico, vellutato"
+  },
+  "d4": {
+    "name": "Revani",
+    "description": "Torta tradizionale di semola allo sciroppo"
+  },
+  "dr1": {
+    "name": "Acqua Naturale 0,75L",
+    "description": "Acqua minerale naturale"
+  },
+  "dr2": {
+    "name": "Acqua Frizzante 0,75L",
+    "description": "Acqua minerale frizzante"
+  },
+  "dr3": {
+    "name": "Sprite",
+    "description": "Bibita gassata al limone e lime"
+  },
+  "dr4": {
+    "name": "Coca-Cola",
+    "description": "Coca-Cola classica o Coca-Cola Zero"
+  },
+  "dr5": {
+    "name": "Fanta",
+    "description": "Gusto arancia o tropicale"
+  },
+  "dr6": {
+    "name": "Soda",
+    "description": "Soda al limone"
+  },
+  "dr7": {
+    "name": "Succo Bravo",
+    "description": "Mix di uva rossa, fragola e banana"
+  },
+  "dr8": {
+    "name": "Tonic (Britvic)",
+    "description": "Acqua tonica premium"
+  },
+  "dr9": {
+    "name": "Limonata Fresca",
+    "description": "Analcolica — succo di limone fresco, soda, zucchero, ghiaccio"
+  },
+  "dr10": {
+    "name": "Aranciata Fresca",
+    "description": "Analcolica — succo di arancia fresco, soda, ghiaccio"
+  },
+  "dr11": {
+    "name": "Berry Spark",
+    "description": "Analcolica — succo di limone, granatina, soda, ghiaccio"
+  },
+  "dr12": {
+    "name": "Sunset Glow",
+    "description": "Aperol, Prosecco, acqua frizzante, ghiaccio, fettina d'arancia"
+  },
+  "dr13": {
+    "name": "Seaside Tonic",
+    "description": "Gin, acqua tonica, ghiaccio, fettina di lime"
+  },
+  "dr14": {
+    "name": "Lemon Grove",
+    "description": "Gin, succo di limone fresco, ghiaccio"
+  },
+  "dr15": {
+    "name": "Mimosa",
+    "description": "Prosecco, succo di arancia fresco, ghiaccio"
+  },
+  "dr16": {
+    "name": "Sunny Lemon",
+    "description": "Vodka, succo di limone fresco, ghiaccio"
+  },
+  "dr17": {
+    "name": "Vodka Redbull",
+    "description": "Vodka, Redbull, fettina d'arancia, ghiaccio"
+  },
+  "dr18": {
+    "name": "Planter's Punch",
+    "description": "Rum, succo d'arancia, granatina, succo d'ananas, fettina di lime, ghiaccio"
+  },
+  "dr19": {
+    "name": "Cuba Libre",
+    "description": "Rum, Coca-Cola, fettina di lime, ghiaccio"
+  },
+  "dr20": {
+    "name": "Korça 0,33L",
+    "description": "Birra lager albanese"
+  },
+  "dr21": {
+    "name": "Korça 0,5L",
+    "description": "Birra lager albanese"
+  },
+  "dr22": {
+    "name": "Hofbräu 0,5L",
+    "description": "Lager premium tedesca"
+  },
+  "dr23": {
+    "name": "Paulaner 0,5L",
+    "description": "Birra di frumento tedesca"
+  },
+  "dr24": {
+    "name": "Paulaner 0% 0,5L",
+    "description": "Birra di frumento tedesca analcolica"
+  },
+  "dr25": {
+    "name": "Budweiser 0,33L",
+    "description": "Lager americana"
+  },
+  "dr26": {
+    "name": "Vino Rosso della Casa 1L",
+    "description": "Vino rosso della casa — caraffa da 1 litro"
+  },
+  "dr27": {
+    "name": "Vino Bianco della Casa 1L",
+    "description": "Vino bianco della casa — caraffa da 1 litro"
+  },
+  "dr28": {
+    "name": "Raki d'Uva",
+    "description": "Digestivo albanese di vinaccia"
+  },
+  "dr29": {
+    "name": "Ouzo",
+    "description": "Liquore greco all'anice"
+  },
+  "dr30": {
+    "name": "Vodka",
+    "description": "Vodka premium, servita liscia"
+  }
+}

@@ -2,6 +2,7 @@
 
 import { Star, ExternalLink } from 'lucide-react';
 import { useT } from '@/hooks/useTranslations';
+import { useLanguageStore } from '@/store/languageStore';
 
 const REVIEWS = [
     {
@@ -10,8 +11,11 @@ const REVIEWS = [
         initials: 'FM',
         platform: 'TripAdvisor',
         rating: 5,
-        content:
-            "I don't even have words to describe how fabulous this place is. The seafood is beyond fresh. They took us to the back to pick out our own fish. It was a 15 out of 10. Fabulous!",
+        content: {
+            en: "I don't even have words to describe how fabulous this place is. The seafood is beyond fresh. They took us to the back to pick out our own fish. It was a 15 out of 10. Fabulous!",
+            it: "Non ho parole per descrivere quanto sia fantastico questo posto. Il pesce è freschissimo. Ci hanno portato dietro a scegliere il nostro pesce. Un 15 su 10. Favoloso!",
+            el: "Δεν έχω λόγια για να περιγράψω πόσο υπέροχο είναι αυτό το μέρος. Τα θαλασσινά είναι απίστευτα φρέσκα. Μας πήγαν πίσω να διαλέξουμε το ψάρι μας. 15 στα 10. Φανταστικό!",
+        },
         date: 'September 2025',
         link: 'https://www.tripadvisor.com/Restaurant_Review-g303165-d4926971-Reviews-Gerthela-Saranda_Vlore_County.html',
         color: 'bg-teal-600',
@@ -22,8 +26,11 @@ const REVIEWS = [
         initials: 'DD',
         platform: 'Google',
         rating: 5,
-        content:
-            "I would give 6 stars if I could! The food is amazing. It's a family business, the fish is always fresh. You won't find the same dishes everyday because they prepare based on daily catch.",
+        content: {
+            en: "I would give 6 stars if I could! The food is amazing. It's a family business, the fish is always fresh. You won't find the same dishes everyday because they prepare based on daily catch.",
+            it: "Darei 6 stelle se potessi! Il cibo è fantastico. È un'attività familiare, il pesce è sempre fresco. Non troverete gli stessi piatti ogni giorno perché preparano in base al pescato quotidiano.",
+            el: "Θα έδινα 6 αστέρια αν μπορούσα! Το φαγητό είναι εκπληκτικό. Είναι οικογενειακή επιχείρηση, το ψάρι είναι πάντα φρέσκο. Δεν θα βρείτε τα ίδια πιάτα κάθε μέρα γιατί μαγειρεύουν με βάση το ημερήσιο ψάρεμα.",
+        },
         date: '10 months ago',
         link: 'https://maps.app.goo.gl/6a7XSdJsT6XFVtL88',
         color: 'bg-blue-600',
@@ -34,8 +41,11 @@ const REVIEWS = [
         initials: 'KM',
         platform: 'Restaurant Guru',
         rating: 5,
-        content:
-            'Taverna Gerthela is an absolute gem for seafood lovers! The atmosphere is cozy and welcoming with charming sea-inspired decor. Highly recommend if you are in Saranda!',
+        content: {
+            en: 'Taverna Gerthela is an absolute gem for seafood lovers! The atmosphere is cozy and welcoming with charming sea-inspired decor. Highly recommend if you are in Saranda!',
+            it: "La Taverna Gerthela è un vero gioiello per gli amanti del pesce! L'atmosfera è accogliente con un incantevole arredamento ispirato al mare. Consiglio vivamente se siete a Saranda!",
+            el: 'Η Ταβέρνα Γκέρθελα είναι ένα απόλυτο διαμάντι για τους λάτρεις των θαλασσινών! Η ατμόσφαιρα είναι ζεστή και φιλόξενη με γοητευτική διακόσμηση εμπνευσμένη από τη θάλασσα. Συνιστώ ανεπιφύλακτα αν βρεθείτε στη Σαράντα!',
+        },
         date: '1 year ago',
         link: 'https://restaurantguru.com/Gerthela-Sarande',
         color: 'bg-orange-600',
@@ -46,8 +56,11 @@ const REVIEWS = [
         initials: 'KA',
         platform: 'TripAdvisor',
         rating: 5,
-        content:
-            'Great, NOT touristy, delicious food! You will find local Albanians at dinner, great food quality with fresh and spotless fish. Friendliness and politeness. We will definitely be back!',
+        content: {
+            en: 'Great, NOT touristy, delicious food! You will find local Albanians at dinner, great food quality with fresh and spotless fish. Friendliness and politeness. We will definitely be back!',
+            it: 'Ottimo, NON turistico, cibo delizioso! Troverete albanesi locali a cena, ottima qualità del cibo con pesce fresco e impeccabile. Gentilezza e cortesia. Torneremo sicuramente!',
+            el: 'Εξαιρετικό, ΌΧΙ τουριστικό, νόστιμο φαγητό! Θα βρείτε ντόπιους Αλβανούς στο δείπνο, εξαιρετική ποιότητα φαγητού με φρέσκο και άψογο ψάρι. Φιλικότητα και ευγένεια. Σίγουρα θα επιστρέψουμε!',
+        },
         date: 'May 2025',
         link: 'https://www.tripadvisor.com/Restaurant_Review-g303165-d4926971-Reviews-Gerthela-Saranda_Vlore_County.html',
         color: 'bg-teal-600',
@@ -81,6 +94,7 @@ const PLATFORM_LINKS = [
 
 export default function Reviews() {
     const t = useT();
+    const language = useLanguageStore((s) => s.language);
     return (
         <section id="reviews" className="py-20 md:py-28 bg-[#0d1b2a] relative overflow-hidden">
             {/* Background decoration */}
@@ -136,7 +150,7 @@ export default function Reviews() {
 
                             {/* Content */}
                             <p className="text-gray-200 text-base leading-relaxed mb-5 italic">
-                                &ldquo;{review.content}&rdquo;
+                                &ldquo;{review.content[language] ?? review.content.en}&rdquo;
                             </p>
 
                             {/* Author row */}

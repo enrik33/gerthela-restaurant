@@ -1,0 +1,151 @@
+{
+  "nav": {
+    "about": "About",
+    "menu": "Menu",
+    "gallery": "Gallery",
+    "reviews": "Reviews",
+    "contact": "Contact",
+    "reserve": "Reserve a Table"
+  },
+  "hero": {
+    "badge": "Saranda, Albania",
+    "tagline": "Fresh Seafood on Saranda's Waterfront",
+    "subtitle": "Pick your own fish from our daily catch. Authentic Mediterranean cuisine since generations.",
+    "reserve": "Reserve a Table",
+    "callUs": "Call Us",
+    "rating": "4.0+ Rating",
+    "reviews": "222+ Reviews on TripAdvisor",
+    "dailyCatch": "Daily Fresh Catch"
+  },
+  "about": {
+    "sectionLabel": "Our Story",
+    "title": "Welcome to",
+    "titleHighlight": "Gerthela",
+    "p1": "Since 2003, we have proudly served only locally sourced wild fish and seafood, building a strong reputation for consistent quality and true authenticity. Our commitment to freshness and simplicity has remained at the heart of everything we do, allowing the natural flavors of the sea to shine in every dish.",
+    "p2": "With over 20 years of experience, our cuisine is rooted in Mediterranean traditions, thoughtfully blending Greek influences with a carefully curated menu focused on seafood. Each plate is crafted with care, offering rich, vibrant flavors that reflect both our heritage and our passion for exceptional food.",
+    "p3": "Our interior evokes the charm of a vintage taverna, welcoming guests with warm colors and unique decorative touches inspired by the sea. From collections of international currency to a cozy corner featuring photographs of old Saranda, every detail tells a story, complemented by the timeless sounds of Greek laïka music that fill the space with character and warmth.",
+    "p4": "Over the years, we have earned the trust of our local community and become a beloved gathering place for both residents and visitors. We warmly invite you to join us, enjoy our delicious flavors, and experience genuine hospitality in a relaxed and inviting atmosphere.",
+    "tagline": "Where locals go for fresh, authentic seafood.",
+    "stat1Value": "4.0★",
+    "stat1Label": "TripAdvisor Rating",
+    "stat1Sub": "Out of 5 stars",
+    "stat2Value": "222+",
+    "stat2Label": "Guest Reviews",
+    "stat2Sub": "Across all platforms",
+    "stat3Value": "Daily",
+    "stat3Label": "Fresh Catch",
+    "stat3Sub": "Sourced locally"
+  },
+  "menu": {
+    "sectionLabel": "What We Serve",
+    "title": "Our Menu",
+    "subtitle": "Authentic Mediterranean cuisine featuring fresh daily catch. Prices in ALL.",
+    "pricesNote": "Prices in ALL · Tap any item for details",
+    "partOf": "Part {page} of {total}",
+    "reserve": "Reserve & mention this dish",
+    "allergens": "Allergens:",
+    "preparation": "Preparation:",
+    "origin": "Origin:",
+    "askServer": "Ask your server.",
+    "madeToOrder": "Made fresh to order.",
+    "locallySourced": "Locally sourced from the Ionian coast, Saranda.",
+    "categories": {
+      "starters": {
+        "label": "Starters",
+        "subtitle": "Salads & Sides",
+        "description": "Fresh, seasonal ingredients sourced from local farms and markets around Saranda."
+      },
+      "mains": {
+        "label": "Mains",
+        "subtitle": "Soups & Pasta",
+        "description": "Hearty dishes made with tradition — rich broths and handcrafted pasta."
+      },
+      "seafood": {
+        "label": "Seafood",
+        "subtitle": "Fresh from the Sea",
+        "description": "Caught daily from the clear, pristine waters of the Ionian coast."
+      },
+      "fish": {
+        "label": "Fish",
+        "subtitle": "Wild Caught Daily",
+        "description": "Premium wild fish from the Ionian Sea, prepared to order your way."
+      },
+      "desserts": {
+        "label": "Desserts",
+        "subtitle": "Sweet Endings",
+        "description": "House-made desserts to complete your Mediterranean journey in style."
+      },
+      "drinks": {
+        "label": "Drinks",
+        "subtitle": "Beverages & Cocktails",
+        "description": "From local wines and craft cocktails to cold beers and digestifs."
+      }
+    }
+  },
+  "gallery": {
+    "sectionLabel": "A Taste of Gerthela",
+    "title": "Gallery",
+    "subtitle": "Stunning views and delicious dishes from our waterfront kitchen",
+    "clickToView": "Click to view",
+    "images": [
+      "Fresh seafood dish",
+      "Grilled fish",
+      "Restaurant ambiance",
+      "Seafood platter",
+      "Waterfront dining",
+      "Restaurant view",
+      "Catch of the day",
+      "Dining experience",
+      "Fresh catch",
+      "Seafood selection",
+      "Restaurant terrace",
+      "Grilled dish",
+      "Evening at Gerthela"
+    ]
+  },
+  "reviews": {
+    "sectionLabel": "What Our Guests Say",
+    "title": "Guest Reviews",
+    "rating": "4.0+ Rating across all platforms",
+    "readMore": "Read more reviews on:"
+  },
+  "contact": {
+    "sectionLabel": "Find Us",
+    "title": "Get In Touch",
+    "subtitle": "Visit us on Saranda's waterfront or contact us for reservations",
+    "phone": "Phone",
+    "location": "Location",
+    "hours": "Hours",
+    "whatsapp": "WhatsApp",
+    "callNow": "Call Now",
+    "getDirections": "Get Directions",
+    "messageUs": "Message Us",
+    "whatsappLine1": "Chat with us for quick response",
+    "whatsappLine2": "Reservations & inquiries",
+    "hoursLine": "Every day: 1:00 PM – 12:00 AM",
+    "formTitle": "Make a Reservation",
+    "formSubtitle": "We'll get back to you as soon as possible.",
+    "nameLabel": "Name",
+    "namePlaceholder": "Your name",
+    "phoneLabel": "Phone",
+    "phonePlaceholder": "+355 xxx xxx",
+    "emailLabel": "Email",
+    "emailPlaceholder": "your@email.com",
+    "dateLabel": "Date",
+    "timeLabel": "Time",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Tell us about your visit or reservation...",
+    "send": "Send Message",
+    "errorPastDate": "Please select today or a future date.",
+    "errorTooEarly": "Opening time is 1:00 PM. Please select a later time.",
+    "errorTooLate": "Last reservation is at 11:00 PM. Please select an earlier time."
+  },
+  "footer": {
+    "tagline": "Fresh seafood restaurant on Saranda's waterfront. Family-owned, serving the finest local catch daily since generations.",
+    "contact": "Contact",
+    "hours": "Hours",
+    "everyDay": "Every day",
+    "copyright": "All rights reserved.",
+    "admin": "Admin"
+  }
+}

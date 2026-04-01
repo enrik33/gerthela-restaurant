@@ -49,14 +49,17 @@ export default function Header() {
                     </div>
                 </Link>
 
-                {/* Mobile menu button */}
-                <button
-                    className={`sm:hidden p-2 rounded-lg transition-colors ${scrolled ? 'text-[#0d1b2a] hover:bg-gray-100' : 'text-white hover:bg-white/20'}`}
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                    aria-label="Toggle menu"
-                >
-                    {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
+                {/* Mobile: language switcher + hamburger */}
+                <div className="sm:hidden flex items-center gap-2">
+                    <LanguageSwitcher scrolled={scrolled} />
+                    <button
+                        className={`p-2 rounded-lg transition-colors ${scrolled ? 'text-[#0d1b2a] hover:bg-gray-100' : 'text-white hover:bg-white/20'}`}
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        aria-label="Toggle menu"
+                    >
+                        {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                    </button>
+                </div>
 
                 {/* Desktop nav */}
                 <nav className="hidden sm:flex items-center gap-1">
@@ -105,9 +108,6 @@ export default function Header() {
                         >
                             {t.nav.reserve}
                         </Link>
-                        <div className="mt-2 flex justify-center">
-                            <LanguageSwitcher scrolled={true} />
-                        </div>
                     </nav>
                 </div>
             )}

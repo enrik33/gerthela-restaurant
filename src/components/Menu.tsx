@@ -5,6 +5,8 @@ import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import type { MenuItem } from '@/types';
 import { useT } from '@/hooks/useTranslations';
 import type { Translations } from '@/i18n/translations';
+import { useLanguageStore } from '@/store/languageStore';
+import { getLocalizedItem } from '@/lib/menuTranslations';
 
 const DUMMY_MENU: MenuItem[] = [
   // ── STARTERS ─────────────────────────────────────────────────────────────
@@ -147,6 +149,7 @@ const PAGES = buildPages(DUMMY_MENU);
 
 export default function Menu() {
   const t = useT();
+  const language = useLanguageStore((s) => s.language);
   const CATEGORY_META = useMemo(() => getCategoryMeta(t), [t]);
   const [pageIndex, setPageIndex] = useState(0);
   const [flipDir, setFlipDir] = useState<'forward' | 'backward'>('forward');
@@ -361,7 +364,9 @@ export default function Menu() {
                     />
 
                     <div className="relative flex-1 space-y-4">
-                      {page.items.map((item) => (
+                      {page.items.map((item) => {
+                        const localItem = getLocalizedItem(item, language);
+                        return (
                         <div
                           key={item.id}
                           onClick={() => setSelectedItem(item)}
@@ -369,7 +374,7 @@ export default function Menu() {
                         >
                           <div className="flex items-baseline">
                             <span className="text-sm font-semibold text-[#0d1b2a] group-hover:text-[#c9972c] transition-colors leading-snug">
-                              {item.name}
+                              {localItem.name}
                             </span>
                             <span className="menu-dotline" />
                             <span className="text-sm font-bold text-[#0d1b2a] whitespace-nowrap tabular-nums">
@@ -377,10 +382,11 @@ export default function Menu() {
                             </span>
                           </div>
                           <p className="text-[11px] text-gray-400 mt-0.5 leading-tight line-clamp-1 pl-0.5">
-                            {item.description}
+                            {localItem.description}
                           </p>
                         </div>
-                      ))}
+                        );
+                      })}
                     </div>
 
                     <p className="relative text-[10px] text-gray-400 text-right mt-6 italic">
@@ -434,58 +440,65 @@ export default function Menu() {
             className="bg-white rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            {selectedItem.image_url && (
-              <div className="relative h-56 sm:h-64 w-full">
-                <img
-                  src={selectedItem.image_url}
-                  alt={selectedItem.name}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                <span className="absolute bottom-4 left-4 bg-[#0d1b2a] text-white px-3 py-1 rounded-full text-sm font-bold">
-                  {selectedItem.price.toLocaleString()} ALL
-                </span>
-              </div>
-            )}
-            <div className="p-6">
-              <div className="flex justify-between items-start mb-3">
-                <h3 className="font-display text-2xl font-bold text-[#0d1b2a]">
-                  {selectedItem.name}
-                </h3>
-                <button
-                  onClick={() => setSelectedItem(null)}
-                  className="p-1.5 rounded-full hover:bg-gray-100 transition-colors text-gray-400 hover:text-gray-600"
-                  aria-label="Close"
-                >
-                  <X size={20} />
-                </button>
-              </div>
-              <p className="text-gray-600 text-sm mb-4">{selectedItem.description}</p>
-              <div className="space-y-2 text-sm text-gray-500 border-t border-gray-100 pt-4">
-                <div className="flex items-start gap-2">
-                  <span className="font-semibold text-[#0d1b2a] shrink-0">{t.menu.allergens}</span>
-                  <span>{selectedItem.allergens ?? t.menu.askServer}</span>
-                </div>
-                {selectedItem.category !== 'drinks' && (
-                  <div className="flex items-start gap-2">
-                    <span className="font-semibold text-[#0d1b2a] shrink-0">{t.menu.preparation}</span>
-                    <span>{selectedItem.preparation ?? t.menu.madeToOrder}</span>
+            {(() => {
+              const localSelected = getLocalizedItem(selectedItem, language);
+              return (
+                <>
+                  {selectedItem.image_url && (
+                    <div className="relative h-56 sm:h-64 w-full">
+                      <img
+                        src={selectedItem.image_url}
+                        alt={localSelected.name}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                      <span className="absolute bottom-4 left-4 bg-[#0d1b2a] text-white px-3 py-1 rounded-full text-sm font-bold">
+                        {selectedItem.price.toLocaleString()} ALL
+                      </span>
+                    </div>
+                  )}
+                  <div className="p-6">
+                    <div className="flex justify-between items-start mb-3">
+                      <h3 className="font-display text-2xl font-bold text-[#0d1b2a]">
+                        {localSelected.name}
+                      </h3>
+                      <button
+                        onClick={() => setSelectedItem(null)}
+                        className="p-1.5 rounded-full hover:bg-gray-100 transition-colors text-gray-400 hover:text-gray-600"
+                        aria-label="Close"
+                      >
+                        <X size={20} />
+                      </button>
+                    </div>
+                    <p className="text-gray-600 text-sm mb-4">{localSelected.description}</p>
+                    <div className="space-y-2 text-sm text-gray-500 border-t border-gray-100 pt-4">
+                      <div className="flex items-start gap-2">
+                        <span className="font-semibold text-[#0d1b2a] shrink-0">{t.menu.allergens}</span>
+                        <span>{localSelected.allergens ?? t.menu.askServer}</span>
+                      </div>
+                      {selectedItem.category !== 'drinks' && (
+                        <div className="flex items-start gap-2">
+                          <span className="font-semibold text-[#0d1b2a] shrink-0">{t.menu.preparation}</span>
+                          <span>{localSelected.preparation ?? t.menu.madeToOrder}</span>
+                        </div>
+                      )}
+                      <div className="flex items-start gap-2">
+                        <span className="font-semibold text-[#0d1b2a] shrink-0">{t.menu.origin}</span>
+                        <span>{localSelected.origin ?? t.menu.locallySourced}</span>
+                      </div>
+                    </div>
+                    <a
+                      href={`https://wa.me/+355686660000?text=${encodeURIComponent(`Hi! I'd like to make a reservation and mention the dish: ${localSelected.name}`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-5 w-full flex items-center justify-center gap-2 bg-[#25d366] hover:bg-[#1ebe5d] text-white py-3 rounded-full font-semibold text-sm transition-all"
+                    >
+                      {t.menu.reserve}
+                    </a>
                   </div>
-                )}
-                <div className="flex items-start gap-2">
-                  <span className="font-semibold text-[#0d1b2a] shrink-0">{t.menu.origin}</span>
-                  <span>{selectedItem.origin ?? t.menu.locallySourced}</span>
-                </div>
-              </div>
-              <a
-                href={`https://wa.me/+355686660000?text=${encodeURIComponent(`Hi! I'd like to make a reservation and mention the dish: ${selectedItem.name}`)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-5 w-full flex items-center justify-center gap-2 bg-[#25d366] hover:bg-[#1ebe5d] text-white py-3 rounded-full font-semibold text-sm transition-all"
-              >
-                {t.menu.reserve}
-              </a>
-            </div>
+                </>
+              );
+            })()}
           </div>
         </div>
       )}
