@@ -367,24 +367,24 @@ export default function Menu() {
                       {page.items.map((item) => {
                         const localItem = getLocalizedItem(item, language);
                         return (
-                        <div
-                          key={item.id}
-                          onClick={() => setSelectedItem(item)}
-                          className="group cursor-pointer"
-                        >
-                          <div className="flex items-baseline">
-                            <span className="text-sm font-semibold text-[#0d1b2a] group-hover:text-[#c9972c] transition-colors leading-snug">
-                              {localItem.name}
-                            </span>
-                            <span className="menu-dotline" />
-                            <span className="text-sm font-bold text-[#0d1b2a] whitespace-nowrap tabular-nums">
-                              {item.price.toLocaleString()}
-                            </span>
+                          <div
+                            key={item.id}
+                            onClick={() => setSelectedItem(item)}
+                            className="group cursor-pointer"
+                          >
+                            <div className="flex items-baseline">
+                              <span className="text-sm font-semibold text-[#0d1b2a] group-hover:text-[#c9972c] transition-colors leading-snug">
+                                {localItem.name}
+                              </span>
+                              <span className="menu-dotline" />
+                              <span className="text-sm font-bold text-[#0d1b2a] whitespace-nowrap tabular-nums">
+                                {item.price.toLocaleString()}
+                              </span>
+                            </div>
+                            <p className="text-[11px] text-gray-400 mt-0.5 leading-tight line-clamp-1 pl-0.5">
+                              {localItem.description}
+                            </p>
                           </div>
-                          <p className="text-[11px] text-gray-400 mt-0.5 leading-tight line-clamp-1 pl-0.5">
-                            {localItem.description}
-                          </p>
-                        </div>
                         );
                       })}
                     </div>
