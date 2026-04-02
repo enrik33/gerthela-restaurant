@@ -181,7 +181,7 @@ export default function Menu() {
   const meta = CATEGORY_META[page.category];
 
   return (
-    <section id="menu" className="py-20 md:py-28 bg-[#f8f4ed]">
+    <section id="menu" className="py-20 md:py-28 bg-[#0d1117]">
       <style>{`
         @keyframes flipInForward {
           from {
@@ -224,10 +224,10 @@ export default function Menu() {
           <p className="text-[#c9972c] font-semibold tracking-widest uppercase text-sm mb-3">
             {t.menu.sectionLabel}
           </p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-[#0d1b2a] mb-4">
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-[#e6edf3] mb-4">
             {t.menu.title}
           </h2>
-          <p className="text-gray-600 text-base max-w-xl mx-auto">
+          <p className="text-gray-400 text-base max-w-xl mx-auto">
             {t.menu.subtitle}
           </p>
         </div>
@@ -263,7 +263,7 @@ export default function Menu() {
             onClick={() => navigateTo(pageIndex - 1, 'backward')}
             disabled={pageIndex === 0}
             aria-label="Previous page"
-            className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all disabled:opacity-20 disabled:cursor-not-allowed bg-white border border-gray-200 text-gray-500 hover:enabled:border-[#c9972c] hover:enabled:text-[#c9972c] shadow-sm"
+            className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all disabled:opacity-20 disabled:cursor-not-allowed bg-[#2d333b] border border-gray-500 text-gray-200 hover:enabled:border-[#c9972c] hover:enabled:text-[#c9972c] shadow-sm"
           >
             <ChevronLeft size={20} />
           </button>
@@ -287,8 +287,8 @@ export default function Menu() {
               <div
                 className="rounded-2xl overflow-hidden shadow-xl border"
                 style={{
-                  background: '#fdf8f0',
-                  borderColor: '#d4b896',
+                  background: '#1a2035',
+                  borderColor: '#2d3a55',
                   minHeight: '520px',
                 }}
               >
@@ -298,8 +298,8 @@ export default function Menu() {
                   <div
                     className="relative flex flex-col justify-between p-8 md:p-10 border-b md:border-b-0 md:border-r"
                     style={{
-                      borderColor: '#d4b896',
-                      background: `linear-gradient(150deg, ${meta.accent}18 0%, ${meta.accent}08 100%)`,
+                      borderColor: '#2d3a55',
+                      background: `linear-gradient(150deg, ${meta.accent}22 0%, ${meta.accent}0a 100%)`,
                     }}
                   >
                     {/* Top rule */}
@@ -320,7 +320,7 @@ export default function Menu() {
                       <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-5">
                         {meta.subtitle}
                       </p>
-                      <p className="text-gray-500 text-sm leading-relaxed italic">
+                      <p className="text-gray-400 text-sm leading-relaxed italic">
                         {meta.description}
                       </p>
 
@@ -357,7 +357,7 @@ export default function Menu() {
                     <div
                       className="absolute inset-0 pointer-events-none hidden md:block"
                       style={{
-                        backgroundImage: 'repeating-linear-gradient(transparent, transparent 31px, #e8dcc820 31px, #e8dcc820 32px)',
+                        backgroundImage: 'repeating-linear-gradient(transparent, transparent 31px, #ffffff08 31px, #ffffff08 32px)',
                         backgroundPositionY: '16px',
                         borderRadius: '0 1rem 1rem 0',
                       }}
@@ -373,11 +373,11 @@ export default function Menu() {
                             className="group cursor-pointer"
                           >
                             <div className="flex items-baseline">
-                              <span className="text-sm font-semibold text-[#0d1b2a] group-hover:text-[#c9972c] transition-colors leading-snug">
+                              <span className="text-sm font-semibold text-gray-100 group-hover:text-[#c9972c] transition-colors leading-snug">
                                 {localItem.name}
                               </span>
                               <span className="menu-dotline" />
-                              <span className="text-sm font-bold text-[#0d1b2a] whitespace-nowrap tabular-nums">
+                              <span className="text-sm font-bold text-[#c9972c] whitespace-nowrap tabular-nums">
                                 {item.price.toLocaleString()}
                               </span>
                             </div>
@@ -408,7 +408,7 @@ export default function Menu() {
                   style={{
                     width: i === pageIndex ? 18 : 6,
                     height: 6,
-                    background: i === pageIndex ? meta.accent : '#d1d5db',
+                    background: i === pageIndex ? meta.accent : '#4b5563',
                   }}
                 />
               ))}
@@ -421,7 +421,7 @@ export default function Menu() {
             onClick={() => navigateTo(pageIndex + 1, 'forward')}
             disabled={pageIndex === PAGES.length - 1}
             aria-label="Next page"
-            className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all disabled:opacity-20 disabled:cursor-not-allowed bg-white border border-gray-200 text-gray-500 hover:enabled:border-[#c9972c] hover:enabled:text-[#c9972c] shadow-sm"
+            className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all disabled:opacity-20 disabled:cursor-not-allowed bg-[#2d333b] border border-gray-500 text-gray-200 hover:enabled:border-[#c9972c] hover:enabled:text-[#c9972c] shadow-sm"
           >
             <ChevronRight size={20} />
           </button>
@@ -437,7 +437,7 @@ export default function Menu() {
           onClick={() => setSelectedItem(null)}
         >
           <div
-            className="bg-white rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl"
+            className="bg-[#161b22] rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             {(() => {
@@ -459,31 +459,31 @@ export default function Menu() {
                   )}
                   <div className="p-6">
                     <div className="flex justify-between items-start mb-3">
-                      <h3 className="font-display text-2xl font-bold text-[#0d1b2a]">
+                      <h3 className="font-display text-2xl font-bold text-[#e6edf3]">
                         {localSelected.name}
                       </h3>
                       <button
                         onClick={() => setSelectedItem(null)}
-                        className="p-1.5 rounded-full hover:bg-gray-100 transition-colors text-gray-400 hover:text-gray-600"
+                        className="p-1.5 rounded-full hover:bg-gray-700 transition-colors text-gray-400 hover:text-gray-200"
                         aria-label="Close"
                       >
                         <X size={20} />
                       </button>
                     </div>
-                    <p className="text-gray-600 text-sm mb-4">{localSelected.description}</p>
-                    <div className="space-y-2 text-sm text-gray-500 border-t border-gray-100 pt-4">
+                    <p className="text-gray-400 text-sm mb-4">{localSelected.description}</p>
+                    <div className="space-y-2 text-sm text-gray-400 border-t border-gray-700 pt-4">
                       <div className="flex items-start gap-2">
-                        <span className="font-semibold text-[#0d1b2a] shrink-0">{t.menu.allergens}</span>
+                        <span className="font-semibold text-[#e6edf3] shrink-0">{t.menu.allergens}</span>
                         <span>{localSelected.allergens ?? t.menu.askServer}</span>
                       </div>
                       {selectedItem.category !== 'drinks' && (
                         <div className="flex items-start gap-2">
-                          <span className="font-semibold text-[#0d1b2a] shrink-0">{t.menu.preparation}</span>
+                          <span className="font-semibold text-[#e6edf3] shrink-0">{t.menu.preparation}</span>
                           <span>{localSelected.preparation ?? t.menu.madeToOrder}</span>
                         </div>
                       )}
                       <div className="flex items-start gap-2">
-                        <span className="font-semibold text-[#0d1b2a] shrink-0">{t.menu.origin}</span>
+                        <span className="font-semibold text-[#e6edf3] shrink-0">{t.menu.origin}</span>
                         <span>{localSelected.origin ?? t.menu.locallySourced}</span>
                       </div>
                     </div>

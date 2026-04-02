@@ -11,7 +11,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-20 md:py-28 bg-white">
+    <section id="about" className="py-20 md:py-28 bg-[#0d1117]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Image column */}
@@ -44,35 +44,35 @@ export default function About() {
             <p className="text-[#c9972c] font-semibold tracking-widest uppercase text-sm mb-3">
               {t.about.sectionLabel}
             </p>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-[#0d1b2a] mb-6 leading-tight">
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-[#e6edf3] mb-6 leading-tight">
               {t.about.title}<br />
               <span className="italic text-[#c9972c]">{t.about.titleHighlight}</span>
             </h2>
 
-            <p className="text-gray-600 text-lg mb-4 leading-relaxed">
+            <p className="text-gray-400 text-lg mb-4 leading-relaxed">
               {t.about.p1}
             </p>
 
-            <p className="text-gray-600 text-lg mb-4 leading-relaxed">
+            <p className="text-gray-400 text-lg mb-4 leading-relaxed">
               {t.about.p2}
             </p>
 
-            <p className="text-gray-600 text-lg mb-4 leading-relaxed">
+            <p className="text-gray-400 text-lg mb-4 leading-relaxed">
               {t.about.p3}
             </p>
 
-            <p className="text-gray-600 text-lg mb-4 leading-relaxed">
+            <p className="text-gray-400 text-lg mb-4 leading-relaxed">
               {t.about.p4}
             </p>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 pt-6 border-t border-gray-100">
+            <div className="grid grid-cols-3 gap-4 pt-6 border-t border-gray-700">
               {stats.map((stat) => (
                 <div key={stat.label} className="text-center group">
                   <p className="text-2xl sm:text-3xl font-bold text-[#c9972c] font-display mb-1 group-hover:scale-110 transition-transform">
                     {stat.value}
                   </p>
-                  <p className="text-[#0d1b2a] text-sm font-semibold">{stat.label}</p>
+                  <p className="text-gray-300 text-sm font-semibold">{stat.label}</p>
                   <p className="text-gray-400 text-xs">{stat.sub}</p>
                 </div>
               ))}

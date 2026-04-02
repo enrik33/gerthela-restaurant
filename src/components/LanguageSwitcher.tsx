@@ -35,11 +35,10 @@ export default function LanguageSwitcher({ scrolled }: Props) {
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen((o) => !o)}
-        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border transition-all ${
-          scrolled
-            ? 'border-gray-200 text-gray-700 hover:border-[#c9972c] hover:text-[#c9972c]'
+        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border transition-all ${scrolled
+            ? 'border-gray-600 text-gray-300 hover:border-[#c9972c] hover:text-[#c9972c]'
             : 'border-white/30 text-white hover:border-white hover:bg-white/10'
-        }`}
+          }`}
         aria-label="Select language"
       >
         <span>{current.flag}</span>
@@ -51,12 +50,12 @@ export default function LanguageSwitcher({ scrolled }: Props) {
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-2 w-36 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden z-50">
+        <div className="absolute right-0 mt-2 w-36 bg-[#161b22] rounded-xl shadow-lg border border-gray-700 overflow-hidden z-50">
           {others.map(({ code, flag, label, full }) => (
             <button
               key={code}
               onClick={() => { setLanguage(code); setOpen(false); }}
-              className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-700 hover:bg-[#c9972c]/10 hover:text-[#c9972c] transition-colors"
+              className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-300 hover:bg-[#c9972c]/10 hover:text-[#c9972c] transition-colors"
             >
               <span>{flag}</span>
               <span className="font-semibold">{label}</span>

@@ -41,17 +41,17 @@ export default function Gallery() {
   };
 
   return (
-    <section id="gallery" className="py-20 md:py-28 bg-white">
+    <section id="gallery" className="py-20 md:py-28 bg-[#0d1117]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="text-center mb-12">
           <p className="text-[#c9972c] font-semibold tracking-widest uppercase text-sm mb-3">
             {t.gallery.sectionLabel}
           </p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-[#0d1b2a] mb-4">
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-[#e6edf3] mb-4">
             {t.gallery.title}
           </h2>
-          <p className="text-gray-600 text-lg max-w-xl mx-auto">
+          <p className="text-gray-400 text-lg max-w-xl mx-auto">
             {t.gallery.subtitle}
           </p>
         </div>

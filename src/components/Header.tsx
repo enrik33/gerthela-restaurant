@@ -30,7 +30,7 @@ export default function Header() {
     return (
         <header
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-                ? 'bg-white/95 backdrop-blur-md shadow-lg'
+                ? 'bg-[#0d1117]/95 backdrop-blur-md shadow-lg'
                 : 'bg-transparent'
                 }`}
         >
@@ -40,7 +40,7 @@ export default function Header() {
                         <Utensils size={18} className="text-white" />
                     </div>
                     <div className="flex flex-col leading-none">
-                        <span className={`font-display font-bold text-lg tracking-wide transition-colors ${scrolled ? 'text-[#0d1b2a]' : 'text-white'}`}>
+                        <span className={`font-display font-bold text-lg tracking-wide transition-colors ${scrolled ? 'text-[#e6edf3]' : 'text-white'}`}>
                             Gerthela
                         </span>
                         <span className={`text-xs font-light tracking-widest uppercase transition-colors ${scrolled ? 'text-[#c9972c]' : 'text-[#f0c060]'}`}>
@@ -53,7 +53,7 @@ export default function Header() {
                 <div className="sm:hidden flex items-center gap-2">
                     <LanguageSwitcher scrolled={scrolled} />
                     <button
-                        className={`p-2 rounded-lg transition-colors ${scrolled ? 'text-[#0d1b2a] hover:bg-gray-100' : 'text-white hover:bg-white/20'}`}
+                        className={`p-2 rounded-lg transition-colors ${scrolled ? 'text-[#e6edf3] hover:bg-gray-700' : 'text-white hover:bg-white/20'}`}
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         aria-label="Toggle menu"
                     >
@@ -68,7 +68,7 @@ export default function Header() {
                             key={link.href}
                             href={link.href}
                             className={`px-4 py-2 rounded-lg text-sm font-medium tracking-wide transition-all ${scrolled
-                                ? 'text-gray-700 hover:text-[#c9972c] hover:bg-[#c9972c]/5'
+                                ? 'text-gray-300 hover:text-[#c9972c] hover:bg-[#c9972c]/5'
                                 : 'text-white/90 hover:text-white hover:bg-white/10'
                                 }`}
                         >
@@ -89,13 +89,13 @@ export default function Header() {
 
             {/* Mobile menu */}
             {mobileMenuOpen && (
-                <div className="sm:hidden bg-white/95 backdrop-blur-md border-t border-gray-100 shadow-xl">
+                <div className="sm:hidden bg-[#0d1117]/95 backdrop-blur-md border-t border-gray-700 shadow-xl">
                     <nav className="flex flex-col px-4 py-4 gap-1">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.href}
                                 href={link.href}
-                                className="px-4 py-3 text-gray-700 hover:text-[#c9972c] hover:bg-[#c9972c]/5 rounded-lg font-medium transition-colors"
+                                className="px-4 py-3 text-gray-300 hover:text-[#c9972c] hover:bg-[#c9972c]/5 rounded-lg font-medium transition-colors"
                                 onClick={() => setMobileMenuOpen(false)}
                             >
                                 {link.label}

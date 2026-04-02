@@ -105,17 +105,17 @@ export default function Contact() {
   const inputClass = "w-full px-4 py-2.5 bg-white/10 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#c9972c] focus:border-transparent text-sm transition";
 
   return (
-    <section id="contact" className="py-20 md:py-28 bg-white">
+    <section id="contact" className="py-20 md:py-28 bg-[#0d1117]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="text-center mb-14">
           <p className="text-[#c9972c] font-semibold tracking-widest uppercase text-sm mb-3">
             {t.contact.sectionLabel}
           </p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-[#0d1b2a] mb-4">
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-[#e6edf3] mb-4">
             {t.contact.title}
           </h2>
-          <p className="text-gray-600 text-lg max-w-xl mx-auto">
+          <p className="text-gray-400 text-lg max-w-xl mx-auto">
             {t.contact.subtitle}
           </p>
         </div>
@@ -128,14 +128,14 @@ export default function Contact() {
               return (
                 <div
                   key={info.title}
-                  className="bg-[#f8f4ed] rounded-2xl p-5 hover:shadow-md transition-shadow"
+                  className="bg-[#161b22] rounded-2xl p-5 hover:shadow-md transition-shadow"
                 >
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 ${info.color}`}>
                     <Icon size={20} />
                   </div>
-                  <h3 className="font-semibold text-[#0d1b2a] mb-2">{info.title}</h3>
+                  <h3 className="font-semibold text-[#e6edf3] mb-2">{info.title}</h3>
                   {info.lines.map((line, i) => (
-                    <p key={i} className={`text-sm ${i === 1 && info.title === 'Hours' ? 'text-red-500 font-medium' : 'text-gray-600'}`}>
+                    <p key={i} className={`text-sm ${i === 1 && info.title === 'Hours' ? 'text-red-400 font-medium' : 'text-gray-400'}`}>
                       {line}
                     </p>
                   ))}
