@@ -13,8 +13,8 @@
     "subtitle": "Pick your own fish from our daily catch. Authentic Mediterranean cuisine since generations.",
     "reserve": "Reserve a Table",
     "callUs": "Call Us",
-    "rating": "4.0+ Rating",
-    "reviews": "222+ Reviews on TripAdvisor",
+    "rating": "4.8 Rating on Google",
+    "reviews": "1000+ Reviews across all platforms",
     "dailyCatch": "Daily Fresh Catch"
   },
   "about": {
@@ -26,10 +26,10 @@
     "p3": "Our interior evokes the charm of a vintage taverna, welcoming guests with warm colors and unique decorative touches inspired by the sea. From collections of international currency to a cozy corner featuring photographs of old Saranda, every detail tells a story, complemented by the timeless sounds of Greek laïka music that fill the space with character and warmth.",
     "p4": "Over the years, we have earned the trust of our local community and become a beloved gathering place for both residents and visitors. We warmly invite you to join us, enjoy our delicious flavors, and experience genuine hospitality in a relaxed and inviting atmosphere.",
     "tagline": "Where locals go for fresh, authentic seafood.",
-    "stat1Value": "4.0★",
-    "stat1Label": "TripAdvisor Rating",
+    "stat1Value": "4.8★",
+    "stat1Label": "Google Rating",
     "stat1Sub": "Out of 5 stars",
-    "stat2Value": "222+",
+    "stat2Value": "1000+",
     "stat2Label": "Guest Reviews",
     "stat2Sub": "Across all platforms",
     "stat3Value": "Daily",
@@ -106,7 +106,7 @@
   "reviews": {
     "sectionLabel": "What Our Guests Say",
     "title": "Guest Reviews",
-    "rating": "4.0+ Rating across all platforms",
+    "rating": "4.8+ Rating across all platforms",
     "readMore": "Read more reviews on:"
   },
   "contact": {

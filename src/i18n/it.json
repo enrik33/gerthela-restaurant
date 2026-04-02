@@ -13,8 +13,8 @@
     "subtitle": "Scegli il tuo pesce dalla nostra pesca del giorno. Autentica cucina mediterranea da generazioni.",
     "reserve": "Prenota un Tavolo",
     "callUs": "Chiamaci",
-    "rating": "Valutazione 4.0+",
-    "reviews": "222+ Recensioni su TripAdvisor",
+    "rating": "Valutazione 4.8 su Google",
+    "reviews": "1000+ Recensioni su tutte le piattaforme",
     "dailyCatch": "Pesca Fresca Quotidiana"
   },
   "about": {
@@ -26,10 +26,10 @@
     "p3": "Il nostro interno evoca il fascino di una taverna d'epoca, accogliendo gli ospiti con colori caldi e tocchi decorativi unici ispirati al mare. Dalle collezioni di valute internazionali a un accogliente angolo con fotografie della vecchia Saranda, ogni dettaglio racconta una storia, accompagnato dai suoni senza tempo della musica greca laïka che riempie lo spazio di carattere e calore.",
     "p4": "Nel corso degli anni, abbiamo guadagnato la fiducia della nostra comunità locale e siamo diventati un luogo di ritrovo amato da residenti e visitatori. Vi invitiamo calorosamente a unirvi a noi, gustare i nostri deliziosi sapori e vivere una vera ospitalità in un'atmosfera rilassata e accogliente.",
     "tagline": "Dove i locali vanno per pesce fresco e autentico.",
-    "stat1Value": "4.0★",
-    "stat1Label": "Valutazione TripAdvisor",
+    "stat1Value": "4.8★",
+    "stat1Label": "Valutazione Google",
     "stat1Sub": "Su 5 stelle",
-    "stat2Value": "222+",
+    "stat2Value": "1000+",
     "stat2Label": "Recensioni Ospiti",
     "stat2Sub": "Su tutte le piattaforme",
     "stat3Value": "Giornaliera",
@@ -106,7 +106,7 @@
   "reviews": {
     "sectionLabel": "Cosa Dicono i Nostri Ospiti",
     "title": "Recensioni Ospiti",
-    "rating": "Valutazione 4.0+ su tutte le piattaforme",
+    "rating": "Valutazione 4.8+ su tutte le piattaforme",
     "readMore": "Leggi altre recensioni su:"
   },
   "contact": {
