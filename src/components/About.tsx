@@ -65,10 +65,6 @@ export default function About() {
               {t.about.p4}
             </p>
 
-            <p className="text-[#c9972c] font-semibold text-base italic mb-8">
-              {t.about.tagline}
-            </p>
-
             {/* Stats */}
             <div className="grid grid-cols-3 gap-4 pt-6 border-t border-gray-100">
               {stats.map((stat) => (

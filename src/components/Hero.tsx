@@ -41,11 +41,8 @@ export default function Hero() {
           </span>
         </h1>
 
-        <p className="text-lg md:text-xl mb-2 text-white/90 font-light tracking-wide">
-          {t.hero.tagline}
-        </p>
-        <p className="text-base md:text-lg mb-10 text-white/75 max-w-2xl mx-auto">
-          {t.hero.subtitle}
+        <p className="text-white/90 font-semibold text-base italic mb-8">
+          {t.about.tagline}
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
