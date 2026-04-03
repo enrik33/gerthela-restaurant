@@ -38,7 +38,8 @@ function ScrollRow({
   const doubled = [...images, ...images];
 
   return (
-    <div className={`flex gap-4 ${direction === 'ltr' ? 'gallery-track-ltr' : 'gallery-track-rtl'}`}
+    <div
+      className={`flex gap-4 ${direction === 'ltr' ? 'gallery-track-ltr' : 'gallery-track-rtl'}`}
       style={{ width: 'max-content' }}
     >
       {doubled.map((image, i) => {
@@ -48,16 +49,18 @@ function ScrollRow({
           <div
             key={`${image.id}-${i}`}
             onClick={() => onClickImage(originalIndex)}
-            className="relative flex-shrink-0 w-72 h-52 rounded-2xl overflow-hidden cursor-pointer group"
+            className="relative flex-shrink-0 w-52 h-36 md:w-72 md:h-52 rounded-2xl overflow-hidden cursor-pointer group"
           >
             <img
               src={image.url}
               alt={alt}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              loading="lazy"
+              decoding="async"
+              className="w-full h-full object-cover transition-[filter] duration-300 group-hover:brightness-75"
               draggable={false}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-              <p className="text-white text-sm font-medium">{alt}</p>
+            <div className="absolute inset-0 flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <p className="text-white text-sm font-medium drop-shadow">{alt}</p>
             </div>
             <div className="absolute top-3 right-3 w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
               <svg viewBox="0 0 24 24" className="w-4 h-4 text-white fill-none stroke-current stroke-2">
@@ -118,7 +121,7 @@ export default function Gallery() {
       </div>
 
       {/* Scrolling gallery strips — hover to pause */}
-      <div className="gallery-strip flex flex-col gap-4 overflow-hidden">
+      <div className="flex flex-col gap-4 overflow-hidden">
         <ScrollRow
           images={ROW_ONE}
           direction="ltr"
@@ -157,7 +160,7 @@ export default function Gallery() {
             {/* Prev button */}
             <button
               onClick={prevImage}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-14 bg-white/10 hover:bg-white/25 text-white p-3 rounded-full transition backdrop-blur-sm"
+              className="absolute left-2 top-1/2 -translate-y-1/2 md:left-0 md:-translate-x-14 bg-white/10 hover:bg-white/25 text-white p-3 rounded-full transition backdrop-blur-sm"
               aria-label="Previous image"
             >
               <ChevronLeft size={24} />
@@ -166,7 +169,7 @@ export default function Gallery() {
             {/* Next button */}
             <button
               onClick={nextImage}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-14 bg-white/10 hover:bg-white/25 text-white p-3 rounded-full transition backdrop-blur-sm"
+              className="absolute right-2 top-1/2 -translate-y-1/2 md:right-0 md:translate-x-14 bg-white/10 hover:bg-white/25 text-white p-3 rounded-full transition backdrop-blur-sm"
               aria-label="Next image"
             >
               <ChevronRight size={24} />

@@ -116,14 +116,18 @@ html {
 
 .gallery-track-ltr {
   animation: scroll-ltr 35s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .gallery-track-rtl {
   animation: scroll-rtl 28s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
-.gallery-strip:hover .gallery-track-ltr,
-.gallery-strip:hover .gallery-track-rtl {
+.gallery-track-ltr:hover,
+.gallery-track-rtl:hover {
   animation-play-state: paused;
 }
 
