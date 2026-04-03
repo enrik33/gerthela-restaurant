@@ -93,6 +93,40 @@ html {
   line-height: 0;
 }
 
+/* Gallery infinite scroll animations */
+@keyframes scroll-ltr {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes scroll-rtl {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.gallery-track-ltr {
+  animation: scroll-ltr 35s linear infinite;
+}
+
+.gallery-track-rtl {
+  animation: scroll-rtl 28s linear infinite;
+}
+
+.gallery-strip:hover .gallery-track-ltr,
+.gallery-strip:hover .gallery-track-rtl {
+  animation-play-state: paused;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
