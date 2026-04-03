@@ -1,6 +1,6 @@
 'use client';
 
-import { MapPin, Phone, Clock, Utensils } from 'lucide-react';
+import { MapPin, Phone, Clock } from 'lucide-react';
 import Link from 'next/link';
 import { useT } from '@/hooks/useTranslations';
 
@@ -12,15 +12,11 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
                     {/* Brand */}
                     <div className="md:col-span-2">
-                        <div className="flex items-center gap-3 mb-4">
-                            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#c9972c] to-[#a87a20] flex items-center justify-center">
-                                <Utensils size={18} className="text-white" />
-                            </div>
-                            <div>
-                                <span className="font-display font-bold text-xl text-white">Gerthela</span>
-                                <span className="block text-xs tracking-widest text-[#c9972c] uppercase">Taverna</span>
-                            </div>
-                        </div>
+                        <img
+                            src="/images/gerthela-logo.PNG"
+                            alt="Gerthela Taverna"
+                            className="h-16 w-auto object-contain mb-4"
+                        />
                         <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
                             {t.footer.tagline}
                         </p>

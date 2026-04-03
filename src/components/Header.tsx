@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Menu, X, Utensils } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useT } from '@/hooks/useTranslations';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
@@ -35,18 +35,12 @@ export default function Header() {
                 }`}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-                <Link href="/" className="flex items-center gap-3 group">
-                    <div className="w-10 h-10 rounded-full flex items-center justify-center bg-gradient-to-br from-[#c9972c] to-[#a87a20] shadow-md group-hover:shadow-lg transition-shadow">
-                        <Utensils size={18} className="text-white" />
-                    </div>
-                    <div className="flex flex-col leading-none">
-                        <span className={`font-display font-bold text-lg tracking-wide transition-colors ${scrolled ? 'text-[#e6edf3]' : 'text-white'}`}>
-                            Gerthela
-                        </span>
-                        <span className={`text-xs font-light tracking-widest uppercase transition-colors ${scrolled ? 'text-[#c9972c]' : 'text-[#f0c060]'}`}>
-                            Taverna
-                        </span>
-                    </div>
+                <Link href="/" className="flex items-center group">
+                    <img
+                        src="/images/gerthela-logo.PNG"
+                        alt="Gerthela Taverna"
+                        className="h-12 w-auto object-contain transition-opacity group-hover:opacity-80"
+                    />
                 </Link>
 
                 {/* Mobile: language switcher + hamburger */}
