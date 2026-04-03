@@ -49,8 +49,13 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href="/#contact"
-            className="inline-flex items-center justify-center gap-2 bg-[#c9972c] hover:bg-[#a87a20] text-white px-8 py-3.5 rounded-full font-semibold text-base transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center gap-2 text-white px-8 py-3.5 rounded-full font-semibold text-base transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+            style={{ background: 'linear-gradient(to right, #c9972c, #f0c060)' }}
           >
+            <svg viewBox="0 0 24 24" className="w-[18px] h-[18px] fill-none stroke-current stroke-2 shrink-0">
+              <path d="M8 2v3M16 2v3M3 8h18M19 4H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z" />
+              <path d="M8 13h.01M12 13h.01M16 13h.01M8 17h.01M12 17h.01" />
+            </svg>
             {t.hero.reserve}
           </Link>
           <a
@@ -61,12 +66,16 @@ export default function Hero() {
             {t.hero.callUs}
           </a>
           <a
-            href="https://wa.me/+355686660000"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 bg-[#25d366] hover:bg-[#1ebe5d] text-white px-8 py-3.5 rounded-full font-semibold text-base transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+            href="/#menu"
+            className="inline-flex items-center justify-center gap-2 text-white px-8 py-3.5 rounded-full font-semibold text-base transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+            style={{ background: 'linear-gradient(to right, #e65c00, #f9a825)' }}
           >
-            WhatsApp
+            <svg viewBox="0 0 24 24" className="w-[18px] h-[18px] fill-none stroke-current stroke-2 shrink-0">
+              <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2" />
+              <rect x="9" y="3" width="6" height="4" rx="1" />
+              <path d="M9 12h6M9 16h4" />
+            </svg>
+            {t.hero.viewMenu}
           </a>
         </div>
 
