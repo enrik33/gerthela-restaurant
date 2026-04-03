@@ -181,7 +181,14 @@ export default function Menu() {
   const meta = CATEGORY_META[page.category];
 
   return (
-    <section id="menu" className="py-20 md:py-28 bg-[#0d1117]">
+    <section id="menu" className="py-20 md:py-28 bg-[#0d1117] relative overflow-hidden">
+      {/* Bottom wave */}
+      <div className="absolute bottom-0 left-0 right-0 z-10">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none" className="w-full h-12 md:h-16" fill="#0d1117">
+          <path d="M0,30 C480,60 960,0 1440,30 L1440,60 L0,60 Z" />
+          <path d="M0,30 C480,60 960,0 1440,30" fill="none" stroke="#c9972c" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
+        </svg>
+      </div>
       <style>{`
         @keyframes flipInForward {
           from {

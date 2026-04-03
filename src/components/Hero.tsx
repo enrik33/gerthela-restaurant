@@ -21,8 +21,9 @@ export default function Hero() {
 
       {/* Decorative bottom wave */}
       <div className="absolute bottom-0 left-0 right-0 z-10">
-        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" className="w-full h-16 md:h-20" fill="white">
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" className="w-full h-16 md:h-20" fill="#0d1117">
           <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" />
+          <path d="M0,40 C360,80 1080,0 1440,40" fill="none" stroke="#c9972c" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
         </svg>
       </div>
 

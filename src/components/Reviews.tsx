@@ -96,19 +96,13 @@ export default function Reviews() {
     const t = useT();
     const language = useLanguageStore((s) => s.language);
     return (
-        <section id="reviews" className="py-20 md:py-28 bg-[#0d1b2a] relative overflow-hidden">
+        <section id="reviews" className="py-20 md:py-28 bg-[#0d1117] relative overflow-hidden">
             {/* Background decoration */}
             <div className="absolute inset-0 opacity-5">
                 <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#c9972c] rounded-full blur-3xl" />
                 <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-teal-400 rounded-full blur-3xl" />
             </div>
 
-            {/* Top wave */}
-            <div className="absolute top-0 left-0 right-0">
-                <svg viewBox="0 0 1440 60" preserveAspectRatio="none" className="w-full h-12 md:h-16" fill="white">
-                    <path d="M0,30 C480,60 960,0 1440,30 L1440,0 L0,0 Z" />
-                </svg>
-            </div>
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
                 {/* Section header */}
@@ -202,8 +196,9 @@ export default function Reviews() {
 
             {/* Bottom wave */}
             <div className="absolute bottom-0 left-0 right-0">
-                <svg viewBox="0 0 1440 60" preserveAspectRatio="none" className="w-full h-12 md:h-16" fill="white">
+                <svg viewBox="0 0 1440 60" preserveAspectRatio="none" className="w-full h-12 md:h-16" fill="#0d1117">
                     <path d="M0,30 C480,0 960,60 1440,30 L1440,60 L0,60 Z" />
+                    <path d="M0,30 C480,0 960,60 1440,30" fill="none" stroke="#c9972c" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
                 </svg>
             </div>
         </section>
