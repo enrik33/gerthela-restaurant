@@ -23,8 +23,8 @@ export default function AdminLogin() {
       });
 
       if (response.ok) {
-        // Store auth token (simplified for MVP)
         localStorage.setItem('admin_token', 'authenticated');
+        sessionStorage.setItem('admin_password', password);
         router.push('/admin/dashboard');
       } else {
         setError('Invalid password');

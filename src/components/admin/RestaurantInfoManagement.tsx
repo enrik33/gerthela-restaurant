@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { RestaurantInfo } from '@/types';
+import { adminHeaders } from '@/lib/admin-fetch';
 
-const INITIAL_INFO: RestaurantInfo = {
-    id: '1',
+const FALLBACK_INFO: RestaurantInfo = {
+    id: 'main',
     name: 'Gerthela Taverna',
     description: 'Fresh seafood restaurant on Saranda waterfront',
     address: 'Rruga Jonianet, Saranda 9701',
@@ -25,19 +26,44 @@ const INITIAL_INFO: RestaurantInfo = {
 };
 
 export default function RestaurantInfoManagement() {
-    const [info, setInfo] = useState<RestaurantInfo>(INITIAL_INFO);
+    const [info, setInfo] = useState<RestaurantInfo>(FALLBACK_INFO);
+    const [loading, setLoading] = useState(true);
+    const [saving, setSaving] = useState(false);
     const [saved, setSaved] = useState(false);
+    const [error, setError] = useState('');
+
+    useEffect(() => {
+        fetch('/api/admin/restaurant', { headers: adminHeaders() })
+            .then(r => r.json())
+            .then(data => { if (data && !data.error) setInfo(data); setLoading(false); })
+            .catch(() => { setError('Failed to load restaurant info'); setLoading(false); });
+    }, []);
 
     const handleChange = (field: keyof RestaurantInfo, value: any) => {
         setInfo(prev => ({ ...prev, [field]: value }));
         setSaved(false);
     };
 
-    const handleSave = () => {
-        // In a real app, this would save to a database
-        console.log('Saving:', info);
-        setSaved(true);
-        setTimeout(() => setSaved(false), 3000);
+    const handleSave = async () => {
+        setSaving(true);
+        setError('');
+        setSaved(false);
+        try {
+            const res = await fetch('/api/admin/restaurant', {
+                method: 'PUT',
+                headers: adminHeaders(),
+                body: JSON.stringify(info),
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error);
+            setInfo(data);
+            setSaved(true);
+            setTimeout(() => setSaved(false), 3000);
+        } catch (e: any) {
+            setError(e.message || 'Failed to save');
+        } finally {
+            setSaving(false);
+        }
     };
 
     return (
@@ -45,12 +71,21 @@ export default function RestaurantInfoManagement() {
             <div className="mb-6">
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">Restaurant Information</h2>
 
+                {error && (
+                    <div className="mb-4 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+                        {error}
+                    </div>
+                )}
+
                 {saved && (
                     <div className="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
                         Changes saved successfully!
                     </div>
                 )}
 
+                {loading ? (
+                    <p className="text-center text-gray-500 py-12">Loading…</p>
+                ) : (
                 <div className="bg-white rounded-lg shadow p-6 space-y-6">
                     {/* Basic Info */}
                     <div>
@@ -203,11 +238,13 @@ export default function RestaurantInfoManagement() {
 
                     <button
                         onClick={handleSave}
-                        className="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition"
+                        disabled={saving}
+                        className="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition disabled:opacity-50"
                     >
-                        Save Changes
+                        {saving ? 'Saving…' : 'Save Changes'}
                     </button>
                 </div>
+                )}
             </div>
         </div>
     );

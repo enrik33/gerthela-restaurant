@@ -1,41 +1,36 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Plus, Edit2, Trash2 } from 'lucide-react';
 import type { MenuItem } from '@/types';
+import { adminHeaders } from '@/lib/admin-fetch';
 
-// Dummy data for demo
-const INITIAL_MENU: MenuItem[] = [
-  {
-    id: '1',
-    name: 'Grilled Sea Bass',
-    description: 'Fresh sea bass grilled to perfection with lemon and herbs',
-    price: 1800,
-    category: 'seafood',
-    available: true,
-  },
-];
+const BLANK_FORM: Partial<MenuItem> = {
+  name: '',
+  description: '',
+  price: 0,
+  category: 'mains',
+  available: true,
+};
 
 export default function MenuManagement() {
-  const [menuItems, setMenuItems] = useState<MenuItem[]>(INITIAL_MENU);
+  const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [editingId, setEditingId] = useState<string | null>(null);
-  const [formData, setFormData] = useState<Partial<MenuItem>>({
-    name: '',
-    description: '',
-    price: 0,
-    category: 'mains',
-    available: true,
-  });
+  const [formData, setFormData] = useState<Partial<MenuItem>>(BLANK_FORM);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    fetch('/api/admin/menu', { headers: adminHeaders() })
+      .then(r => r.json())
+      .then(data => { setMenuItems(Array.isArray(data) ? data : []); setLoading(false); })
+      .catch(() => { setError('Failed to load menu items'); setLoading(false); });
+  }, []);
 
   const handleAdd = () => {
     setEditingId(null);
-    setFormData({
-      name: '',
-      description: '',
-      price: 0,
-      category: 'mains',
-      available: true,
-    });
+    setFormData(BLANK_FORM);
   };
 
   const handleEdit = (item: MenuItem) => {
@@ -43,41 +38,54 @@ export default function MenuManagement() {
     setFormData(item);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (!formData.name || !formData.description) {
       alert('Please fill in all fields');
       return;
     }
+    setSaving(true);
+    setError('');
 
-    if (editingId) {
-      setMenuItems(menuItems.map(item =>
-        item.id === editingId ? { ...item, ...formData } as MenuItem : item
-      ));
-    } else {
-      const newItem: MenuItem = {
-        id: Date.now().toString(),
-        name: formData.name!,
-        description: formData.description!,
-        price: formData.price!,
-        category: formData.category as MenuItem['category'],
-        available: formData.available!,
-      };
-      setMenuItems([...menuItems, newItem]);
+    try {
+      if (editingId) {
+        const res = await fetch('/api/admin/menu', {
+          method: 'PUT',
+          headers: adminHeaders(),
+          body: JSON.stringify({ id: editingId, ...formData }),
+        });
+        const updated = await res.json();
+        if (!res.ok) throw new Error(updated.error);
+        setMenuItems(menuItems.map(item => item.id === editingId ? updated : item));
+      } else {
+        const res = await fetch('/api/admin/menu', {
+          method: 'POST',
+          headers: adminHeaders(),
+          body: JSON.stringify(formData),
+        });
+        const created = await res.json();
+        if (!res.ok) throw new Error(created.error);
+        setMenuItems([...menuItems, created]);
+      }
+      setEditingId(null);
+      setFormData(BLANK_FORM);
+    } catch (e: any) {
+      setError(e.message || 'Failed to save item');
+    } finally {
+      setSaving(false);
     }
-
-    setEditingId(null);
-    setFormData({
-      name: '',
-      description: '',
-      price: 0,
-      category: 'mains',
-      available: true,
-    });
   };
 
-  const handleDelete = (id: string) => {
-    if (confirm('Are you sure?')) {
+  const handleDelete = async (id: string) => {
+    if (!confirm('Are you sure?')) return;
+    try {
+      const res = await fetch(`/api/admin/menu?id=${id}`, {
+        method: 'DELETE',
+        headers: adminHeaders(),
+      });
+      if (!res.ok) throw new Error('Delete failed');
       setMenuItems(menuItems.filter(item => item.id !== id));
+    } catch (e: any) {
+      setError(e.message || 'Failed to delete item');
     }
   };
 
@@ -85,6 +93,12 @@ export default function MenuManagement() {
     <div>
       <div className="mb-6">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Menu Management</h2>
+
+        {error && (
+          <div className="mb-4 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+            {error}
+          </div>
+        )}
 
         {/* Form */}
         <div className="bg-white rounded-lg shadow p-6 mb-6">
@@ -129,6 +143,7 @@ export default function MenuManagement() {
                 <option value="seafood">Seafood</option>
                 <option value="fish">Fish</option>
                 <option value="drinks">Drinks</option>
+                <option value="wines">Wines</option>
                 <option value="desserts">Desserts</option>
               </select>
             </div>
@@ -164,22 +179,14 @@ export default function MenuManagement() {
           <div className="flex gap-3 mt-6">
             <button
               onClick={handleSave}
-              className="flex-1 bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition"
+              disabled={saving}
+              className="flex-1 bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition disabled:opacity-50"
             >
-              {editingId ? 'Update Item' : 'Add Item'}
+              {saving ? 'Saving…' : editingId ? 'Update Item' : 'Add Item'}
             </button>
             {editingId && (
               <button
-                onClick={() => {
-                  setEditingId(null);
-                  setFormData({
-                    name: '',
-                    description: '',
-                    price: 0,
-                    category: 'mains',
-                    available: true,
-                  });
-                }}
+                onClick={() => { setEditingId(null); setFormData(BLANK_FORM); }}
                 className="flex-1 bg-gray-300 text-gray-700 font-semibold py-2 rounded-lg hover:bg-gray-400 transition"
               >
                 Cancel
@@ -200,14 +207,16 @@ export default function MenuManagement() {
       </div>
 
       {/* Items List */}
+      {loading ? (
+        <p className="text-center text-gray-500 py-12">Loading menu items…</p>
+      ) : (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {menuItems.map((item) => (
           <div key={item.id} className="bg-white rounded-lg shadow p-4">
             <div className="flex justify-between items-start mb-2">
               <h3 className="font-semibold text-gray-900">{item.name}</h3>
-              <span className={`text-xs font-semibold px-2 py-1 rounded ${
-                item.available ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-              }`}>
+              <span className={`text-xs font-semibold px-2 py-1 rounded ${item.available ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                }`}>
                 {item.available ? 'Available' : 'Unavailable'}
               </span>
             </div>
@@ -233,6 +242,7 @@ export default function MenuManagement() {
           </div>
         ))}
       </div>
+      )}
     </div>
   );
 }
