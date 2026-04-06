@@ -1,14 +1,32 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Lock } from 'lucide-react';
+import { Eye, EyeOff } from 'lucide-react';
+import { setAdminPassword } from '@/lib/admin-session';
+import { adminT, type AdminLang } from '@/lib/admin-i18n';
 
 export default function AdminLogin() {
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [lang, setLang] = useState<AdminLang>('en');
   const router = useRouter();
+  const t = adminT[lang];
+
+  useEffect(() => {
+    // Clear any leftover token so the form is always fresh
+    localStorage.removeItem('admin_token');
+    const saved = localStorage.getItem('admin_lang') as AdminLang;
+    if (saved === 'el') setLang('el');
+  }, []);
+
+  const toggleLang = () => {
+    const next: AdminLang = lang === 'en' ? 'el' : 'en';
+    setLang(next);
+    localStorage.setItem('admin_lang', next);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,74 +34,92 @@ export default function AdminLogin() {
     setError('');
 
     try {
-      const response = await fetch('/api/admin/login', {
+      const res = await fetch('/api/admin/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password }),
       });
 
-      if (response.ok) {
+      if (res.ok) {
+        setAdminPassword(password);
         localStorage.setItem('admin_token', 'authenticated');
-        sessionStorage.setItem('admin_password', password);
         router.push('/admin/dashboard');
       } else {
-        setError('Invalid password');
+        setError(t.loginError);
+        setPassword('');
       }
-    } catch (err) {
-      setError('Login failed. Please try again.');
+    } catch {
+      setError(t.loginNetworkError);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-white rounded-lg shadow-2xl p-8">
-        <div className="flex justify-center mb-6">
-          <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white">
-            <Lock size={32} />
-          </div>
+    <div className="min-h-screen bg-[#0d1b2a] flex flex-col items-center justify-center p-6">
+      {/* Language toggle */}
+      <button
+        onClick={toggleLang}
+        className="absolute top-6 right-6 px-4 py-2 rounded-full border border-white/20 text-white/60 hover:text-white hover:border-white/40 transition text-sm font-medium"
+      >
+        {lang === 'en' ? '🇬🇷 Ελληνικά' : '🇬🇧 English'}
+      </button>
+
+      <div className="w-full max-w-sm">
+        {/* Logo */}
+        <div className="flex justify-center mb-8">
+          <img
+            src="/images/gerthela-logo.PNG"
+            alt="Gerthela"
+            className="h-24 w-auto object-contain"
+          />
         </div>
 
-        <h1 className="text-3xl font-bold text-center text-gray-900 mb-2">Admin Panel</h1>
-        <p className="text-center text-gray-600 mb-8">Gerthela Restaurant Management</p>
+        <h1 className="text-2xl font-bold text-center text-white mb-1">{t.loginTitle}</h1>
+        <p className="text-center text-[#c9972c] font-medium mb-10">{t.loginSubtitle}</p>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-              Admin Password
+            <label className="block text-sm font-medium text-white/60 mb-2">
+              {t.passwordLabel}
             </label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter admin password"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-              required
-              disabled={loading}
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder={t.passwordPlaceholder}
+                autoComplete="off"
+                required
+                disabled={loading}
+                className="w-full px-4 py-4 pr-12 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-[#c9972c] focus:ring-2 focus:ring-[#c9972c]/20 transition text-lg"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 hover:text-white/70 transition"
+              >
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
           </div>
 
           {error && (
-            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+            <div className="bg-red-500/20 border border-red-400/40 text-red-200 px-4 py-3 rounded-xl text-sm text-center">
               {error}
             </div>
           )}
 
           <button
             type="submit"
-            disabled={loading}
-            className="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={loading || !password}
+            className="w-full bg-[#c9972c] hover:bg-[#b8871f] text-white font-bold py-4 rounded-xl transition text-lg disabled:opacity-40 disabled:cursor-not-allowed"
           >
-            {loading ? 'Logging in...' : 'Login'}
+            {loading ? t.loginLoading : t.loginButton}
           </button>
         </form>
-
-        <p className="text-center text-gray-600 text-sm mt-6">
-          For demo purposes, password is available in .env.local
-        </p>
       </div>
     </div>
   );
 }
+

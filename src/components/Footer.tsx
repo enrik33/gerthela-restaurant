@@ -2,10 +2,14 @@
 
 import { MapPin, Phone, Clock } from 'lucide-react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useT } from '@/hooks/useTranslations';
 
 export default function Footer() {
+    const pathname = usePathname();
     const t = useT();
+
+    if (pathname.startsWith('/admin')) return null;
     return (
         <footer className="bg-[#0d1b2a] text-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
@@ -97,8 +101,6 @@ export default function Footer() {
                         &copy; {new Date().getFullYear()} Gerthela Taverna. {t.footer.copyright}
                     </p>
                     <div className="flex items-center gap-4 text-sm text-gray-500">
-                        <Link href="/admin" className="hover:text-gray-300 transition-colors">{t.footer.admin}</Link>
-                        <span>·</span>
                         <span>Saranda, Albania</span>
                     </div>
                 </div>

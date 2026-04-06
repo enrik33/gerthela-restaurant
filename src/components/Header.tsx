@@ -3,12 +3,14 @@
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { useT } from '@/hooks/useTranslations';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const pathname = usePathname();
     const t = useT();
 
     useEffect(() => {
@@ -18,6 +20,8 @@ export default function Header() {
         window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    if (pathname.startsWith('/admin')) return null;
 
     const navLinks = [
         { href: '/#about', label: t.nav.about },
