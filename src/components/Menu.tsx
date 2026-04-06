@@ -93,6 +93,26 @@ const DUMMY_MENU: MenuItem[] = [
   { id: 'dr28', name: 'Grape Raki', description: 'Albanian grape raki digestif', price: 100, category: 'drinks', available: true, allergens: 'None', preparation: 'Ready to serve', origin: 'Traditional Albanian spirit' },
   { id: 'dr29', name: 'Ouzo', description: 'Greek anise-flavoured spirit', price: 200, category: 'drinks', available: true, allergens: 'None', preparation: 'Ready to serve', origin: 'Greece' },
   { id: 'dr30', name: 'Vodka', description: 'Premium vodka, served straight', price: 400, category: 'drinks', available: true, allergens: 'None', preparation: 'Ready to serve', origin: 'Imported' },
+  // ── WHITE WINES ──────────────────────────────────────────────────────────
+  { id: 'w1', name: 'Chardonnay Borgognotta', description: 'Italo Cescon — Chardonnay — 0.75L / 12.5%', price: 2400, category: 'wines', available: true, allergens: 'Sulphites', preparation: 'Ready to serve', origin: 'Veneto, Italy' },
+  { id: 'w2', name: 'Pinot Grigio Mont Mes', description: 'Castelfeder — Pinot Grigio — 0.75L / 12.5%', price: 3500, category: 'wines', available: true, allergens: 'Sulphites', preparation: 'Ready to serve', origin: 'Trentino, Italy' },
+  { id: 'w3', name: 'Prosecco DOC Extra Dry', description: 'Le Contesse — Glera — 0.75L / 11%', price: 3500, category: 'wines', available: true, allergens: 'Sulphites', preparation: 'Ready to serve', origin: 'Veneto, Italy' },
+  { id: 'w4', name: 'Pinot Grigio Borgognotta', description: 'Italo Cescon — Pinot Grigio — 0.75L / 12.5%', price: 2400, category: 'wines', available: true, allergens: 'Sulphites', preparation: 'Ready to serve', origin: 'Veneto, Italy' },
+  { id: 'w5', name: 'Pinot Grigio delle Venezie', description: 'Italo Cescon — Pinot Grigio — 0.375L / 12.5%', price: 1500, category: 'wines', available: true, allergens: 'Sulphites', preparation: 'Ready to serve', origin: 'Veneto, Italy' },
+  { id: 'w6', name: "Greco di Tufo 'Il Cavaliere'", description: "D'Antiche Terre — Greco — 0.75L / 13%", price: 3500, category: 'wines', available: true, allergens: 'Sulphites', preparation: 'Ready to serve', origin: 'Campania, Italy' },
+  { id: 'w7', name: 'Chardonnay Mont Mes', description: 'Castelfeder — Chardonnay — 0.75L / 12.5%', price: 3500, category: 'wines', available: true, allergens: 'Sulphites', preparation: 'Ready to serve', origin: 'Trentino, Italy' },
+  { id: 'w8', name: 'Gewürztraminer', description: 'Castelfeder — Gewürztraminer — 0.75L / 14%', price: 4500, category: 'wines', available: true, allergens: 'Sulphites', preparation: 'Ready to serve', origin: 'Trentino, Italy' },
+  { id: 'w9', name: 'Lugana I Frati', description: 'Cà dei Frati — Turbiana — 0.75L / 13%', price: 5500, category: 'wines', available: true, allergens: 'Sulphites', preparation: 'Ready to serve', origin: 'Lombardia, Italy' },
+  { id: 'w10', name: 'Pecorino Terre di Chieti', description: 'Tollo — Pecorino — 0.75L / 13.5%', price: 4000, category: 'wines', available: true, allergens: 'Sulphites', preparation: 'Ready to serve', origin: 'Abruzzo, Italy' },
+  { id: 'w11', name: 'Fiano di Avellino', description: 'Mastroberardino — Fiano — 0.75L / 12.5%', price: 4500, category: 'wines', available: true, allergens: 'Sulphites', preparation: 'Ready to serve', origin: 'Campania, Italy' },
+  { id: 'w12', name: 'Poggio al Lupo "Vermentino"', description: 'Poggio al Lupo — Vermentino — 0.75L / 12.5%', price: 4500, category: 'wines', available: true, allergens: 'Sulphites', preparation: 'Ready to serve', origin: 'Toscana, Italy' },
+  { id: 'w13', name: 'Masut Da Rive Sauvignon Blanc', description: 'Masut Da Rive — Sauvignon Blanc — 0.75L / 13.5%', price: 5000, category: 'wines', available: true, allergens: 'Sulphites', preparation: 'Ready to serve', origin: 'Friuli Venezia Giulia, Italy' },
+  { id: 'w14', name: 'Donnaluce', description: 'Poggio le Volpi — Chardonnay, Malvasia, Greco — 0.75L / 13.5%', price: 5500, category: 'wines', available: true, allergens: 'Sulphites', preparation: 'Ready to serve', origin: 'Lazio, Italy' },
+  { id: 'w15', name: 'Petit Chablis', description: 'Domaine Hamelin — Chardonnay — 0.75L / 12.5%', price: 5500, category: 'wines', available: true, allergens: 'Sulphites', preparation: 'Ready to serve', origin: 'Burgundy, France' },
+  { id: 'w16', name: 'La Manina', description: 'Manincor — Pinot Blanc, Chardonnay, Sauvignon Blanc — 0.75L / 13%', price: 6000, category: 'wines', available: true, allergens: 'Sulphites', preparation: 'Ready to serve', origin: 'Trentino Alto Adige, Italy' },
+  { id: 'w17', name: 'Pouilly-Fumé', description: 'Jean Pabiot — Sauvignon Blanc — 0.75L / 13%', price: 7500, category: 'wines', available: true, allergens: 'Sulphites', preparation: 'Ready to serve', origin: 'Loire Valley, France' },
+  { id: 'w18', name: 'Chardonnay Sicilia', description: 'Planeta — Chardonnay — 0.75L / 14%', price: 9500, category: 'wines', available: true, allergens: 'Sulphites', preparation: 'Ready to serve', origin: 'Sicilia, Italy' },
+  { id: 'w19', name: 'Franciacorta Saten', description: 'Ferghettina — Chardonnay — 0.75L / 12.5%', price: 10000, category: 'wines', available: true, allergens: 'Sulphites', preparation: 'Ready to serve', origin: 'Lombardia, Italy' },
 ];
 
 const CATEGORY_META_STATIC: Record<string, { emoji: string; accent: string }> = {
@@ -101,7 +121,8 @@ const CATEGORY_META_STATIC: Record<string, { emoji: string; accent: string }> = 
   seafood: { emoji: '🦐', accent: '#1a5276' },
   fish: { emoji: '🐟', accent: '#117a65' },
   desserts: { emoji: '🍮', accent: '#7d3c98' },
-  drinks: { emoji: '🍷', accent: '#922b21' },
+  drinks: { emoji: '🍺', accent: '#922b21' },
+  wines: { emoji: '🍷', accent: '#6b1a2e' },
 };
 
 function getCategoryMeta(t: Translations): Record<string, { label: string; emoji: string; accent: string; subtitle: string; description: string }> {
@@ -112,6 +133,7 @@ function getCategoryMeta(t: Translations): Record<string, { label: string; emoji
     fish: { ...CATEGORY_META_STATIC.fish, ...t.menu.categories.fish },
     desserts: { ...CATEGORY_META_STATIC.desserts, ...t.menu.categories.desserts },
     drinks: { ...CATEGORY_META_STATIC.drinks, ...t.menu.categories.drinks },
+    wines: { ...CATEGORY_META_STATIC.wines, ...t.menu.categories.wines },
   };
 }
 
@@ -126,7 +148,7 @@ type BookPage = {
 };
 
 function buildPages(items: MenuItem[]): BookPage[] {
-  const order = ['starters', 'mains', 'seafood', 'fish', 'desserts', 'drinks'];
+  const order = ['starters', 'mains', 'seafood', 'fish', 'desserts', 'drinks', 'wines'];
   const pages: BookPage[] = [];
   for (const category of order) {
     const catItems = items.filter((i) => i.available && i.category === category);
@@ -263,14 +285,14 @@ export default function Menu() {
 
         {/* ── Book ─────────────────────────────────────────────────────────── */}
         {/* Side-arrow + book row */}
-        <div className="flex items-center gap-2 md:gap-4">
+        <div className="flex items-start gap-2 md:gap-4">
 
           {/* LEFT arrow */}
           <button
             onClick={() => navigateTo(pageIndex - 1, 'backward')}
             disabled={pageIndex === 0}
             aria-label="Previous page"
-            className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all disabled:opacity-20 disabled:cursor-not-allowed bg-[#2d333b] border border-gray-500 text-gray-200 hover:enabled:border-[#c9972c] hover:enabled:text-[#c9972c] shadow-sm"
+            className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all disabled:opacity-20 disabled:cursor-not-allowed bg-[#2d333b] border border-gray-500 text-gray-200 hover:enabled:border-[#c9972c] hover:enabled:text-[#c9972c] shadow-sm mt-[240px] md:mt-[236px]"
           >
             <ChevronLeft size={20} />
           </button>
@@ -428,7 +450,7 @@ export default function Menu() {
             onClick={() => navigateTo(pageIndex + 1, 'forward')}
             disabled={pageIndex === PAGES.length - 1}
             aria-label="Next page"
-            className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all disabled:opacity-20 disabled:cursor-not-allowed bg-[#2d333b] border border-gray-500 text-gray-200 hover:enabled:border-[#c9972c] hover:enabled:text-[#c9972c] shadow-sm"
+            className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all disabled:opacity-20 disabled:cursor-not-allowed bg-[#2d333b] border border-gray-500 text-gray-200 hover:enabled:border-[#c9972c] hover:enabled:text-[#c9972c] shadow-sm mt-[240px] md:mt-[236px]"
           >
             <ChevronRight size={20} />
           </button>

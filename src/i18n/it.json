@@ -79,7 +79,12 @@
       "drinks": {
         "label": "Bevande",
         "subtitle": "Bevande & Cocktail",
-        "description": "Dai vini locali ai cocktail artigianali, alle birre fredde e ai digestivi."
+        "description": "Dai cocktail artigianali alle birre fredde, analcolici e digestivi."
+      },
+      "wines": {
+        "label": "Carta dei Vini",
+        "subtitle": "Vini Bianchi",
+        "description": "Una selezione curata di vini bianchi italiani e francesi per accompagnare i vostri frutti di mare."
       }
     }
   },

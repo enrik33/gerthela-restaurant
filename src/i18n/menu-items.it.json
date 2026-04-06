@@ -310,5 +310,81 @@
   "dr30": {
     "name": "Vodka",
     "description": "Vodka premium, servita liscia"
+  },
+  "w1": {
+    "name": "Chardonnay Borgognotta",
+    "description": "Italo Cescon — Chardonnay — 0,75L / 12,5%"
+  },
+  "w2": {
+    "name": "Pinot Grigio Mont Mes",
+    "description": "Castelfeder — Pinot Grigio — 0,75L / 12,5%"
+  },
+  "w3": {
+    "name": "Prosecco DOC Extra Dry",
+    "description": "Le Contesse — Glera — 0,75L / 11%"
+  },
+  "w4": {
+    "name": "Pinot Grigio Borgognotta",
+    "description": "Italo Cescon — Pinot Grigio — 0,75L / 12,5%"
+  },
+  "w5": {
+    "name": "Pinot Grigio delle Venezie",
+    "description": "Italo Cescon — Pinot Grigio — 0,375L / 12,5%"
+  },
+  "w6": {
+    "name": "Greco di Tufo 'Il Cavaliere'",
+    "description": "D'Antiche Terre — Greco — 0,75L / 13%"
+  },
+  "w7": {
+    "name": "Chardonnay Mont Mes",
+    "description": "Castelfeder — Chardonnay — 0,75L / 12,5%"
+  },
+  "w8": {
+    "name": "Gewürztraminer",
+    "description": "Castelfeder — Gewürztraminer — 0,75L / 14%"
+  },
+  "w9": {
+    "name": "Lugana I Frati",
+    "description": "Cà dei Frati — Turbiana — 0,75L / 13%"
+  },
+  "w10": {
+    "name": "Pecorino Terre di Chieti",
+    "description": "Tollo — Pecorino — 0,75L / 13,5%"
+  },
+  "w11": {
+    "name": "Fiano di Avellino",
+    "description": "Mastroberardino — Fiano — 0,75L / 12,5%"
+  },
+  "w12": {
+    "name": "Poggio al Lupo \"Vermentino\"",
+    "description": "Poggio al Lupo — Vermentino — 0,75L / 12,5%"
+  },
+  "w13": {
+    "name": "Masut Da Rive Sauvignon Blanc",
+    "description": "Masut Da Rive — Sauvignon Blanc — 0,75L / 13,5%"
+  },
+  "w14": {
+    "name": "Donnaluce",
+    "description": "Poggio le Volpi — Chardonnay, Malvasia, Greco — 0,75L / 13,5%"
+  },
+  "w15": {
+    "name": "Petit Chablis",
+    "description": "Domaine Hamelin — Chardonnay — 0,75L / 12,5%"
+  },
+  "w16": {
+    "name": "La Manina",
+    "description": "Manincor — Pinot Blanc, Chardonnay, Sauvignon Blanc — 0,75L / 13%"
+  },
+  "w17": {
+    "name": "Pouilly-Fumé",
+    "description": "Jean Pabiot — Sauvignon Blanc — 0,75L / 13%"
+  },
+  "w18": {
+    "name": "Chardonnay Sicilia",
+    "description": "Planeta — Chardonnay — 0,75L / 14%"
+  },
+  "w19": {
+    "name": "Franciacorta Saten",
+    "description": "Ferghettina — Chardonnay — 0,75L / 12,5%"
   }
 }

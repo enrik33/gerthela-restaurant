@@ -79,7 +79,12 @@
       "drinks": {
         "label": "Drinks",
         "subtitle": "Beverages & Cocktails",
-        "description": "From local wines and craft cocktails to cold beers and digestifs."
+        "description": "From craft cocktails and cold beers to refreshing soft drinks and digestifs."
+      },
+      "wines": {
+        "label": "Wine List",
+        "subtitle": "White Wines",
+        "description": "A curated selection of Italian and French white wines to complement your seafood."
       }
     }
   },

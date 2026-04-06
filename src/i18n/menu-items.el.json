@@ -310,5 +310,131 @@
   "dr30": {
     "name": "Βότκα",
     "description": "Premium βότκα, σερβίρεται σκέτη"
+  },
+  "w1": {
+    "name": "Σαρντονέ Μποργκονιότα",
+    "description": "Italo Cescon — Chardonnay — 0,75L / 12,5%"
+  },
+  "w2": {
+    "name": "Πινό Γκρίτζιο Mont Mes",
+    "description": "Castelfeder — Pinot Grigio — 0,75L / 12,5%"
+  },
+  "w3": {
+    "name": "Προσέκο DOC Εξτρά Ξηρό",
+    "description": "Le Contesse — Glera — 0,75L / 11%"
+  },
+  "w4": {
+    "name": "Πινό Γκρίτζιο Μποργκονιότα",
+    "description": "Italo Cescon — Pinot Grigio — 0,75L / 12,5%"
+  },
+  "w5": {
+    "name": "Πινό Γκρίτζιο delle Venezie",
+    "description": "Italo Cescon — Pinot Grigio — 0,375L / 12,5%"
+  },
+  "w6": {
+    "name": "Γκρέκο ντι Τούφο «Ιλ Καβαλιέρε»",
+    "description": "D'Antiche Terre — Greco — 0,75L / 13%"
+  },
+  "w7": {
+    "name": "Σαρντονέ Mont Mes",
+    "description": "Castelfeder — Chardonnay — 0,75L / 12,5%"
+  },
+  "w8": {
+    "name": "Γκεβύρτζτραμινερ",
+    "description": "Castelfeder — Gewürztraminer — 0,75L / 14%"
+  },
+  "w9": {
+    "name": "Λουγκάνα Ι Φράτι",
+    "description": "Cà dei Frati — Turbiana — 0,75L / 13%"
+  },
+  "w10": {
+    "name": "Πεκορίνο Τέρε ντι Κιέτι",
+    "description": "Tollo — Pecorino — 0,75L / 13,5%"
+  },
+  "w11": {
+    "name": "Φιάνο ντι Αβελίνο",
+    "description": "Mastroberardino — Fiano — 0,75L / 12,5%"
+  },
+  "w12": {
+    "name": "Πόντζιο αλ Λούπο «Βερμεντίνο»",
+    "description": "Poggio al Lupo — Vermentino — 0,75L / 12,5%"
+  },
+  "w13": {
+    "name": "Μαζύτ Ντα Ρίβε Σωβινιόν Μπλαν",
+    "description": "Masut Da Rive — Sauvignon Blanc — 0,75L / 13,5%"
+  },
+  "w14": {
+    "name": "Ντοναλούτσε",
+    "description": "Poggio le Volpi — Chardonnay, Malvasia, Greco — 0,75L / 13,5%"
+  },
+  "w15": {
+    "name": "Πετί Σαμπλί",
+    "description": "Domaine Hamelin — Chardonnay — 0,75L / 12,5%"
+  },
+  "w16": {
+    "name": "Λα Μανίνα",
+    "description": "Manincor — Pinot Blanc, Chardonnay, Sauvignon Blanc — 0,75L / 13%"
+  },
+  "w17": {
+    "name": "Πουϊγί-Φυμέ",
+    "description": "Jean Pabiot — Sauvignon Blanc — 0,75L / 13%"
+  },
+  "w18": {
+    "name": "Σαρντονέ Σικελία",
+    "description": "Planeta — Chardonnay — 0,75L / 14%"
+  },
+  "w19": {
+    "name": "Φραντσιακόρτα Σατέν",
+    "description": "Ferghettina — Chardonnay — 0,75L / 12,5%"
   }
+}
+},
+"w8": {
+"name": "Gewürztraminer",
+"description": "Castelfeder — Gewürztraminer — 0,75L / 14%"
+},
+"w9": {
+"name": "Lugana I Frati",
+"description": "Cà dei Frati — Turbiana — 0,75L / 13%"
+},
+"w10": {
+"name": "Pecorino Terre di Chieti",
+"description": "Tollo — Pecorino — 0,75L / 13,5%"
+},
+"w11": {
+"name": "Fiano di Avellino",
+"description": "Mastroberardino — Fiano — 0,75L / 12,5%"
+},
+"w12": {
+"name": "Poggio al Lupo \"Vermentino\"",
+"description": "Poggio al Lupo — Vermentino — 0,75L / 12,5%"
+},
+"w13": {
+"name": "Masut Da Rive Sauvignon Blanc",
+"description": "Masut Da Rive — Sauvignon Blanc — 0,75L / 13,5%"
+},
+"w14": {
+"name": "Donnaluce",
+"description": "Poggio le Volpi — Chardonnay, Malvasia, Greco — 0,75L / 13,5%"
+},
+"w15": {
+"name": "Petit Chablis",
+"description": "Domaine Hamelin — Chardonnay — 0,75L / 12,5%"
+},
+"w16": {
+"name": "La Manina",
+"description": "Manincor — Pinot Blanc, Chardonnay, Sauvignon Blanc — 0,75L / 13%"
+},
+"w17": {
+"name": "Pouilly-Fumé",
+"description": "Jean Pabiot — Sauvignon Blanc — 0,75L / 13%"
+},
+"w18": {
+"name": "Chardonnay Sicilia",
+"description": "Planeta — Chardonnay — 0,75L / 14%"
+},
+"w19": {
+"name": "Franciacorta Saten",
+"description": "Ferghettina — Chardonnay — 0,75L / 12,5%"
+}
 }
