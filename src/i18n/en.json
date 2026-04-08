@@ -93,20 +93,29 @@
     "title": "Gallery",
     "subtitle": "Stunning views and delicious dishes from our waterfront kitchen",
     "clickToView": "Click to view",
-    "images": [
-      "Fresh seafood dish",
-      "Grilled fish",
-      "Restaurant ambiance",
-      "Seafood platter",
-      "Waterfront dining",
-      "Restaurant view",
-      "Catch of the day",
-      "Dining experience",
+    "fishTitle": "Fresh Fish",
+    "pastaTitle": "Pasta & Risotto",
+    "fishImages": [
       "Fresh catch",
-      "Seafood selection",
-      "Restaurant terrace",
-      "Grilled dish",
-      "Evening at Gerthela"
+      "Grilled fish",
+      "Fish dish",
+      "Seafood plate",
+      "Daily catch",
+      "Fish fillet",
+      "Whole grilled fish",
+      "Fish selection",
+      "Fried fish",
+      "Seafood platter",
+      "Fresh fish fillet",
+      "Fish special",
+      "Grilled catch",
+      "Fish of the day"
+    ],
+    "pastaImages": [
+      "Pasta dish",
+      "Seafood pasta",
+      "Homemade pasta",
+      "Pasta special"
     ]
   },
   "reviews": {

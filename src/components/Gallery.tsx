@@ -4,24 +4,34 @@ import { useState } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { useT } from '@/hooks/useTranslations';
 
-const GALLERY_IMAGES = [
-  { id: 1, url: '/images/IMG_7659.jpeg' },
-  { id: 2, url: '/images/IMG_7610.jpeg' },
-  { id: 3, url: '/images/IMG_7564.jpeg' },
-  { id: 4, url: '/images/IMG_7480.jpeg' },
-  { id: 5, url: '/images/IMG_7351.jpeg' },
-  { id: 6, url: '/images/IMG_7257.jpeg' },
-  { id: 7, url: '/images/IMG_6621.jpeg' },
-  { id: 8, url: '/images/IMG_4284.jpeg' },
-  { id: 9, url: '/images/IMG_7683.jpeg' },
-  { id: 10, url: '/images/IMG_7444.jpeg' },
-  { id: 11, url: '/images/IMG_7322.jpeg' },
-  { id: 12, url: '/images/IMG_4265.jpeg' },
-  { id: 13, url: '/images/IMG_7078.jpeg' },
+type GalleryImage = { id: number; url: string };
+type GallerySection = 'fish' | 'pasta';
+
+const FISH_IMAGES: GalleryImage[] = [
+  { id: 1, url: '/images/fish-section/IMG_1841.jpeg' },
+  { id: 2, url: '/images/fish-section/IMG_7078.jpeg' },
+  { id: 3, url: '/images/fish-section/IMG_7156.jpeg' },
+  { id: 4, url: '/images/fish-section/IMG_7178.jpeg' },
+  { id: 5, url: '/images/fish-section/IMG_7180.jpeg' },
+  { id: 6, url: '/images/fish-section/IMG_7196.jpeg' },
+  { id: 7, url: '/images/fish-section/IMG_7252.jpeg' },
+  { id: 8, url: '/images/fish-section/IMG_7260.jpeg' },
+  { id: 9, url: '/images/fish-section/IMG_7436.jpeg' },
+  { id: 10, url: '/images/fish-section/IMG_7486.jpeg' },
+  { id: 11, url: '/images/fish-section/IMG_7491.jpeg' },
+  { id: 12, url: '/images/fish-section/IMG_7495.jpeg' },
+  { id: 13, url: '/images/fish-section/IMG_7737.jpeg' },
+  { id: 14, url: '/images/fish-section/IMG_7790.jpeg' },
 ];
 
-const ROW_ONE = GALLERY_IMAGES.slice(0, 7);
-const ROW_TWO = GALLERY_IMAGES.slice(6);
+const PASTA_IMAGES: GalleryImage[] = [
+  { id: 1, url: '/images/pasta-section/IMG_7073.jpeg' },
+  { id: 2, url: '/images/pasta-section/IMG_7207.jpeg' },
+  { id: 3, url: '/images/pasta-section/IMG_7427.jpeg' },
+  { id: 4, url: '/images/pasta-section/IMG_7659.jpeg' },
+];
+
+
 
 function ScrollRow({
   images,
@@ -29,26 +39,27 @@ function ScrollRow({
   alts,
   onClickImage,
 }: {
-  images: typeof GALLERY_IMAGES;
+  images: GalleryImage[];
   direction: 'ltr' | 'rtl';
   alts: string[];
-  onClickImage: (globalIndex: number) => void;
+  onClickImage: (index: number) => void;
 }) {
-  // Duplicate for seamless infinite loop
   const doubled = [...images, ...images];
+  // ~8.75s per image keeps a consistent visual speed regardless of how many images there are
+  const duration = `${Math.round(images.length * 8.75)}s`;
 
   return (
     <div
       className={`flex gap-4 ${direction === 'ltr' ? 'gallery-track-ltr' : 'gallery-track-rtl'}`}
-      style={{ width: 'max-content' }}
+      style={{ width: 'max-content', animationDuration: duration }}
     >
       {doubled.map((image, i) => {
-        const originalIndex = GALLERY_IMAGES.findIndex((img) => img.id === image.id);
-        const alt = alts[originalIndex] ?? '';
+        const localIndex = images.findIndex((img) => img.id === image.id);
+        const alt = alts[localIndex] ?? '';
         return (
           <div
             key={`${image.id}-${i}`}
-            onClick={() => onClickImage(originalIndex)}
+            onClick={() => onClickImage(localIndex)}
             className="relative flex-shrink-0 w-52 h-36 md:w-72 md:h-52 rounded-2xl overflow-hidden cursor-pointer group"
           >
             <img
@@ -75,23 +86,40 @@ function ScrollRow({
   );
 }
 
+function SectionDivider({ title }: { title: string }) {
+  return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
+      <div className="flex items-center gap-4">
+        <div className="h-px flex-1 bg-white/10" />
+        <h3 className="text-[#c9972c] font-semibold tracking-widest uppercase text-sm">{title}</h3>
+        <div className="h-px flex-1 bg-white/10" />
+      </div>
+    </div>
+  );
+}
+
 export default function Gallery() {
   const t = useT();
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [activeSection, setActiveSection] = useState<GallerySection>('fish');
 
-  const openLightbox = (index: number) => {
+  const activeSectionImages = activeSection === 'fish' ? FISH_IMAGES : PASTA_IMAGES;
+  const activeSectionAlts = activeSection === 'fish' ? t.gallery.fishImages : t.gallery.pastaImages;
+
+  const openLightbox = (section: GallerySection, index: number) => {
+    setActiveSection(section);
     setCurrentImageIndex(index);
     setLightboxOpen(true);
   };
 
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % GALLERY_IMAGES.length);
+    setCurrentImageIndex((prev) => (prev + 1) % activeSectionImages.length);
   };
 
   const prevImage = () => {
     setCurrentImageIndex((prev) =>
-      prev === 0 ? GALLERY_IMAGES.length - 1 : prev - 1
+      prev === 0 ? activeSectionImages.length - 1 : prev - 1
     );
   };
 
@@ -120,19 +148,25 @@ export default function Gallery() {
         </div>
       </div>
 
-      {/* Scrolling gallery strips — hover to pause */}
+      {/* Fish section */}
+      <SectionDivider title={t.gallery.fishTitle} />
+      <div className="flex flex-col gap-4 overflow-hidden mb-12">
+        <ScrollRow
+          images={FISH_IMAGES}
+          direction="ltr"
+          alts={t.gallery.fishImages}
+          onClickImage={(i) => openLightbox('fish', i)}
+        />
+      </div>
+
+      {/* Pasta section */}
+      <SectionDivider title={t.gallery.pastaTitle} />
       <div className="flex flex-col gap-4 overflow-hidden">
         <ScrollRow
-          images={ROW_ONE}
+          images={PASTA_IMAGES}
           direction="ltr"
-          alts={t.gallery.images}
-          onClickImage={openLightbox}
-        />
-        <ScrollRow
-          images={ROW_TWO}
-          direction="rtl"
-          alts={t.gallery.images}
-          onClickImage={openLightbox}
+          alts={t.gallery.pastaImages}
+          onClickImage={(i) => openLightbox('pasta', i)}
         />
       </div>
 
@@ -147,14 +181,14 @@ export default function Gallery() {
             onClick={(e) => e.stopPropagation()}
           >
             <img
-              src={GALLERY_IMAGES[currentImageIndex].url}
-              alt={t.gallery.images[currentImageIndex] ?? ''}
+              src={activeSectionImages[currentImageIndex].url}
+              alt={activeSectionAlts[currentImageIndex] ?? ''}
               className="w-full h-auto max-h-[80vh] object-contain rounded-xl"
             />
 
             {/* Caption */}
             <p className="text-center text-white/70 mt-3 text-sm">
-              {t.gallery.images[currentImageIndex]}
+              {activeSectionAlts[currentImageIndex]}
             </p>
 
             {/* Prev button */}
@@ -177,7 +211,7 @@ export default function Gallery() {
 
             {/* Counter */}
             <div className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-sm text-white px-5 py-1.5 rounded-full text-sm font-medium">
-              {currentImageIndex + 1} / {GALLERY_IMAGES.length}
+              {currentImageIndex + 1} / {activeSectionImages.length}
             </div>
 
             {/* Close button */}

@@ -93,20 +93,29 @@
     "title": "Galleria",
     "subtitle": "Viste mozzafiato e piatti deliziosi dalla nostra cucina sul lungomare",
     "clickToView": "Clicca per vedere",
-    "images": [
-      "Piatto di frutti di mare freschi",
+    "fishTitle": "Pesce Fresco",
+    "pastaTitle": "Pasta & Risotto",
+    "fishImages": [
+      "Pesce fresco",
       "Pesce alla griglia",
-      "Atmosfera del ristorante",
+      "Piatto di pesce",
       "Piatto di frutti di mare",
-      "Cena sul lungomare",
-      "Vista del ristorante",
-      "Il pescato del giorno",
-      "Esperienza culinaria",
-      "Pesca fresca",
-      "Selezione di frutti di mare",
-      "Terrazza del ristorante",
-      "Piatto alla griglia",
-      "Serata da Gerthela"
+      "Pesca del giorno",
+      "Filetto di pesce",
+      "Pesce intero alla griglia",
+      "Selezione di pesce",
+      "Pesce fritto",
+      "Piattaforma di frutti di mare",
+      "Filetto fresco",
+      "Speciale di pesce",
+      "Pescato alla griglia",
+      "Pesce del giorno"
+    ],
+    "pastaImages": [
+      "Piatto di pasta",
+      "Pasta ai frutti di mare",
+      "Pasta fatta in casa",
+      "Speciale di pasta"
     ]
   },
   "reviews": {
