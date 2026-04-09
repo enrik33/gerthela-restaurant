@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { ChevronDown, Phone } from 'lucide-react';
 import Link from 'next/link';
 import { useT } from '@/hooks/useTranslations';
@@ -9,11 +10,13 @@ export default function Hero() {
   return (
     <section className="relative w-full min-h-screen flex flex-col items-center justify-center text-white overflow-hidden">
       {/* Background image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url('/images/IMG_4283.jpeg')`,
-        }}
+      <Image
+        src="/images/IMG_4283.jpeg"
+        alt="Gerthela Taverna waterfront view"
+        fill
+        priority
+        className="object-cover object-center"
+        sizes="100vw"
       />
 
       {/* Dark gradient overlay */}

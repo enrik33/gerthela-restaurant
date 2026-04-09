@@ -58,6 +58,7 @@ export default function Header() {
                         className={`p-2 rounded-lg transition-colors ${scrolled ? 'text-[#e6edf3] hover:bg-gray-700' : 'text-white hover:bg-white/20'}`}
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         aria-label="Toggle menu"
+                        aria-expanded={mobileMenuOpen}
                     >
                         {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                     </button>
