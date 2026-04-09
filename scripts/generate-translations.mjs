@@ -12,9 +12,9 @@
  * DeepL paid tier: https://api.deepl.com
  */
 
-import { readFileSync, writeFileSync } from 'fs';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
+import { readFileSync, writeFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
 
 // ── Config ───────────────────────────────────────────────────────────────────
 
@@ -78,7 +78,7 @@ function setPath(obj, path, value) {
   if (arrayMatch) {
     const [, arrPath, idx] = arrayMatch;
     const arr = getPath(obj, arrPath) ?? [];
-    arr[parseInt(idx)] = value;
+    arr[Number.parseInt(idx, 10)] = value;
     setPath(obj, arrPath, arr);
     return;
   }
@@ -137,7 +137,7 @@ async function generate(targetLang, outFile) {
   const translated = await translateBatch(strings, targetLang);
 
   // Deep-clone the en structure and fill in translated values
-  const result = JSON.parse(JSON.stringify(en));
+  const result = structuredClone(en);
   flat.forEach(({ path }, i) => setPath(result, path, translated[i]));
 
   const outPath = join(rootDir, 'src', 'i18n', outFile);

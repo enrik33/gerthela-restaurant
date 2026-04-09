@@ -20,10 +20,13 @@ export async function POST(request: NextRequest) {
         { status: 401 }
       );
     }
-  } catch (error) {
-    return NextResponse.json(
-      { error: 'Login failed' },
-      { status: 400 }
-    );
+  } catch (error: unknown) {
+    if (error instanceof SyntaxError) {
+      return NextResponse.json(
+        { error: 'Invalid request body' },
+        { status: 400 }
+      );
+    }
+    throw error;
   }
 }

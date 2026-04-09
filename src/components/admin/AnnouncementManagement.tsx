@@ -8,7 +8,7 @@ import { adminT, type AdminLang } from '@/lib/admin-i18n';
 
 const BLANK_FORM: Partial<Announcement> = { title: '', content: '', published: true };
 
-export default function AnnouncementManagement({ lang }: { lang: AdminLang }) {
+export default function AnnouncementManagement({ lang }: Readonly<{ lang: AdminLang }>) {
     const t = adminT[lang];
     const [announcements, setAnnouncements] = useState<Announcement[]>([]);
     const [editingId, setEditingId] = useState<string | null>(null);
@@ -69,7 +69,7 @@ export default function AnnouncementManagement({ lang }: { lang: AdminLang }) {
         if (!confirm(t.confirmDelete)) return;
         try {
             const res = await fetch(`/api/admin/announcements?id=${id}`, { method: 'DELETE', headers: adminHeaders() });
-            if (!res.ok) throw new Error();
+            if (!res.ok) throw new Error('Failed to delete announcement');
             setAnnouncements(announcements.filter(a => a.id !== id));
         } catch {
             setError(t.errorDelete);
@@ -93,6 +93,71 @@ export default function AnnouncementManagement({ lang }: { lang: AdminLang }) {
 
     const field = 'w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#c9972c] focus:border-transparent transition text-gray-800';
     const lbl = 'block text-sm font-semibold text-gray-600 mb-1.5';
+    const formTitle = editingId ? t.updateAnnouncement : t.createAnnouncement;
+
+    let saveButtonLabel = t.createAnnouncement;
+    if (saving) {
+        saveButtonLabel = t.saving;
+    } else if (editingId) {
+        saveButtonLabel = t.updateAnnouncement;
+    }
+
+    let announcementsContent: React.ReactNode;
+    if (loading) {
+        announcementsContent = <p className="text-center text-gray-400 py-12">{t.loading}</p>;
+    } else if (announcements.length === 0) {
+        announcementsContent = (
+            <div className="text-center py-16 bg-white rounded-2xl border-2 border-dashed border-gray-200">
+                <p className="text-4xl mb-3">📢</p>
+                <p className="text-gray-500 mb-4">{t.noAnnouncements}</p>
+                <button onClick={handleAdd} className="px-5 py-2.5 bg-[#c9972c] text-white rounded-xl font-semibold hover:bg-[#b8871f] transition">
+                    {t.createFirst}
+                </button>
+            </div>
+        );
+    } else {
+        announcementsContent = (
+            <div className="space-y-4">
+                {announcements.map((ann) => (
+                    <div key={ann.id} className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                        <div className="flex justify-between items-start mb-2">
+                            <div>
+                                <h3 className="text-lg font-bold text-gray-900">{ann.title}</h3>
+                                <p className="text-xs text-gray-400 mt-0.5">
+                                    {ann.created_at && new Date(ann.created_at).toLocaleDateString()}
+                                </p>
+                            </div>
+                            <span className={`text-xs font-bold px-3 py-1 rounded-full ml-2 shrink-0 ${ann.published ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'
+                                }`}>
+                                {ann.published ? t.published : t.draft}
+                            </span>
+                        </div>
+                        <p className="text-gray-600 mb-4 text-sm leading-relaxed">{ann.content}</p>
+                        <div className="flex gap-2">
+                            <button
+                                onClick={() => handleTogglePublish(ann)}
+                                className="flex-1 py-2.5 bg-amber-50 text-amber-600 rounded-xl hover:bg-amber-100 transition text-sm font-semibold"
+                            >
+                                {ann.published ? t.unpublish : t.publish}
+                            </button>
+                            <button
+                                onClick={() => handleEdit(ann)}
+                                className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-blue-50 text-blue-600 rounded-xl hover:bg-blue-100 transition text-sm font-semibold"
+                            >
+                                <Edit2 size={15} /> {t.edit}
+                            </button>
+                            <button
+                                onClick={() => handleDelete(ann.id)}
+                                className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-red-50 text-red-500 rounded-xl hover:bg-red-100 transition text-sm font-semibold"
+                            >
+                                <Trash2 size={15} /> {t.delete}
+                            </button>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        );
+    }
 
     return (
         <div className="space-y-6">
@@ -108,7 +173,7 @@ export default function AnnouncementManagement({ lang }: { lang: AdminLang }) {
             {/* Form */}
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 space-y-4">
                 <h3 className="font-semibold text-gray-700 text-lg">
-                    {editingId ? t.updateAnnouncement : t.createAnnouncement}
+                    {formTitle}
                 </h3>
                 <div>
                     <label className={lbl}>{t.annTitle}</label>
@@ -146,7 +211,7 @@ export default function AnnouncementManagement({ lang }: { lang: AdminLang }) {
                         disabled={saving || !formData.title || !formData.content}
                         className="flex-1 bg-[#c9972c] hover:bg-[#b8871f] text-white font-bold py-3 rounded-xl transition disabled:opacity-40"
                     >
-                        {saving ? t.saving : editingId ? t.updateAnnouncement : t.createAnnouncement}
+                        {saveButtonLabel}
                     </button>
                     {editingId && (
                         <button
@@ -169,58 +234,7 @@ export default function AnnouncementManagement({ lang }: { lang: AdminLang }) {
             )}
 
             {/* List */}
-            {loading ? (
-                <p className="text-center text-gray-400 py-12">{t.loading}</p>
-            ) : announcements.length === 0 ? (
-                <div className="text-center py-16 bg-white rounded-2xl border-2 border-dashed border-gray-200">
-                    <p className="text-4xl mb-3">📢</p>
-                    <p className="text-gray-500 mb-4">{t.noAnnouncements}</p>
-                    <button onClick={handleAdd} className="px-5 py-2.5 bg-[#c9972c] text-white rounded-xl font-semibold hover:bg-[#b8871f] transition">
-                        {t.createFirst}
-                    </button>
-                </div>
-            ) : (
-                <div className="space-y-4">
-                    {announcements.map((ann) => (
-                        <div key={ann.id} className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-                            <div className="flex justify-between items-start mb-2">
-                                <div>
-                                    <h3 className="text-lg font-bold text-gray-900">{ann.title}</h3>
-                                    <p className="text-xs text-gray-400 mt-0.5">
-                                        {ann.created_at && new Date(ann.created_at).toLocaleDateString()}
-                                    </p>
-                                </div>
-                                <span className={`text-xs font-bold px-3 py-1 rounded-full ml-2 shrink-0 ${
-                                    ann.published ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'
-                                }`}>
-                                    {ann.published ? t.published : t.draft}
-                                </span>
-                            </div>
-                            <p className="text-gray-600 mb-4 text-sm leading-relaxed">{ann.content}</p>
-                            <div className="flex gap-2">
-                                <button
-                                    onClick={() => handleTogglePublish(ann)}
-                                    className="flex-1 py-2.5 bg-amber-50 text-amber-600 rounded-xl hover:bg-amber-100 transition text-sm font-semibold"
-                                >
-                                    {ann.published ? t.unpublish : t.publish}
-                                </button>
-                                <button
-                                    onClick={() => handleEdit(ann)}
-                                    className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-blue-50 text-blue-600 rounded-xl hover:bg-blue-100 transition text-sm font-semibold"
-                                >
-                                    <Edit2 size={15} /> {t.edit}
-                                </button>
-                                <button
-                                    onClick={() => handleDelete(ann.id)}
-                                    className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-red-50 text-red-500 rounded-xl hover:bg-red-100 transition text-sm font-semibold"
-                                >
-                                    <Trash2 size={15} /> {t.delete}
-                                </button>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            )}
+            {announcementsContent}
         </div>
     );
 }

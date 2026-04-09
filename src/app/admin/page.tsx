@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, type ComponentProps } from 'react';
 import { useRouter } from 'next/navigation';
 import { Eye, EyeOff } from 'lucide-react';
 import { setAdminPassword } from '@/lib/admin-session';
@@ -28,7 +28,9 @@ export default function AdminLogin() {
     localStorage.setItem('admin_lang', next);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const submitLogin = async (
+    e: Parameters<NonNullable<ComponentProps<'form'>['onSubmit']>>[0]
+  ) => {
     e.preventDefault();
     setLoading(true);
     setError('');
@@ -53,6 +55,10 @@ export default function AdminLogin() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleSubmit: NonNullable<ComponentProps<'form'>['onSubmit']> = (e) => {
+    void submitLogin(e);
   };
 
   return (

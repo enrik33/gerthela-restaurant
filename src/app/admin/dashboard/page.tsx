@@ -91,9 +91,11 @@ export default function AdminDashboard() {
       <div className="flex flex-1 relative">
         {/* Mobile overlay */}
         {sidebarOpen && (
-          <div
+          <button
+            type="button"
             className="lg:hidden fixed inset-0 bg-black/50 z-20"
             onClick={() => setSidebarOpen(false)}
+            aria-label="Close sidebar"
           />
         )}
 
@@ -111,8 +113,8 @@ export default function AdminDashboard() {
                 key={item.id}
                 onClick={() => { setActiveTab(item.id); setSidebarOpen(false); }}
                 className={`w-full flex items-center gap-4 px-5 py-4 rounded-xl transition text-left ${activeTab === item.id
-                    ? 'bg-[#c9972c] text-white font-semibold shadow'
-                    : 'hover:bg-white/10 text-white/80'
+                  ? 'bg-[#c9972c] text-white font-semibold shadow'
+                  : 'hover:bg-white/10 text-white/80'
                   }`}
               >
                 <span className="text-2xl leading-none">{item.emoji}</span>
