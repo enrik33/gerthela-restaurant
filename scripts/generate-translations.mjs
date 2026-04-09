@@ -15,7 +15,6 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
-import { createRequire } from 'module';
 
 // ── Config ───────────────────────────────────────────────────────────────────
 
@@ -39,7 +38,7 @@ loadEnv();
 
 const DEEPL_API_KEY = process.env.DEEPL_API_KEY;
 if (!DEEPL_API_KEY) {
-  console.error('❌  DEEPL_API_KEY is not set. Add it to .env.local and try again.');
+  console.error('DEEPL_API_KEY is not set. Add it to .env.local and try again.');
   process.exit(1);
 }
 
@@ -126,7 +125,7 @@ async function translateBatch(texts, targetLang) {
 // ── Main ──────────────────────────────────────────────────────────────────────
 
 async function generate(targetLang, outFile) {
-  console.log(`\n🌍  Translating to ${targetLang}...`);
+  console.log(`\n Translating to ${targetLang}...`);
 
   const enPath = join(rootDir, 'src', 'i18n', 'en.json');
   const en = JSON.parse(readFileSync(enPath, 'utf-8'));
@@ -143,11 +142,11 @@ async function generate(targetLang, outFile) {
 
   const outPath = join(rootDir, 'src', 'i18n', outFile);
   writeFileSync(outPath, JSON.stringify(result, null, 2) + '\n', 'utf-8');
-  console.log(`   ✅  Written to src/i18n/${outFile}`);
+  console.log(`   Written to src/i18n/${outFile}`);
 }
 
 for (const { lang, outFile } of TARGETS) {
   await generate(lang, outFile);
 }
 
-console.log('\n✨  All translations generated successfully!');
+console.log('\n  All translations generated successfully!');

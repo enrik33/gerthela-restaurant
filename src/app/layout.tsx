@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Gerthela Taverna - Fresh Seafood in Saranda",
     description: "Experience authentic Mediterranean cuisine on Saranda's waterfront.",
-    url: "https://gerthela.al",
+    url: "https://gerthela.com",
     siteName: "Gerthela Taverna",
     locale: "en_US",
     type: "website",
