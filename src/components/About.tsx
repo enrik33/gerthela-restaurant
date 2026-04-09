@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useT } from '@/hooks/useTranslations';
 
 export default function About() {
@@ -25,20 +26,24 @@ export default function About() {
           <div className="relative">
             {/* Main image */}
             <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]">
-              <img
+              <Image
                 src="/images/IMG_7073.jpeg"
                 alt="Fresh seafood at Gerthela Taverna"
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
             </div>
 
             {/* Floating accent image */}
             <div className="absolute -bottom-6 -right-6 w-40 h-40 sm:w-48 sm:h-48 rounded-2xl overflow-hidden shadow-xl border-4 border-white">
-              <img
+              <Image
                 src="/images/IMG_4951.jpeg"
                 alt="Grilled fish dish"
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
+                sizes="192px"
               />
             </div>
 

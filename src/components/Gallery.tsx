@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { useT } from '@/hooks/useTranslations';
 
@@ -62,12 +63,13 @@ function ScrollRow({
             onClick={() => onClickImage(localIndex)}
             className="relative flex-shrink-0 w-52 h-36 md:w-72 md:h-52 rounded-2xl overflow-hidden cursor-pointer group"
           >
-            <img
+            <Image
               src={image.url}
               alt={alt}
+              fill
               loading="lazy"
-              decoding="async"
-              className="w-full h-full object-cover transition-[filter] duration-300 group-hover:brightness-75"
+              className="object-cover transition-[filter] duration-300 group-hover:brightness-75"
+              sizes="(max-width: 768px) 208px, 288px"
               draggable={false}
             />
             <div className="absolute inset-0 flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -180,11 +182,16 @@ export default function Gallery() {
             className="relative max-w-5xl w-full"
             onClick={(e) => e.stopPropagation()}
           >
-            <img
-              src={activeSectionImages[currentImageIndex].url}
-              alt={activeSectionAlts[currentImageIndex] ?? ''}
-              className="w-full h-auto max-h-[80vh] object-contain rounded-xl"
-            />
+            <div className="relative w-full h-[80vh]">
+              <Image
+                src={activeSectionImages[currentImageIndex].url}
+                alt={activeSectionAlts[currentImageIndex] ?? ''}
+                fill
+                className="object-contain rounded-xl"
+                sizes="100vw"
+                priority
+              />
+            </div>
 
             {/* Caption */}
             <p className="text-center text-white/70 mt-3 text-sm">

@@ -2,6 +2,7 @@
 
 import { MapPin, Phone, Clock } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useT } from '@/hooks/useTranslations';
 
@@ -16,9 +17,11 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
                     {/* Brand */}
                     <div className="md:col-span-2">
-                        <img
+                        <Image
                             src="/images/gerthela-logo.PNG"
                             alt="Gerthela Taverna"
+                            width={200}
+                            height={64}
                             className="h-16 w-auto object-contain mb-4"
                         />
                         <p className="text-gray-400 text-sm leading-relaxed max-w-xs">

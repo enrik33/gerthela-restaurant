@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
@@ -40,10 +41,13 @@ export default function Header() {
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
                 <Link href="/" className="flex items-center group">
-                    <img
+                    <Image
                         src="/images/gerthela-logo.PNG"
                         alt="Gerthela Taverna"
+                        width={160}
+                        height={48}
                         className="h-12 w-auto object-contain transition-opacity group-hover:opacity-80"
+                        priority
                     />
                 </Link>
 
