@@ -14,15 +14,14 @@ const nextConfig: NextConfig = {
             key: "Strict-Transport-Security",
             value: "max-age=63072000; includeSubDomains; preload",
           },
-          {
-            key: "Content-Security-Policy",
-            value: [
+          { key: "Content-Security-Policy", value: [
               "default-src 'self'",
               "script-src 'self' 'unsafe-inline'",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com",
-              "img-src 'self' data: blob:",
-              "connect-src 'self' https://*.supabase.co https://api.openai.com https://api-free.deepl.com",
+              "img-src 'self' data: blob: https://maps.gstatic.com https://maps.googleapis.com",
+              "frame-src https://www.google.com https://maps.google.com",
+              "connect-src 'self' https://*.supabase.co https://api-free.deepl.com",
               "frame-ancestors 'none'",
             ].join("; "),
           },

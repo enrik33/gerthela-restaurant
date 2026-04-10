@@ -92,7 +92,13 @@ export default function Contact() {
       formData.message ? `💬 *Message:* ${formData.message}` : null,
     ].filter(Boolean).join('\n');
 
-    window.open(`https://wa.me/+355686660000?text=${encodeURIComponent(text)}`, '_blank');
+    const a = document.createElement('a');
+    a.href = `https://wa.me/+355686660000?text=${encodeURIComponent(text)}`;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
